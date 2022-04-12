@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "658702519280",
+    "project_id": "gylac-80caf",
+    "storage_bucket": "gylac-80caf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658702519280:android:0d13dd593e591176206b35",
+        "android_client_info": {
+          "package_name": "com.example.gyalcuser_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658702519280-r2r7hgphos6hk7rqbb6sufonafvsl4se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAqY7pOm_YJi7DywA82M7ErGMxMBo5RUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658702519280-r2r7hgphos6hk7rqbb6sufonafvsl4se.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
