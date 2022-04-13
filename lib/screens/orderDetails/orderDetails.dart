@@ -1,20 +1,19 @@
+import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gyalcuser_project/screens/feeback/reviewScreen.dart';
 import 'package:gyalcuser_project/screens/orderTrack/go_map.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
-import 'package:status_change/status_change.dart';
 import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/image.dart';
-import '../../widgets/App_Menu.dart';
 import '../../widgets/inputField.dart';
 
 class OrderDetails extends StatefulWidget {
@@ -28,16 +27,93 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   late CreateDeliveryProvider deliveryProvider;
 
+  int seconds = 1200;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    _countTimer();
   }
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   var scaffoldState = GlobalKey<ScaffoldState>();
+  Timer? _timer;
+  bool  setLoading = false;
+
+  void _countTimer() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (mounted) {
+        setState(() {
+          if (seconds > 0) {
+            seconds--;
+            getUpdate();
+
+          } else {
+            _timer!.cancel();
+            timer.cancel();
+            setState(() {
+              seconds = 0;
+              setLoading = false;
+            });
+
+          }
+        });
+      }
+    });
+  }
+  String trackStatus = "";
+  bool step4 = false;
+  bool step5 = false;
+
+  getUpdate() async{
+    firebaseFirestore
+        .collection("orders")
+        .doc(deliveryProvider.orderId).get().then((value){
+      if(mounted) {
+        setState(() {
+          trackStatus = value.data()!["trackStatus"].toString();
+          log(trackStatus.toString());
+        });
+      }
+    });
+
+    if(trackStatus =="WaitForPickup"){
+      if(mounted){
+        setState(() {
+          step4 = false;
+          step5 = false;
+        });
+      }
+    }
+
+    else if(trackStatus =="Picked"){
+      if(mounted){
+        setState(() {
+          step4 = true;
+        });
+      }
+    }
+    else if(trackStatus =="Delivered"){
+      if(mounted){
+        setState(() {
+          step5 = true;
+          _timer!.cancel();
+          seconds = 0;
+        });
+      }
+      Fluttertoast.showToast(msg: "Order Delivered Successfully",textColor: Colors.white,backgroundColor: Colors.green);
+    }
+
+    else{
+
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -280,7 +356,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     border: Border.all(color: textFieldStroke, width: 1),
                                     boxShadow: [
                                       BoxShadow(
-                                          offset: Offset(1, 1),
+                                          offset: const Offset(1, 1),
                                           color: black.withOpacity(0.25),
                                           blurRadius: 3)
                                     ],
@@ -385,8 +461,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                 children: <Widget>[
                   Container(
                       width:MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(28),bottomLeft: Radius.circular(28)),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(28),bottomLeft: const Radius.circular(28)),
                         color: white,
 
                       ),
@@ -457,7 +533,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     border: Border.all(color: textFieldStroke, width: 1),
                                     boxShadow: [
                                       BoxShadow(
-                                          offset: Offset(1, 1),
+                                          offset: const Offset(1, 1),
                                           color: black.withOpacity(0.25),
                                           blurRadius: 3)
                                     ],
@@ -522,15 +598,15 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.only(left:10.0,right: 10),
               child: InnerShadow(
                 blur: 5,
                 color: brownDark,
-                offset:Offset(0,3),
+                offset:const Offset(0,3),
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       color: white,
                       borderRadius: BorderRadius.circular(20)
@@ -549,7 +625,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("TEST",style:  TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
+                                    const Text("TEST",style:  const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
                                     Container(
                                       decoration: BoxDecoration(
                                           color: white,
@@ -562,7 +638,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                           ],
                                           borderRadius: BorderRadius.circular(4)
                                       ),
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Row(
 
                                         children: [
@@ -591,7 +667,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                   ),
                                   child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                 ),
-                                SizedBox(width: 20,),
+                                const SizedBox(width: 20,),
                                 Container(
                                   padding:const EdgeInsets.all(5),
                                   decoration: BoxDecoration(
@@ -626,7 +702,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Image.asset("assets/images/Rider.png",width: 20,height: 20,),
-                                  SizedBox(width: 2,),
+                                  const SizedBox(width: 2,),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -634,17 +710,17 @@ class _OrderDetailsState extends State<OrderDetails> {
                                         children: [
                                           SizedBox(
                                               width:150,
-                                              child: Text(deliveryProvider.pickAddress.text.toString(),style:  TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500))),
-                                          SizedBox(width: 10,),
-                                          Text(deliveryProvider.duration,style:  TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.bold,color: orange)),
+                                              child: Text(deliveryProvider.pickAddress.text.toString(),style:  const TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500))),
+                                          const SizedBox(width: 10,),
+                                          Text(deliveryProvider.duration,style:  const TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.bold,color: orange)),
                                         ],
                                       ),
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox( width:150,child: Text(deliveryProvider.deliveryAddress.text.toString(),style:  TextStyle(fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w300))),
-                                          SizedBox(width: 10,),
-                                          Text(deliveryProvider.distance,style:  TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500)),
+                                          SizedBox( width:150,child: Text(deliveryProvider.deliveryAddress.text.toString(),style:  const TextStyle(fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w300))),
+                                          const SizedBox(width: 10,),
+                                          Text(deliveryProvider.distance,style:  const TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500)),
                                         ],
                                       ),
                                     ],
@@ -662,7 +738,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                               deliveryProvider.vehicle == "BIKE"?Image.asset(cycleimage,width: 60,height: 60,):
                               deliveryProvider.vehicle == "MINI TRUCK"?Image.asset(miniTruckimage,width: 60,height: 60,):
                               Image.asset("assets/images/Group 8504.png",width: 60,height: 60,),
-                              Text( deliveryProvider.vehicle,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w600))
+                              Text( deliveryProvider.vehicle,style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w600))
                             ],
                           )
                         ],
@@ -672,36 +748,153 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ),
               ),
             ),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.green
+                          ),
+                          margin: const EdgeInsets.all(5),
+                          child: const Icon(Icons.check,color: white,),
+                        ),
+                        Container(
+                          width: 5,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                              color: Colors.green
+                          ),
 
+                        ),
+                      ],
+                    ),
+                    const Text("Waiting For Acceptance",style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
+                  ],
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.green
+                          ),
+                          margin: const EdgeInsets.all(5),
+                          child: const Icon(Icons.check,color: white,),
+                        ),
+                        Container(
+                          width: 5,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                              color: Colors.green
+                          ),
 
-            SizedBox(height: 10,),
+                        ),
+                      ],
+                    ),
+                    const Text("Setve Bowen accept your Request",style: TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
+                  ],
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          decoration:  BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:step4 ==false? Colors.green.withOpacity(0.45): Colors.green,
+                            border:step4 == false? Border.all(color: Colors.green,width: 2):null
+                          ),
+                          margin: const EdgeInsets.all(5),
+                          child: const Icon(Icons.check,color: white,),
+                        ),
+                        Container(
+                          width: 5,
+                          height: 50,
+                          decoration:  BoxDecoration(
+                              color: step4 ==false? Colors.grey:Colors.green
+                          ),
+
+                        ),
+                      ],
+                    ),
+                    const Text("Waiting for Pickup",style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color: Colors.black),)
+                  ],
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          decoration:  BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:step4 ==false? Colors.grey:Colors.green
+                          ),
+                          margin: const EdgeInsets.all(5),
+                          child: const Icon(Icons.check,color: white,),
+                        ),
+                        Container(
+                          width: 5,
+                          height: 50,
+                          decoration:  BoxDecoration(
+                              color: step4 ==false? Colors.grey:Colors.green
+                          ),
+
+                        ),
+                      ],
+                    ),
+                     Text("Parcel Picked up",style: TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color:step4 ==false? Colors.grey:Colors.black),)
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      decoration:  BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: step5 ==false? Colors.grey:Colors.green
+                      ),
+                      margin: const EdgeInsets.all(5),
+                      child: const Icon(Icons.check,color: white,),
+                    ),
+                     Text("Delivered Location",style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color: step5 ==false? Colors.grey:Colors.black),)
+                  ],
+                ),
+              ],
+
+            ),
+            const SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Text("Parcel Name",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
-                Text(deliveryProvider.pickParcelName.text.toString(),style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                Text(deliveryProvider.pickParcelName.text.toString(),style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Text("Weight",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
-                Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
               ],
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Container(
               width: media.width,
               color: orange,
-              padding: EdgeInsets.only(left:10,right: 10,top: 5,bottom: 5),
+              padding: const EdgeInsets.only(left:10,right: 10,top: 5,bottom: 5),
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: [
-                      Text("Price Order",style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
-                      Text(deliveryProvider.pickPrice.text.toString()+" MNT",style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold)),
+                      const Text("Price Order",style:  const TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
+                      Text(deliveryProvider.pickPrice.text.toString()+" MNT",style:  const TextStyle(color: white,fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold)),
 
                     ],
                   ),
@@ -714,16 +907,16 @@ class _OrderDetailsState extends State<OrderDetails> {
                     children: [
                       Row(
                         children: [
-                          Text("Distance",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
-                          SizedBox(width: 10,),
-                          Text(deliveryProvider.distance,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          const Text("Distance",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          const SizedBox(width: 10,),
+                          Text(deliveryProvider.distance,style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
                       Row(
                         children: [
-                          Text("Time",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
-                          SizedBox(width: 10,),
-                          Text(deliveryProvider.duration,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          const Text("Time",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          const SizedBox(width: 10,),
+                          Text(deliveryProvider.duration,style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
 
@@ -733,15 +926,15 @@ class _OrderDetailsState extends State<OrderDetails> {
                 ],
               ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             CustomBtn( bgColor: orange,
                 shadowColor: black,
                 size: 15,
                 text: 'TRACK ORDER',
                 onTap: (){
-              AppRoutes.push(context, TrackMap());
+              AppRoutes.push(context, const TrackMap());
                 }),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
           ],
         ),
       ),

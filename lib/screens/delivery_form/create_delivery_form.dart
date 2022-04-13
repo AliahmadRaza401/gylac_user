@@ -97,6 +97,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     }
     try {
       DeliveryModel addInfo = DeliveryModel(
+        trackStatus: "Pending",
         pickupAddress: deliveryProvider.pickAddress.text.toString(),
         pickupName: deliveryProvider.pickName.text.toString(),
         pickupEmail: deliveryProvider.pickEmail.text.toString(),
@@ -294,6 +295,9 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
           "timestamp": FieldValue.serverTimestamp(),
           "title": "Order Accepted",
         }).then((data) async {
+          firebaseFirestore
+              .collection("orders")
+              .doc(id).update({"trackStatus":"Accepted"});
           setState(() {
             isLoading = false;
             seconds = 0;

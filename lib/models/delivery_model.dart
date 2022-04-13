@@ -39,8 +39,10 @@ class DeliveryModel {
   String orderID;
   int rejectCount;
   List rejections;
+  String trackStatus;
 
   DeliveryModel({
+    required this.trackStatus,
     required this.time,
     required this.pickupAddress,
     required this.pickupName,
@@ -111,6 +113,7 @@ class DeliveryModel {
       "rejectCount": rejectCount,
       "rejections": rejections,
       "duration":time,
+      "trackStatus":trackStatus
     };
   }
 
@@ -148,6 +151,7 @@ class DeliveryModel {
     int rejectCount = 0;
     List rejections = [];
     String time="";
+    String trackStatus = "";
 
     try {
       pickupAddress = doc.get("pickupAddress");
@@ -303,6 +307,11 @@ class DeliveryModel {
     } catch (e) {
       print(e);
     }
+    try {
+      trackStatus = doc.get("trackStatus");
+    } catch (e) {
+      print(e);
+    }
 
     return DeliveryModel(
       pickupAddress: pickupAddress,
@@ -338,6 +347,7 @@ class DeliveryModel {
       rejectCount: rejectCount,
       rejections: rejections,
       time:time,
+      trackStatus: trackStatus
     );
   }
 }

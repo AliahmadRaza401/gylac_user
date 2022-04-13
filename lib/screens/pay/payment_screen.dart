@@ -61,6 +61,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
         "timestamp": FieldValue.serverTimestamp(),
         "title": "Order Payment Done",
       }).then((data) async {
+        firebaseFirestore
+            .collection("orders")
+            .doc(widget.orderId).update({"trackStatus":"WaitForPickup"});
         setState(() {
           isLoading = false;
         });
