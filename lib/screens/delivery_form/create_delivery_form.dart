@@ -80,8 +80,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     },
   ];
 
-
-
   late UserProvider _userProvider;
   bool isLoading = false;
 
@@ -228,7 +226,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     }
   }
 
-
   void _countTimer(String id) {
     if (_timer != null) {
       _timer!.cancel();
@@ -316,6 +313,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         });
 
       }
+
       else if(deliveryProvider.rejectionCount == deliveryProvider.driverLength){
         firebaseFirestore
             .collection("users")
@@ -334,8 +332,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
             setLoading = false;
           });
           _timer!.cancel();
-
-          ToastUtils.showErrorToast(context, "Error", "Delivery got rejected by all drivers, increase price and again add order.");
+          Fluttertoast.showToast(msg: "Delivery got rejected by all drivers, increase price and again add order.",textColor: Colors.white,backgroundColor: Colors.red);
           final collection = FirebaseFirestore.instance.collection('orders');
           collection
               .doc(id) // <-- Doc ID to be deleted.
@@ -357,7 +354,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
       }
 
   }
-  
 
   @override
   void dispose() {
@@ -395,7 +391,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldState,
       backgroundColor: Colors.grey[200],
