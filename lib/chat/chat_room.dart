@@ -44,6 +44,12 @@ class _ChatRoomState extends State<ChatRoom> {
         .doc(newMessage.messageid)
         .set(newMessage.toMap());
 
+    widget.chatRoom.lastMessage = masgContrl.text;
+    FirebaseFirestore.instance
+        .collection('chatrooms')
+        .doc(widget.chatRoom.chatroomid)
+        .set(widget.chatRoom.toMap());
+
     masgContrl.clear();
   }
 
@@ -118,15 +124,21 @@ class _ChatRoomState extends State<ChatRoom> {
                                         vertical: 10,
                                         horizontal: 30.w,
                                       ),
-                                      decoration: BoxDecoration(
-                                        color: (currentMessage.sender ==
-                                                widget.userModel.uid)
-                                            ? Color(0xffFBB03B)
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .secondary,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
+                                      decoration: currentMessage.sender ==
+                                              widget.userModel.uid
+                                          ? BoxDecoration(
+                                              color: Color(0xffFBB03B),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            )
+                                          : BoxDecoration(
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                  width: 2,
+                                                  color: Color(0xffFBB03B)),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
                                       child: Text(
                                         currentMessage.text.toString(),
                                         style: TextStyle(
