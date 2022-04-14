@@ -1,10 +1,19 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gyalcuser_project/chat/chat_room.dart';
+import 'package:gyalcuser_project/chat/model/chat_room_model.dart';
+import 'package:gyalcuser_project/chat/model/user_model.dart';
+import 'package:gyalcuser_project/constants/keys.dart';
 import 'package:gyalcuser_project/screens/delivery_form/create_delivery_form.dart';
 import 'package:gyalcuser_project/screens/orderTrack/go_map.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../providers/userProvider.dart';
@@ -30,11 +39,12 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     _userProvider = Provider.of<UserProvider>(context, listen: false);
-    deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    deliveryProvider =
+        Provider.of<CreateDeliveryProvider>(context, listen: false);
     getData();
   }
 
-  getData() async{
+  getData() async {
     String uid = _auth.currentUser!.uid;
     await _firestore.collection('users').doc(uid).get().then((value) {
       setState(() {
@@ -42,11 +52,12 @@ class _HomePageState extends State<HomePage> {
         _userProvider.fullName = value.data()!["fullName"].toString();
         _userProvider.phoneNumber = '0${value.data()!["mobileNumber"]}';
         _userProvider.image = value.data()!["image"].toString();
-        _userProvider.address= value.data()!["address"].toString();
+        _userProvider.address = value.data()!["address"].toString();
       });
     });
     getCount();
   }
+
   getCount() async {
     int count = await FirebaseFirestore.instance
         .collection('drivers')
@@ -55,6 +66,47 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       deliveryProvider.driverLength = count;
     });
+  }
+
+  ChatRoomModel? chatRoom;
+
+  Future<ChatRoomModel?> getChatRoom(targetID, userID) async {
+    print('userID: $userID');
+    print('targetID: $targetID');
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection("chatrooms")
+        .where("participants.${userID}", isEqualTo: true)
+        .where("participants.${targetID}", isEqualTo: true)
+        .get();
+
+    if (snapshot.docs.length > 0) {
+      print("ChatRoom Available");
+
+      var docData = snapshot.docs[0].data();
+      ChatRoomModel existingChatRoom =
+          ChatRoomModel.fromMap(docData as Map<String, dynamic>);
+
+      chatRoom = existingChatRoom;
+    } else {
+      print("ChatRoom Not Available");
+
+      ChatRoomModel newChatRoom = ChatRoomModel(
+        chatroomid: uuid.v1(),
+        lastMessage: "",
+        participants: {
+          userID.toString(): true,
+          targetID.toString(): true,
+        },
+      );
+
+      await FirebaseFirestore.instance
+          .collection('chatrooms')
+          .doc(newChatRoom.chatroomid)
+          .set(newChatRoom.toMap());
+      chatRoom = newChatRoom;
+    }
+
+    return chatRoom;
   }
 
   @override
@@ -70,7 +122,7 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 5),
             width: media.width,
-            decoration:const BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/bg.png'),
                 fit: BoxFit.fill,
@@ -81,8 +133,12 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     Builder(
-                      builder:(context)=>IconButton(
-                        icon: Image.asset(menuimage,width: 30,height: 30,),
+                      builder: (context) => IconButton(
+                        icon: Image.asset(
+                          menuimage,
+                          width: 30,
+                          height: 30,
+                        ),
                         onPressed: () => Scaffold.of(context).openDrawer(),
                       ),
                     ),
@@ -93,18 +149,18 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        AppRoutes.push(context,const CreateDeliveryForm());
+                        AppRoutes.push(context, const CreateDeliveryForm());
                       },
                       child: Container(
                         width: media.width * 0.55,
-                        padding:const EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 8,
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(color: orange, width: 1),
-                          boxShadow:const [
+                          boxShadow: const [
                             BoxShadow(
-                                color:stroke,
+                                color: stroke,
                                 offset: Offset(2, 6),
                                 blurRadius: 8)
                           ],
@@ -116,15 +172,20 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Container(
                               alignment: Alignment.center,
-                              child:const GradientText(
+                              child: const GradientText(
                                 'SCHEDULE A NEW \n DELIVERY',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.bold),
-                                gradient: LinearGradient(colors: [orangeDark, redOrange,],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    orangeDark,
+                                    redOrange,
+                                  ],
                                   begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,),
+                                  end: Alignment.bottomCenter,
+                                ),
                               ),
                             ),
                             Image.asset(
@@ -151,16 +212,14 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-
                 Container(
                   height: media.height * 0.68,
-                  padding:const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: () {
-                          },
+                          onTap: () {},
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -179,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                       const SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
@@ -188,7 +247,33 @@ class _HomePageState extends State<HomePage> {
                                 width: media.width * 0.5,
                                 child: CustomBtn(
                                   text: "POPULAR DELIVERIES",
-                                  onTap: () {
+                                  onTap: () async {
+                                    ChatRoomModel? chatRoomModel =
+                                        await getChatRoom(
+                                            '9PAK0ofdCfSR6A6K8PQcjniYEzv2',
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid);
+
+                                    if (chatRoomModel != null) {
+                                      AppRoutes.push(
+                                          context,
+                                          ChatRoom(
+                                            targetUser: UserModel(
+                                              uid:
+                                                  '9PAK0ofdCfSR6A6K8PQcjniYEzv2',
+                                              fullname: 'Driver',
+                                              email: 'aaa@gmail.com',
+                                              profilepic: 'asdf',
+                                            ),
+                                            userModel: UserModel(
+                                              uid: _userProvider.uid,
+                                              fullname: _userProvider.fullName,
+                                              email: _userProvider.email,
+                                              profilepic: _userProvider.image,
+                                            ),
+                                            chatRoom: chatRoomModel,
+                                          ));
+                                    }
                                   },
                                   bgColor: orange,
                                   size: 15,
@@ -200,7 +285,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         GridView.builder(
                             shrinkWrap: true,
-                            physics:const BouncingScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             gridDelegate:
                                 const SliverGridDelegateWithMaxCrossAxisExtent(
                                     maxCrossAxisExtent: 200,
@@ -216,7 +301,7 @@ class _HomePageState extends State<HomePage> {
                                   border: Border.all(color: stroke, width: 1),
                                   boxShadow: [
                                     BoxShadow(
-                                        offset:const Offset(2, 3),
+                                        offset: const Offset(2, 3),
                                         blurRadius: 5,
                                         color: black.withOpacity(0.25))
                                   ],
@@ -236,5 +321,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
