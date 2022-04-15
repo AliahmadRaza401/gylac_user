@@ -68,46 +68,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  ChatRoomModel? chatRoom;
-
-  Future<ChatRoomModel?> getChatRoom(targetID, userID) async {
-    print('userID: $userID');
-    print('targetID: $targetID');
-    QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection("chatrooms")
-        .where("participants.${userID}", isEqualTo: true)
-        .where("participants.${targetID}", isEqualTo: true)
-        .get();
-
-    if (snapshot.docs.length > 0) {
-      print("ChatRoom Available");
-
-      var docData = snapshot.docs[0].data();
-      ChatRoomModel existingChatRoom =
-          ChatRoomModel.fromMap(docData as Map<String, dynamic>);
-
-      chatRoom = existingChatRoom;
-    } else {
-      print("ChatRoom Not Available");
-
-      ChatRoomModel newChatRoom = ChatRoomModel(
-        chatroomid: uuid.v1(),
-        lastMessage: "",
-        participants: {
-          userID.toString(): true,
-          targetID.toString(): true,
-        },
-      );
-
-      await FirebaseFirestore.instance
-          .collection('chatrooms')
-          .doc(newChatRoom.chatroomid)
-          .set(newChatRoom.toMap());
-      chatRoom = newChatRoom;
-    }
-
-    return chatRoom;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -247,33 +207,8 @@ class _HomePageState extends State<HomePage> {
                                 width: media.width * 0.5,
                                 child: CustomBtn(
                                   text: "POPULAR DELIVERIES",
-                                  onTap: () async {
-                                    ChatRoomModel? chatRoomModel =
-                                        await getChatRoom(
-                                            '9PAK0ofdCfSR6A6K8PQcjniYEzv2',
-                                            FirebaseAuth
-                                                .instance.currentUser!.uid);
+                                  onTap: ()  {
 
-                                    if (chatRoomModel != null) {
-                                      AppRoutes.push(
-                                          context,
-                                          ChatRoom(
-                                            targetUser: UserModel(
-                                              uid:
-                                                  '9PAK0ofdCfSR6A6K8PQcjniYEzv2',
-                                              fullname: 'Driver',
-                                              email: 'aaa@gmail.com',
-                                              profilepic: 'asdf',
-                                            ),
-                                            userModel: UserModel(
-                                              uid: _userProvider.uid,
-                                              fullname: _userProvider.fullName,
-                                              email: _userProvider.email,
-                                              profilepic: _userProvider.image,
-                                            ),
-                                            chatRoom: chatRoomModel,
-                                          ));
-                                    }
                                   },
                                   bgColor: orange,
                                   size: 15,

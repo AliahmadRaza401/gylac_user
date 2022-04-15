@@ -3,15 +3,22 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gyalcuser_project/chat/chat_handler.dart';
 import 'package:gyalcuser_project/screens/orderTrack/go_map.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../chat/chat_room.dart';
+import '../../chat/model/chat_room_model.dart';
+import '../../chat/model/user_model.dart';
 import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
+import '../../providers/userProvider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/image.dart';
 import '../../widgets/inputField.dart';
@@ -26,6 +33,7 @@ class OrderDetails extends StatefulWidget {
 
 class _OrderDetailsState extends State<OrderDetails> {
 
+  late UserProvider _userProvider;
   late CreateDeliveryProvider deliveryProvider;
 
   int seconds = 1200;
@@ -34,6 +42,7 @@ class _OrderDetailsState extends State<OrderDetails> {
     // TODO: implement initState
     super.initState();
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    _userProvider = Provider.of<UserProvider>(context, listen: false);
     _countTimer();
   }
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
@@ -48,7 +57,7 @@ class _OrderDetailsState extends State<OrderDetails> {
       _timer!.cancel();
     }
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (mounted) {
+      /*      if (mounted) {
         setState(() {
           if (seconds > 0) {
             seconds--;
@@ -64,7 +73,8 @@ class _OrderDetailsState extends State<OrderDetails> {
 
           }
         });
-      }
+      }*/
+      getUpdate();
     });
   }
 
@@ -81,7 +91,6 @@ class _OrderDetailsState extends State<OrderDetails> {
         setState(() {
           trackStatus = value.data()!["trackStatus"].toString();
           driverId = value.data()!["driverId"].toString();
-          log(driverId.toString());
         });
       }
     });
@@ -107,7 +116,6 @@ class _OrderDetailsState extends State<OrderDetails> {
         setState(() {
           step5 = true;
           _timer!.cancel();
-          seconds = 0;
         });
       }
       Fluttertoast.showToast(msg: "Order Delivered Successfully",textColor: Colors.white,backgroundColor: Colors.green);
@@ -162,8 +170,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: [
                     Image.asset(
                       pickPhoneimage,
-                      height: 50,
-                      width: 50,
+                      height: 40,
+                      width: 60,
                     ),
                     const Text(
                       'PICK-UP DETAILS',
@@ -446,8 +454,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: [
                     Image.asset(
                       yvanimage,
-                      height: 50,
-                      width: 50,
+                      height: 40,
+                      width: 60,
                     ),
                     const Text(
                       'DELIVERY DETAILS',
@@ -625,11 +633,45 @@ class _OrderDetailsState extends State<OrderDetails> {
                           children: [
                             Row(
                               children: [
-                                Image.asset("assets/images/Avatar.png",width: 60,height: 60,),
+                                deliveryProvider.driverImage.isNotEmpty
+                                    ? Image.network(
+                                  deliveryProvider.driverImage,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, object, stackTrace) {
+                                    return const Icon(
+                                      Icons.account_circle,
+                                      size: 90,
+                                      color: white,
+                                    );
+                                  },
+                                  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return SizedBox(
+                                      width: 90,
+                                      height: 90,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          color: white,
+                                          value: loadingProgress.expectedTotalBytes != null &&
+                                              loadingProgress.expectedTotalBytes != null
+                                              ? loadingProgress.cumulativeBytesLoaded /
+                                              loadingProgress.expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                                    :const Icon(
+                                  Icons.account_circle,
+                                  size: 90,
+                                  color: white,
+                                ),
+                                SizedBox(width: 20.w,),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text("TEST",style:  const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
+                                    Text(deliveryProvider.driverName,style:  const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
                                     Container(
                                       decoration: BoxDecoration(
                                           color: white,
@@ -658,32 +700,72 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ),
                             Row(
                               children: [
-                                Container(
-                                  padding:const EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    boxShadow:const [
-                                      BoxShadow(
-                                          color: dimOrange,
-                                          blurRadius: 5)
-                                    ],
+                                GestureDetector(
+                                  onTap:() async{
+                                    var url = "tel:${deliveryProvider.driverMobile}";
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
+                                  },
+                                  child: Container(
+                                    padding:const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      color: white,
+                                      borderRadius: BorderRadius.circular(5),
+                                      boxShadow:const [
+                                        BoxShadow(
+                                            color: dimOrange,
+                                            blurRadius: 5)
+                                      ],
+                                    ),
+                                    child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                   ),
-                                  child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                 ),
                                 const SizedBox(width: 20,),
-                                Container(
-                                  padding:const EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    boxShadow:const [
-                                      BoxShadow(
-                                          color: dimOrange,
-                                          blurRadius: 5)
-                                    ],
+                                GestureDetector(
+                                  onTap: () async {
+
+                                    ChatRoomModel? chatRoomModel =
+                                    await chatHandler.getChatRoom(
+                                        deliveryProvider.driverId,
+                                        FirebaseAuth
+                                            .instance.currentUser!.uid);
+
+                                    if (chatRoomModel != null) {
+                                      AppRoutes.push(
+                                          context,
+                                          ChatRoom(
+                                            targetUser: UserModel(
+                                              uid: deliveryProvider.driverId.toString(),
+                                              fullname: deliveryProvider.driverName.toString(),
+                                              email: 'test@gmail.com',
+                                              profilepic:deliveryProvider.driverImage.toString(),
+                                            ),
+                                            userModel: UserModel(
+                                              uid: _userProvider.uid,
+                                              fullname: _userProvider.fullName,
+                                              email: _userProvider.email,
+                                              profilepic: _userProvider.image,
+                                            ),
+                                            chatRoom: chatRoomModel,
+                                          ));
+                                    }
+                                  },
+                                  child: Container(
+                                    padding:const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      color: white,
+                                      borderRadius: BorderRadius.circular(5),
+                                      boxShadow:const [
+                                        BoxShadow(
+                                            color: dimOrange,
+                                            blurRadius: 5)
+                                      ],
+                                    ),
+                                    child: Image.asset("assets/images/bpmn_end-event-message.png",width: 30,height: 30,),
                                   ),
-                                  child: Image.asset("assets/images/bpmn_end-event-message.png",width: 30,height: 30,),
                                 )
                               ],
                             )
@@ -801,7 +883,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ],
                     ),
-                    const Text("Setve Bowen accept your Request",style: TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
+                    Text("${deliveryProvider.driverName} accept your Request",style:const TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
                   ],
                 ),
                 Row(

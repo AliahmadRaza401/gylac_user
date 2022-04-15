@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -26,6 +27,7 @@ import '../../providers/userProvider.dart';
 import '../../utils/app_route.dart';
 import '../../utils/image.dart';
 import '../../utils/innerShahdow.dart';
+import '../../utils/motion_toast.dart';
 import '../feeback/reviewScreen.dart';
 import '../home/home_page.dart';
 import 'distace_calculate.dart';
@@ -53,14 +55,13 @@ class _GoMapState extends State<GoMap> {
   var rideTime = 0.0;
   var ridedistance = 0.0;
   late LatLng destination;
+  late LatLng pickup;
  
   late LatLng liveLocation;
   DriverModel? driver;
   late Timer timer;
   late UserProvider _userProvider;
   late CreateDeliveryProvider deliveryProvider;
-
-
 
   @override
   void initState() {
@@ -72,17 +73,17 @@ class _GoMapState extends State<GoMap> {
     _userProvider = Provider.of<UserProvider>(context, listen: false);
   }
 
+  final Completer<GoogleMapController> _controller = Completer();
   LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
   late GoogleMapController _mapController;
   late GoogleMapController _cntlr;
 
-  void _onMapCreated(
-      cntlr,
-      ) {
+  void _onMapCreated(cntlr) {
     _mapController = cntlr;
-
-    //locatePosition(context);
+    locatePosition(context);
   }
+
+  bool isPickup = false;
 
   getLiveBarbar() {
     timer = Timer.periodic(Duration(seconds: 2), (timer) {
@@ -90,6 +91,7 @@ class _GoMapState extends State<GoMap> {
     });
   }
 
+  LatLngBounds? bound;
   Future getBarbarData() async {
     try {
       await FirebaseFirestore.instance
@@ -110,37 +112,75 @@ class _GoMapState extends State<GoMap> {
         if (driver!.lat !=null)
           {
             setState(() {
-              markers.removeWhere(
-                      (marker) => marker.markerId.value == 'barbar');
-
+              markers.removeWhere((marker) => marker.markerId.value == 'barbar');
               barbarMarkers(liveLocation);
-              // distance time
-              ridedistance = calculateHarvesineDistanceInKM(
-                  liveLocation, destination);
+              ridedistance = calculateHarvesineDistanceInKM(liveLocation, destination);
               rideTime = calculateETAInMinutes(ridedistance, 30);
             }),
             if (ridedistance == 0 || ridedistance < 0.10)
               {
-                print("barber Reached____________________________"),
-                timer.cancel(),
+                if(isPickup == false)
+                {
+                  setState(() {
+                    isPickup = true;
+                  }),
+                 // timer.cancel(),
+                  MyMotionToast.success(context, "Pickup Location", "${deliveryProvider.driverName} reached pickup location"),
+                  changePosition(),
 
-              },
-            if (_polylineCoordinates == null ||
-                _polylineCoordinates.isEmpty)
-              {
-                setPolylineOnMap(
-                  liveLocation.latitude,
-                  liveLocation.longitude,
-                  destination.latitude,
-                  destination.longitude,
-                )
+                if (_polylineCoordinates == null || _polylineCoordinates.isEmpty)
+                  {
+                    setPolylineOnMap(
+                      liveLocation.latitude,
+                      liveLocation.longitude,
+                      pickup.latitude,
+                      pickup.longitude,
+                    )
+                  }
               }
+                else if(isPickup == true)
+                  {
+                    timer.cancel(),
+                    MyMotionToast.success(context, "Deliver Location", "${deliveryProvider.driverName} reached delivery location"),
+                    Navigator.pop(context),
+
+                    if (_polylineCoordinates == null || _polylineCoordinates.isEmpty)
+                      {
+                        setPolylineOnMap(
+                          liveLocation.latitude,
+                          liveLocation.longitude,
+                          destination.latitude,
+                          destination.longitude,
+
+                        )
+                      }
+                  },
+                }
           }
       });
     } catch (e) {
       print(e.toString());
       return null;
     }
+  }
+
+  changePosition() async{
+    if(liveLocation.latitude > double.parse(deliveryProvider.pickupLat) && liveLocation.longitude >  double.parse(deliveryProvider.pickupLong)){
+      bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng(liveLocation.latitude,liveLocation.longitude));
+    }
+    else if(liveLocation.longitude > double.parse(deliveryProvider.pickupLong)){
+    bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)), northeast: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude));
+    }
+    else if(liveLocation.latitude >  double.parse(deliveryProvider.pickupLat)){
+    bound= LatLngBounds(southwest: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude), northeast: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)));
+    }
+    else{
+    bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,liveLocation.longitude), northeast: LatLng( double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
+    }
+    GoogleMapController controller =
+    await _controller.future;
+    controller.animateCamera(
+    CameraUpdate.newLatLngBounds(bound!, 120));
   }
 
   @override
@@ -238,11 +278,45 @@ class _GoMapState extends State<GoMap> {
                                 children: [
                                   Row(
                                     children: [
-                                      Image.asset("assets/images/Avatar.png",width: 60,height: 60,),
+                                      deliveryProvider.driverImage.isNotEmpty
+                                          ? Image.network(
+                                        deliveryProvider.driverImage,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, object, stackTrace) {
+                                          return const Icon(
+                                            Icons.account_circle,
+                                            size: 90,
+                                            color: white,
+                                          );
+                                        },
+                                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                          if (loadingProgress == null) return child;
+                                          return SizedBox(
+                                            width: 90,
+                                            height: 90,
+                                            child: Center(
+                                              child: CircularProgressIndicator(
+                                                color: white,
+                                                value: loadingProgress.expectedTotalBytes != null &&
+                                                    loadingProgress.expectedTotalBytes != null
+                                                    ? loadingProgress.cumulativeBytesLoaded /
+                                                    loadingProgress.expectedTotalBytes!
+                                                    : null,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                          :const Icon(
+                                        Icons.account_circle,
+                                        size: 90,
+                                        color: white,
+                                      ),
+                                      SizedBox(width: 20.w,),
                                       Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text("TEST",style:  TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
+                                          Text(deliveryProvider.driverName,style:  const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
                                           Container(
                                             decoration: BoxDecoration(
                                                 color: white,
@@ -255,7 +329,7 @@ class _GoMapState extends State<GoMap> {
                                                 ],
                                                 borderRadius: BorderRadius.circular(4)
                                             ),
-                                            padding: EdgeInsets.all(2),
+                                            padding: const EdgeInsets.all(2),
                                             child: Row(
 
                                               children: [
@@ -287,7 +361,7 @@ class _GoMapState extends State<GoMap> {
                                       SizedBox(width: 20,),
                                       GestureDetector(
                                         onTap: () async {
-                                          log(widget.driverId.toString());
+
                                           ChatRoomModel? chatRoomModel =
                                           await chatHandler.getChatRoom(
                                               widget.driverId,
@@ -629,13 +703,32 @@ class _GoMapState extends State<GoMap> {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       var currentPosition = position;
+      pickup = LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
       destination = LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong));
 
       // barberMarkers(latLatPosition);
 
-      CameraPosition cameraPosition = CameraPosition(target: destination, zoom: 14);
-      _mapController
-          .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      LatLngBounds bound;
+      if(liveLocation.latitude > double.parse(deliveryProvider.pickupLat) && liveLocation.longitude >  double.parse(deliveryProvider.pickupLong)){
+        bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng(liveLocation.latitude,liveLocation.longitude));
+      }
+      else if(liveLocation.longitude > double.parse(deliveryProvider.pickupLong)){
+        bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)), northeast: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude));
+      }
+      else if(liveLocation.latitude >  double.parse(deliveryProvider.pickupLat)){
+        bound= LatLngBounds(southwest: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude), northeast: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)));
+      }
+      else{
+        bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,liveLocation.longitude), northeast: LatLng( double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
+      }
+      final GoogleMapController controller =
+      await _controller.future;
+      controller.animateCamera(
+          CameraUpdate.newLatLngBounds(bound, 120));
+
+      // CameraPosition cameraPosition = CameraPosition(target: destination, zoom: 14);
+      // _mapController
+      //     .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     }
   }
@@ -666,7 +759,7 @@ class _GoMapState extends State<GoMap> {
   }
 
   Future<Set<Marker>> barbarMarkers(showLocation) async {
-    final Uint8List markerIcon = await MapServices.getMarkerWithSize(100);
+    final Uint8List markerIcon = await MapServices.getMarkerWithSize(80);
     //markers to place on map
     setState(() {
       markers.add(Marker(
@@ -686,6 +779,7 @@ class _GoMapState extends State<GoMap> {
   }
 
   Future<Set<Marker>> userMarkers(showLocation) async {
+    final Uint8List markerIcon = await MapServices.getMarkerWithSize2(80);
     setState(() {
       markers.add(Marker(
         markerId: MarkerId("user"),
@@ -694,7 +788,23 @@ class _GoMapState extends State<GoMap> {
         zIndex: 2,
         flat: true,
         anchor: Offset(0.5, 0.5),
-        icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+        icon: BitmapDescriptor.fromBytes(markerIcon), //Icon for Marker
+      ));
+    });
+    return markers;
+  }
+
+  Future<Set<Marker>> destinationMarkers(showLocation) async {
+    final Uint8List markerIcon = await MapServices.getMarkerWithSize2(80);
+    setState(() {
+      markers.add(Marker(
+        markerId: MarkerId("user"),
+        position: showLocation,
+        draggable: false,
+        zIndex: 2,
+        flat: true,
+        anchor: Offset(0.5, 0.5),
+        icon: BitmapDescriptor.fromBytes(markerIcon), //Icon for Marker
       ));
     });
     return markers;

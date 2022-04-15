@@ -43,10 +43,16 @@ class CreateDeliveryProvider extends ChangeNotifier {
   String deliveryLong = "";
   String distance = "";
   String duration ="";
-  String driverId="";
   int driverLength = 0;
   int rejectionCount = 0;
   String orderId = "";
+
+  String driverId="";
+  double driverLat=0.0;
+  double driverLong=0.0;
+  String driverName="";
+  String driverMobile="";
+  String driverImage = "";
 
 
 

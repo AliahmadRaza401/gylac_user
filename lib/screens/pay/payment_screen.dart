@@ -31,6 +31,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
     // TODO: implement initState
     super.initState();
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    getDriverData();
+  }
+
+  getDriverData() async{
+    firebaseFirestore
+        .collection("drivers")
+        .doc(deliveryProvider.driverId).get().then((value){
+      if(mounted) {
+        setState(() {
+          deliveryProvider.driverName = value.data()!["fullName"].toString();
+          deliveryProvider.driverImage = value.data()!["dp"].toString();
+          deliveryProvider.driverLat = value.data()!["latitude"];
+          deliveryProvider.driverLong = value.data()!["longitude"];
+          deliveryProvider.driverMobile = value.data()!["mobileNumber"].toString();
+        });
+      }
+    });
   }
 
   bool isLoading = false;
@@ -64,6 +81,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
         firebaseFirestore
             .collection("orders")
             .doc(widget.orderId).update({"trackStatus":"WaitForPickup"});
+        firebaseFirestore
+            .collection("users")
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection("orders")
+            .doc(widget.orderId)
+            .update({
+          "driverName": deliveryProvider.driverName,
+          "driverImage": deliveryProvider.driverImage,
+          "driverPhone": deliveryProvider.driverMobile,
+        });
         setState(() {
           isLoading = false;
         });

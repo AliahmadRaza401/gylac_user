@@ -7,13 +7,16 @@ class DriverModel {
   double long;
   String phoneNumber;
   String image;
+  String trackStatus;
 
   DriverModel({
+    required this.trackStatus,
     required this.userName,required this.phoneNumber,required this.userId,required this.lat,required this.long,required this.image
   });
 
   Map<String, dynamic> toJson() => {
     'id': userId,
+    'trackStatus': trackStatus,
     'latitude': lat,
     'longitude': long,
     'fullName': userName,
@@ -23,6 +26,7 @@ class DriverModel {
   factory DriverModel.fromMap(Map<String, dynamic> map) {
     return DriverModel(
       userId: map['id'] as String,
+      trackStatus: map['trackStatus'] as String,
       lat: map['latitude'] as double,
       userName: map['fullName'] as String,
       long: map['longitude'] as double,
@@ -39,6 +43,7 @@ class DriverModel {
     double long =0.0;
     String userName ="";
     String image ="";
+    String trackStatus = "";
 
     try {
       userId = doc.get("userId");
@@ -77,6 +82,12 @@ class DriverModel {
       print(e);
     }
 
+    try {
+      trackStatus = doc.get("trackStatus");
+    } catch (e) {
+      print(e);
+    }
+
 
     return DriverModel(
       userId: userId,
@@ -84,7 +95,8 @@ class DriverModel {
       userName: userName,
       long: long,
       phoneNumber: phoneNumber,
-      image:image
+      image:image,
+      trackStatus:trackStatus
     );
   }
 }

@@ -51,6 +51,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     _userProvider = Provider.of<UserProvider>(context, listen: false);
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
     currentDateTime = DateFormat('yyyy-MM-dd kk:mm:ss').format(now);
+    deliveryProvider.vehicle = "CAR";
   }
 
   var list = [
@@ -189,7 +190,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         "duration": time,
         "vehicleType": vehicle,
         "driverId": driverId,
-        "driverName": "Test"
       }).then((data) async {
         setState(() {
           isLoading = false;

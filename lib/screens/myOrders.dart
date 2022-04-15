@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/colors.dart';
 import '../utils/image.dart';
@@ -20,22 +21,11 @@ class _MyOrdersState extends State<MyOrders> {
 
 bool pickup_pressed = false;
 bool del_pressed = false;
-int _radioValue1 = 0;
-void _handleDeliveryValueChange(int value) {
-    setState(() {
-      _radioValue1 = value;
 
-      switch (_radioValue1) {
-        case 0:
-          break;
-        }
-    });
-  }
   @override
   Widget build(BuildContext context) {
    // UserProvider userProvider = Provider.of<UserProvider>(context);
-    DateTime now =  DateTime.now();
-    DateTime date =  DateTime(now.day, now.month, now.year);
+
     return SafeArea(
       child: Scaffold(
         key: scaffoldState,
@@ -61,7 +51,7 @@ void _handleDeliveryValueChange(int value) {
        stream: FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).collection("orders").snapshots(),
        builder: (BuildContext context, snapshot) {
          if (snapshot.data == null) {
-           return Center(child: CircularProgressIndicator(color: orange));
+           return const Center(child: CircularProgressIndicator(color: orange));
          }
 
          else {
@@ -75,7 +65,7 @@ void _handleDeliveryValueChange(int value) {
                  child: InnerShadow(
                    blur: 5,
                    color: brownDark,
-                   offset:Offset(0,3),
+                   offset:const Offset(0,3),
                    child: Container(
 
                      decoration: BoxDecoration(
@@ -87,18 +77,52 @@ void _handleDeliveryValueChange(int value) {
                        padding: const EdgeInsets.only(left: 10.0,right: 10.0,top: 20),
                        child: Column(
                          children: [
-                           SizedBox(height: 10,),
+                           const SizedBox(height: 10,),
                            Row(
                              crossAxisAlignment: CrossAxisAlignment.center,
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
                                Row(
                                  children: [
-                                   Image.asset("assets/images/Avatar.png",width: 60,height: 60,),
+                                   orders[index]["driverImage"].isNotEmpty
+                                       ? Image.network(
+                                     orders[index]["driverImage"],
+                                     fit: BoxFit.cover,
+                                     errorBuilder: (context, object, stackTrace) {
+                                       return const Icon(
+                                         Icons.account_circle,
+                                         size: 90,
+                                         color: white,
+                                       );
+                                     },
+                                     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                       if (loadingProgress == null) return child;
+                                       return SizedBox(
+                                         width: 90,
+                                         height: 90,
+                                         child: Center(
+                                           child: CircularProgressIndicator(
+                                             color: white,
+                                             value: loadingProgress.expectedTotalBytes != null &&
+                                                 loadingProgress.expectedTotalBytes != null
+                                                 ? loadingProgress.cumulativeBytesLoaded /
+                                                 loadingProgress.expectedTotalBytes!
+                                                 : null,
+                                           ),
+                                         ),
+                                       );
+                                     },
+                                   )
+                                       :const Icon(
+                                     Icons.account_circle,
+                                     size: 90,
+                                     color: white,
+                                   ),
+                                   SizedBox(width: 20.w,),
                                    Column(
                                      crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
-                                       Text(orders[index]["driverName"],style:  TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
+                                       Text(orders[index]["driverName"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
                                        Container(
                                          decoration: BoxDecoration(
                                              color: white,
@@ -111,7 +135,7 @@ void _handleDeliveryValueChange(int value) {
                                              ],
                                              borderRadius: BorderRadius.circular(4)
                                          ),
-                                         padding: EdgeInsets.all(2),
+                                         padding: const EdgeInsets.all(2),
                                          child: Row(
 
                                            children: [
@@ -125,11 +149,11 @@ void _handleDeliveryValueChange(int value) {
                                    )
                                  ],
                                ),
-                               Text(orders[index]["orderPrice"].toString()+" MNT",style:  TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold),)
+                               Text(orders[index]["orderPrice"].toString()+" MNT",style:  const TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold),)
                              ],
                            ),
                            const Divider(color: orange,height: 10,thickness: 3,),
-                           SizedBox(height: 10,),
+                           const SizedBox(height: 10,),
                            Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
@@ -146,7 +170,7 @@ void _handleDeliveryValueChange(int value) {
                                      crossAxisAlignment: CrossAxisAlignment.start,
                                      children: [
                                        Image.asset("assets/images/Rider.png",width: 20,height: 20,),
-                                       SizedBox(width: 2,),
+                                       const SizedBox(width: 2,),
                                        Column(
                                          crossAxisAlignment: CrossAxisAlignment.start,
                                          children: [
@@ -154,17 +178,17 @@ void _handleDeliveryValueChange(int value) {
                                              children: [
                                                SizedBox(
                                                    width:150,
-                                                   child: Text(orders[index]["pickupAddress"],style:  TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500))),
-                                               SizedBox(width: 10,),
-                                               Text(orders[index]["duration"].toString(),style:  TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.bold,color: orange)),
+                                                   child: Text(orders[index]["pickupAddress"],style:  const TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500))),
+                                               const SizedBox(width: 10,),
+                                               Text(orders[index]["duration"].toString(),style:  const TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.bold,color: orange)),
                                              ],
                                            ),
                                            Row(
                                              crossAxisAlignment: CrossAxisAlignment.start,
                                              children: [
-                                               SizedBox( width:150,child: Text(orders[index]["destinationAddress"],style:  TextStyle(fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w300))),
-                                               SizedBox(width: 10,),
-                                               Text(orders[index]["distance"].toString(),style:  TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500)),
+                                               SizedBox( width:150,child: Text(orders[index]["destinationAddress"],style:  const TextStyle(fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w300))),
+                                               const SizedBox(width: 10,),
+                                               Text(orders[index]["distance"].toString(),style:  const TextStyle(fontFamily: 'Poppins',fontSize: 10,fontWeight: FontWeight.w500)),
                                              ],
                                            ),
                                          ],
@@ -182,14 +206,14 @@ void _handleDeliveryValueChange(int value) {
                                    orders[index]["vehicleType"] == "BIKE"?Image.asset(cycleimage,width: 60,height: 60,):
                                    orders[index]["vehicleType"] == "MINI TRUCK"?Image.asset(miniTruckimage,width: 60,height: 60,):
                                    Image.asset("assets/images/Group 8504.png",width: 60,height: 60,),
-                                   Text(orders[index]["vehicleType"],style:  TextStyle(fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w600))
+                                   Text(orders[index]["vehicleType"],style:  const TextStyle(fontFamily: 'Poppins',fontSize: 8,fontWeight: FontWeight.w600))
                                  ],
                                )
                              ],
                            ),
-                           SizedBox(height: 10,),
+                           const SizedBox(height: 10,),
                            const Divider(color: orange,height: 10,thickness: 3,),
-                           SizedBox(height: 10,),
+                           const SizedBox(height: 10,),
                          ],
                        ),
                      ),
@@ -198,7 +222,8 @@ void _handleDeliveryValueChange(int value) {
                );
 
              },
-           ):  Column(
+           ):
+           Column(
              mainAxisAlignment: MainAxisAlignment.center,
              children: <Widget>[
                Container(
@@ -217,7 +242,7 @@ void _handleDeliveryValueChange(int value) {
                const Align(
                  child: Padding(
                    padding:  EdgeInsets.all(15),
-                   child: Text("No Cancelled Orders",
+                   child: Text("No Orders",
                      textAlign: TextAlign.center,
                      style:
                      TextStyle(fontSize: 16,fontFamily: 'Poppins', color: Colors.black,fontWeight: FontWeight.bold),
