@@ -13,6 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:gyalcuser_project/chat/chat_handler.dart';
 import 'package:provider/provider.dart';
 import '../../chat/chat_room.dart';
 import '../../chat/model/chat_room_model.dart';
@@ -60,46 +61,6 @@ class _GoMapState extends State<GoMap> {
   late CreateDeliveryProvider deliveryProvider;
 
 
-  ChatRoomModel? chatRoom;
-
-  Future<ChatRoomModel?> getChatRoom(targetID, userID) async {
-    print('userID: $userID');
-    print('targetID: $targetID');
-    QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection("chatrooms")
-        .where("participants.${userID}", isEqualTo: true)
-        .where("participants.${targetID}", isEqualTo: true)
-        .get();
-
-    if (snapshot.docs.length > 0) {
-      print("ChatRoom Available");
-
-      var docData = snapshot.docs[0].data();
-      ChatRoomModel existingChatRoom =
-      ChatRoomModel.fromMap(docData as Map<String, dynamic>);
-
-      chatRoom = existingChatRoom;
-    } else {
-      print("ChatRoom Not Available");
-
-      ChatRoomModel newChatRoom = ChatRoomModel(
-        chatroomid: uuid.v1(),
-        lastMessage: "",
-        participants: {
-          userID.toString(): true,
-          targetID.toString(): true,
-        },
-      );
-
-      await FirebaseFirestore.instance
-          .collection('chatrooms')
-          .doc(newChatRoom.chatroomid)
-          .set(newChatRoom.toMap());
-      chatRoom = newChatRoom;
-    }
-
-    return chatRoom;
-  }
 
   @override
   void initState() {
@@ -328,7 +289,7 @@ class _GoMapState extends State<GoMap> {
                                         onTap: () async {
                                           log(widget.driverId.toString());
                                           ChatRoomModel? chatRoomModel =
-                                          await getChatRoom(
+                                          await chatHandler.getChatRoom(
                                               widget.driverId,
                                               FirebaseAuth
                                                   .instance.currentUser!.uid);
