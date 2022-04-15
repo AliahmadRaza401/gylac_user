@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DriverModel {
   String userId;
-  String lat;
+  double lat;
   String userName;
-  String long;
+  double long;
   String phoneNumber;
-
+  String image;
 
   DriverModel({
-    required this.userName,required this.phoneNumber,required this.userId,required this.lat,required this.long
+    required this.userName,required this.phoneNumber,required this.userId,required this.lat,required this.long,required this.image
   });
 
   Map<String, dynamic> toJson() => {
@@ -18,14 +18,27 @@ class DriverModel {
     'longitude': long,
     'fullName': userName,
     'mobileNumber': phoneNumber,
+    "dp":image
   };
+  factory DriverModel.fromMap(Map<String, dynamic> map) {
+    return DriverModel(
+      userId: map['id'] as String,
+      lat: map['latitude'] as double,
+      userName: map['fullName'] as String,
+      long: map['longitude'] as double,
+      phoneNumber: map['mobileNumber'] as String,
+      image: map['dp'] as String,
+
+    );
+  }
 
   factory DriverModel.fromDocument(DocumentSnapshot doc) {
     String userId="";
     String phoneNumber="";
-    String lat ="";
-    String long ="";
+    double lat =0.0;
+    double long =0.0;
     String userName ="";
+    String image ="";
 
     try {
       userId = doc.get("userId");
@@ -58,6 +71,12 @@ class DriverModel {
       print(e);
     }
 
+    try {
+      userName = doc.get("dp");
+    } catch (e) {
+      print(e);
+    }
+
 
     return DriverModel(
       userId: userId,
@@ -65,6 +84,7 @@ class DriverModel {
       userName: userName,
       long: long,
       phoneNumber: phoneNumber,
+      image:image
     );
   }
 }

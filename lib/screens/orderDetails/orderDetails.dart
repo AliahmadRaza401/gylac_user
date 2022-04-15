@@ -15,6 +15,7 @@ import '../../providers/create_delivery_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/image.dart';
 import '../../widgets/inputField.dart';
+import '../orderTrack/gomap2.dart';
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({Key? key}) : super(key: key);
@@ -66,7 +67,9 @@ class _OrderDetailsState extends State<OrderDetails> {
       }
     });
   }
+
   String trackStatus = "";
+  String driverId = "";
   bool step4 = false;
   bool step5 = false;
 
@@ -77,7 +80,8 @@ class _OrderDetailsState extends State<OrderDetails> {
       if(mounted) {
         setState(() {
           trackStatus = value.data()!["trackStatus"].toString();
-          log(trackStatus.toString());
+          driverId = value.data()!["driverId"].toString();
+          log(driverId.toString());
         });
       }
     });
@@ -932,7 +936,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 size: 15,
                 text: 'TRACK ORDER',
                 onTap: (){
-              AppRoutes.push(context, const TrackMap());
+              AppRoutes.push(context,  GoMap(driverId:driverId));
                 }),
             const SizedBox(height: 20,),
           ],

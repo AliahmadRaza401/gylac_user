@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'distanceTime_box.dart';
 
-Widget bottomDistanceCancelBtn(BuildContext context, rideTime, ridedistance,id) {
+Widget bottomDistanceCancelBtn(BuildContext context, rideTime, ridedistance) {
   return Positioned(
     bottom: 0,
     child: Row(

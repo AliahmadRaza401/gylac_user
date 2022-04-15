@@ -8,43 +8,40 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:gyalcuser_project/constants/keys.dart';
-import 'package:gyalcuser_project/screens/feeback/reviewScreen.dart';
-import 'package:gyalcuser_project/screens/home/home_page.dart';
-import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
 import '../../chat/chat_room.dart';
 import '../../chat/model/chat_room_model.dart';
 import '../../chat/model/user_model.dart';
 import '../../constants/colors.dart';
+import '../../constants/keys.dart';
 import '../../models/driverModel.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../providers/userProvider.dart';
 import '../../utils/app_route.dart';
 import '../../utils/image.dart';
 import '../../utils/innerShahdow.dart';
+import '../feeback/reviewScreen.dart';
+import '../home/home_page.dart';
 import 'distace_calculate.dart';
 import 'map_services.dart';
 import 'map_widget.dart';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
 
-class TrackMap extends StatefulWidget {
+class GoMap extends StatefulWidget {
   String driverId;
-   TrackMap({Key? key,required this.driverId}) : super(key: key);
+  GoMap({required this.driverId,});
 
   @override
-  State<TrackMap> createState() => _TrackMapState();
+  State<GoMap> createState() => _GoMapState();
 }
 
-class _TrackMapState extends State<TrackMap> {
+class _GoMapState extends State<GoMap> {
 
+  
   final Set<Marker> _markers = {};
   late LatLng currentLaltg;
   final Set<Marker> markers = new Set();
@@ -55,12 +52,13 @@ class _TrackMapState extends State<TrackMap> {
   var rideTime = 0.0;
   var ridedistance = 0.0;
   late LatLng destination;
-  var barbarID;
+ 
   late LatLng liveLocation;
-  late DriverModel driverModel;
-  late Timer timer;
-  late CreateDeliveryProvider deliveryProvider;
   DriverModel? driver;
+  late Timer timer;
+  late UserProvider _userProvider;
+  late CreateDeliveryProvider deliveryProvider;
+
 
   ChatRoomModel? chatRoom;
 
@@ -103,8 +101,30 @@ class _TrackMapState extends State<TrackMap> {
     return chatRoom;
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _polylinePoints = PolylinePoints();
+    getLiveBarbar();
+    deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    _userProvider = Provider.of<UserProvider>(context, listen: false);
+  }
+
+  LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
+  late GoogleMapController _mapController;
+  late GoogleMapController _cntlr;
+
+  void _onMapCreated(
+      cntlr,
+      ) {
+    _mapController = cntlr;
+
+    //locatePosition(context);
+  }
+
   getLiveBarbar() {
-    timer = Timer.periodic(Duration(seconds: 5), (timer) {
+    timer = Timer.periodic(Duration(seconds: 2), (timer) {
       getBarbarData();
     });
   }
@@ -119,7 +139,7 @@ class _TrackMapState extends State<TrackMap> {
         querySnapshot.docs.forEach((doc) {
           print('barber....');
           print(doc.data());
-           driver = DriverModel.fromMap(doc.data() as Map<String, dynamic>);
+          driver = DriverModel.fromMap(doc.data() as Map<String, dynamic>);
           print(driver!.lat);
 
           setState(() {
@@ -131,8 +151,6 @@ class _TrackMapState extends State<TrackMap> {
             setState(() {
               markers.removeWhere(
                       (marker) => marker.markerId.value == 'barbar');
-              circle.removeWhere(
-                      (circle) => circle.circleId.value == 'barbar');
 
               barbarMarkers(liveLocation);
               // distance time
@@ -164,203 +182,6 @@ class _TrackMapState extends State<TrackMap> {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-  Uint8List? markerIcon;
-  Uint8List? startMarkerIcon;
-  Uint8List? endMarkerIcon;
-  final Set<Marker> _marker = <Marker>{};
-
-  late PolylinePoints polylinePoints;
-  Map<PolylineId, Polyline> polylines = {};
-  List<LatLng> polylineCoordinates = [];
-  GoogleMapController? mapController;
-  final Completer<GoogleMapController> _controller = Completer();
-  late UserProvider _userProvider;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
-    //_polylinePoints = PolylinePoints();
-    setCustomMarker();
-    startCustomMarker();
-    getLiveBarbar();
-    endCustomMarker();
-    _userProvider = Provider.of<UserProvider>(context, listen: false);
-    polylinePoints = PolylinePoints();
-  }
-
-  Future<Uint8List> getBytesFromAsset(String path, int width) async {
-    ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
-    ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-  }
-
-  Future<Uint8List> getBytesFromAssetStart(String path, int width) async {
-    ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
-    ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-  }
-
-  Future<Uint8List> getBytesFromAssetEnd(String path, int width) async {
-    ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
-        targetWidth: width);
-    ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-  }
-
-  void showLocationPins() {
-    var sourceposition = LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
-    var destinationPosition = LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong));
-
-    _marker.add(Marker(
-      markerId: const MarkerId('sourcePosition'),
-      position: sourceposition,
-      icon: BitmapDescriptor.fromBytes(startMarkerIcon!),
-    ));
-
-    _marker.add(
-      Marker(
-        markerId: const MarkerId('destinationPosition'),
-        position: destinationPosition,
-       icon: BitmapDescriptor.fromBytes(endMarkerIcon!),
-      ),
-    );
-
-
-  }
-
-  final Set<Polyline> _polylines = <Polyline>{};
-
-  setPolylines() async {
-    var result = await polylinePoints.getRouteBetweenCoordinates(
-        mapKey,
-        PointLatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)),
-        PointLatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong)));
-
-    if (result.points.isNotEmpty) {
-      // loop through all PointLatLng points and convert them
-      // to a list of LatLng, required by the Polyline
-      for (var point in result.points) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      }
-    }
-    if(mounted) {
-      setState(() {
-      // create a Polyline instance
-      // with an id, an RGB color and the list of LatLng pairs
-      Polyline polyline = Polyline(
-          polylineId: const PolylineId("ID"),
-          width: 5,
-          color: darkBlue,
-          points: polylineCoordinates);
-
-      // add the constructed polyline as a set of points
-      // to the polyline set, which will eventually
-      // end up showing up on the map
-
-      _polylines.add(polyline);
-
-
-    });
-    }
-
-    LatLngBounds bound;
-    if(double.parse(deliveryProvider.pickupLat) > double.parse(deliveryProvider.deliveryLat) && double.parse(deliveryProvider.pickupLong) >  double.parse(deliveryProvider.deliveryLong)){
-      bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong)), northeast: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
-    }
-    else if(double.parse(deliveryProvider.pickupLong) > double.parse(deliveryProvider.deliveryLong)){
-      bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.deliveryLong)), northeast: LatLng( double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.pickupLong)));
-    }
-    else if(double.parse(deliveryProvider.pickupLat) >  double.parse(deliveryProvider.deliveryLat)){
-      bound= LatLngBounds(southwest: LatLng( double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.deliveryLong)));
-    }
-    else{
-      bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng( double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong)));
-    }
-    final GoogleMapController controller =
-    await _controller.future;
-    controller.animateCamera(
-        CameraUpdate.newLatLngBounds(bound, 100));
-
-
-  }
-
-  void setCustomMarker() async {
-    await getBytesFromAsset('assets/images/top_car.png', 40).then((value) {
-      setState(() {
-        markerIcon = value;
-      });
-    });
-  }
-
-  void startCustomMarker() async {
-    await getBytesFromAssetStart('assets/images/top_car.png', 40)
-        .then((value) {
-      setState(() {
-        startMarkerIcon = value;
-      });
-    });
-  }
-
-  void endCustomMarker() async {
-    await getBytesFromAsset('assets/images/mapmarker.png', 60)
-        .then((value) {
-      setState(() {
-        endMarkerIcon = value;
-      });
-    });
-  }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//  LatLng _initialcameraposition = LatLng(20.5937, 78.9629);
-  late GoogleMapController _mapController;
-  late GoogleMapController _cntlr;
-
-  void _onMapCreated(
-      _cntlr,
-      ) {
-    _mapController = _cntlr;
-    setState(() {
-      LatLngBounds bound;
-      if(double.parse(deliveryProvider.pickupLat) > double.parse(deliveryProvider.deliveryLat) && double.parse(deliveryProvider.pickupLong) >  double.parse(deliveryProvider.deliveryLong)){
-        bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong)), northeast: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
-      }
-      else if(double.parse(deliveryProvider.pickupLong) > double.parse(deliveryProvider.deliveryLong)){
-        bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.deliveryLong)), northeast: LatLng( double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.pickupLong)));
-      }
-      else if(double.parse(deliveryProvider.pickupLat) >  double.parse(deliveryProvider.deliveryLat)){
-        bound= LatLngBounds(southwest: LatLng( double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.deliveryLong)));
-      }
-      else{
-        bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng( double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong)));
-      }
-
-      _mapController.animateCamera(
-          CameraUpdate.newLatLngBounds(bound, 100));
-
-    });
-
-    showLocationPins();
-    setPolylines();
-   // locatePosition(context);
-  }
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -385,23 +206,19 @@ class _TrackMapState extends State<TrackMap> {
         child: Stack(
           children: <Widget>[
             GoogleMap(
-              // initialCameraPosition:
-              // CameraPosition(target: _initialcameraposition),
-              initialCameraPosition: CameraPosition(target: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)),zoom: 14.5),
+              initialCameraPosition:
+              CameraPosition(target: _initialcameraposition),
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: false,
-              // markers: markers,
-              // circles: circle,
-              // polylines: _polyline,
-              markers: _marker,
-              polylines: _polylines,
+              myLocationEnabled: false,
+              markers: markers,
+              circles: circle,
+              polylines: _polyline,
             ),
             Container(
               decoration: BoxDecoration(
-                color: white,
-                borderRadius: BorderRadius.circular(20)
+                  color: white,
+                  borderRadius: BorderRadius.circular(20)
               ),
               height: 80,
               margin: EdgeInsets.all(8),
@@ -410,13 +227,13 @@ class _TrackMapState extends State<TrackMap> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("YOUR DRIVER WILL ARRIVE IN",style: TextStyle(fontSize: 12,fontFamily: 'Poppins',fontWeight: FontWeight.bold,color: darkBlue),),
-                      Text(deliveryProvider.duration,style: TextStyle(fontSize: 14,fontFamily: 'Poppins',fontWeight: FontWeight.bold,color: darkBlue))
-                    ],
-                  ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("YOUR DRIVER WILL ARRIVE IN",style: TextStyle(fontSize: 12,fontFamily: 'Poppins',fontWeight: FontWeight.bold,color: darkBlue),),
+                        Text(rideTime.toStringAsFixed(2)+ " mins",style: TextStyle(fontSize: 14,fontFamily: 'Poppins',fontWeight: FontWeight.bold,color: darkBlue))
+                      ],
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.all(5),
@@ -424,8 +241,8 @@ class _TrackMapState extends State<TrackMap> {
                           color: orange.withOpacity(0.4),
                           borderRadius: BorderRadius.circular(10)
                       ),
-                      child: Text("Driver Current Location -  Old Town Street No.10",style: TextStyle(fontSize: 12,fontFamily: 'Poppins',fontWeight: FontWeight.w300,color: darkBlue),
-                    ),
+                      child: Text("Driver Distance -  ${ridedistance.toStringAsFixed(2)} km",style: TextStyle(fontSize: 12,fontFamily: 'Poppins',fontWeight: FontWeight.w300,color: darkBlue),
+                      ),
                     ),
                   ],
                 ),
@@ -509,8 +326,7 @@ class _TrackMapState extends State<TrackMap> {
                                       SizedBox(width: 20,),
                                       GestureDetector(
                                         onTap: () async {
-                                         log(driver!.userId.toString());
-                                         log(widget.driverId.toString());
+                                          log(widget.driverId.toString());
                                           ChatRoomModel? chatRoomModel =
                                           await getChatRoom(
                                               widget.driverId,
@@ -620,7 +436,7 @@ class _TrackMapState extends State<TrackMap> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        color: white,
+                      color: white,
                     ),
 
                     padding: EdgeInsets.all(10),
@@ -630,11 +446,11 @@ class _TrackMapState extends State<TrackMap> {
                         TextButton(onPressed: (){
                           openDialog();
                         }, child: Text("Order Cancel"),
-                    style: TextButton.styleFrom(
-                        primary: black,
-                        backgroundColor: white,
-                        textStyle: const TextStyle(fontFamily: "Poppins",fontSize: 12,decoration: TextDecoration.underline,)),
-                      ),
+                          style: TextButton.styleFrom(
+                              primary: black,
+                              backgroundColor: white,
+                              textStyle: const TextStyle(fontFamily: "Poppins",fontSize: 12,decoration: TextDecoration.underline,)),
+                        ),
                         TextButton(onPressed: (){
                           completeOrder();
 
@@ -651,12 +467,13 @@ class _TrackMapState extends State<TrackMap> {
                 ],
               ),
             ),
-           // bottomDistanceCancelBtn(context, rideTime, ridedistance,deliveryProvider.driverId),
+            // bottomDistanceCancelBtn(context, rideTime, ridedistance),
           ],
         ),
       ),
     );
   }
+
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = false;
@@ -748,45 +565,45 @@ class _TrackMapState extends State<TrackMap> {
   Future cancelOrder() async{
     firebaseFirestore
         .collection("orders")
-         .doc(deliveryProvider.orderId)
+        .doc(deliveryProvider.orderId)
         .update({
       "orderStatus": "cancelled",
-       });
+    });
+    firebaseFirestore
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("orders")
+        .doc(deliveryProvider.orderId)
+        .update({
+      "OrderStatus": "cancelled",
+    }).then((data) async {
       firebaseFirestore
           .collection("users")
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection("orders")
+          .collection("notifications")
           .doc(deliveryProvider.orderId)
-          .update({
-        "OrderStatus": "cancelled",
-      }).then((data) async {
-        firebaseFirestore
-            .collection("users")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .collection("notifications")
-            .doc(deliveryProvider.orderId)
-            .set({
-          "msg": "Order ${deliveryProvider.orderId} has been cancelled.",
-          "status": "cancelled",
-          "timestamp": FieldValue.serverTimestamp(),
-          "title": "Order Cancelled",
-        });
-        setState(() {
-          isLoading = false;
-        });
-        Future.delayed(Duration(seconds: 2), () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage())
-          );
-        });
-
-      }).catchError((err) {
-        setState(() {
-          isLoading = false;
-        });
-        Fluttertoast.showToast(msg: err.toString());
+          .set({
+        "msg": "Order ${deliveryProvider.orderId} has been cancelled.",
+        "status": "cancelled",
+        "timestamp": FieldValue.serverTimestamp(),
+        "title": "Order Cancelled",
       });
+      setState(() {
+        isLoading = false;
+      });
+      Future.delayed(Duration(seconds: 2), () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage())
+        );
+      });
+
+    }).catchError((err) {
+      setState(() {
+        isLoading = false;
+      });
+      Fluttertoast.showToast(msg: err.toString());
+    });
 
   }
 
@@ -836,7 +653,6 @@ class _TrackMapState extends State<TrackMap> {
 
   }
 
-
   locatePosition(
       BuildContext context,
       ) async {
@@ -852,15 +668,16 @@ class _TrackMapState extends State<TrackMap> {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       var currentPosition = position;
-      destination = LatLng(position.latitude, position.longitude);
+      destination = LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong));
+
+      // barberMarkers(latLatPosition);
 
       CameraPosition cameraPosition = CameraPosition(target: destination, zoom: 14);
       _mapController
           .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-      getLiveBarbar();
+
     }
   }
-
 
   void setPolylineOnMap(double startLat, double startLong, double destiLat,
       double destiLong) async {
@@ -894,25 +711,15 @@ class _TrackMapState extends State<TrackMap> {
       markers.add(Marker(
           markerId: MarkerId('barbar'),
           position: showLocation,
-          // infoWindow:
-          //     InfoWindow(title: "${barber.firstName + " " + barber.lastName}"),
+          infoWindow:
+          InfoWindow(title: driver!.userName),
           draggable: false,
           zIndex: 2,
           flat: true,
           anchor: Offset(0.5, 0.5),
           icon: BitmapDescriptor.fromBytes(markerIcon)));
 
-      //add more markers here
 
-      circle.add(Circle(
-          circleId: CircleId("barbar"),
-          // radius: showLocation.accuracy,
-          radius: 50,
-          zIndex: 1,
-          strokeColor: Colors.red,
-          strokeWidth: 2,
-          center: showLocation,
-          fillColor: Colors.red.withAlpha(70)));
     });
     return markers;
   }
@@ -934,20 +741,15 @@ class _TrackMapState extends State<TrackMap> {
 
   @override
   void dispose() {
-    //_disposeController();
+    _disposeController();
     super.dispose();
-    _polylines.clear();
-    timer.cancel();
   }
 
   Future<void> _disposeController() async {
     final GoogleMapController controller = await _mapController;
     controller.dispose();
+    timer.cancel();
 
     print("Map is Dispose___________________________");
   }
-
 }
-
-
-

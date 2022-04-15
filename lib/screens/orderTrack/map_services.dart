@@ -8,12 +8,12 @@ import 'package:flutter/services.dart';
 class MapServices {
   static Future<Uint8List> getMarkerImage(BuildContext context) async {
     ByteData byteData = await DefaultAssetBundle.of(context)
-        .load("assets/images/top_car.png");
+        .load("assets/images/mapmarker.png");
     return byteData.buffer.asUint8List();
   }
 
   static Future<Uint8List> getMarkerWithSize(int width) async {
-    ByteData data = await rootBundle.load("assets/images/top_car.png");
+    ByteData data = await rootBundle.load("assets/images/mapmarker.png");
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
         targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();
