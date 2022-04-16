@@ -123,8 +123,13 @@ class _GoMapState extends State<GoMap> {
                 {
                   setState(() {
                     isPickup = true;
+                    destination = LatLng(double.parse(deliveryProvider.deliveryLat), double.parse(deliveryProvider.deliveryLong));
                   }),
                  // timer.cancel(),
+                  _polylineCoordinates.clear(),
+                  _polyline.clear(),
+                  destinationMarkers(destination),
+
                   MyMotionToast.success(context, "Pickup Location", "${deliveryProvider.driverName} reached pickup location"),
                   changePosition(),
 
@@ -133,8 +138,10 @@ class _GoMapState extends State<GoMap> {
                     setPolylineOnMap(
                       liveLocation.latitude,
                       liveLocation.longitude,
-                      pickup.latitude,
-                      pickup.longitude,
+                      double.parse(deliveryProvider.deliveryLat),
+                      double.parse(deliveryProvider.deliveryLong),
+                      // pickup.latitude,
+                      // pickup.longitude,
                     )
                   }
               }
@@ -144,16 +151,6 @@ class _GoMapState extends State<GoMap> {
                     MyMotionToast.success(context, "Deliver Location", "${deliveryProvider.driverName} reached delivery location"),
                     Navigator.pop(context),
 
-                    if (_polylineCoordinates == null || _polylineCoordinates.isEmpty)
-                      {
-                        setPolylineOnMap(
-                          liveLocation.latitude,
-                          liveLocation.longitude,
-                          destination.latitude,
-                          destination.longitude,
-
-                        )
-                      }
                   },
                 }
           }
@@ -798,7 +795,7 @@ class _GoMapState extends State<GoMap> {
     final Uint8List markerIcon = await MapServices.getMarkerWithSize2(80);
     setState(() {
       markers.add(Marker(
-        markerId: MarkerId("user"),
+        markerId: MarkerId("destination"),
         position: showLocation,
         draggable: false,
         zIndex: 2,
