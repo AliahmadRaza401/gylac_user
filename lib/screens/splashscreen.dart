@@ -5,6 +5,7 @@ import 'package:gyalcuser_project/constants/colors.dart';
 import 'package:gyalcuser_project/screens/authentication/Login/login.dart';
 import 'package:gyalcuser_project/screens/home/home_page.dart';
 import 'package:gyalcuser_project/screens/onBoard.dart';
+import 'package:gyalcuser_project/screens/onBoarding/on_boarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splash extends StatefulWidget {
@@ -27,25 +28,23 @@ class _SplashState extends State<Splash> {
   void checkSignedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var id = prefs.getString("userId");
-    if(id.toString() =="null") {
+    if (id.toString() == "null") {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => Login()),
-            (Route<dynamic> route) => false,
+        MaterialPageRoute(builder: (context) => Intro()),
+        (Route<dynamic> route) => false,
       );
-    }
-    else if(id.toString() !="null"){
+    } else if (id.toString() != "null") {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) =>const HomePage()),
-            (Route<dynamic> route) => false,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+        (Route<dynamic> route) => false,
       );
-    }
-    else{
+    } else {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => onBoarding()),
-            (Route<dynamic> route) => false,
+        MaterialPageRoute(builder: (context) => OnBoardingScreen()),
+        (Route<dynamic> route) => false,
       );
     }
   }

@@ -198,7 +198,7 @@ class AuthServices {
   static logOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     userLoggedIn(false);
-    AppRoutes.replace(context, onBoarding());
+    AppRoutes.replace(context, Intro());
   }
 
   // user Logged

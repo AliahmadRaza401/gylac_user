@@ -9,14 +9,14 @@ import 'package:gyalcuser_project/widgets/custom_btn.dart';
 
 import '../constants/text_style.dart';
 
-class onBoarding extends StatefulWidget {
-  const onBoarding({Key? key}) : super(key: key);
+class Intro extends StatefulWidget {
+  const Intro({Key? key}) : super(key: key);
 
   @override
-  _onBoardingState createState() => _onBoardingState();
+  _IntroState createState() => _IntroState();
 }
 
-class _onBoardingState extends State<onBoarding> {
+class _IntroState extends State<Intro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
