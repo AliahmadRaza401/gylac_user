@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:math'as math;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,6 +16,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../constants/colors.dart';
+import '../../constants/keys.dart';
 import '../../constants/text_style.dart';
 import '../../constants/toast_utils.dart';
 import '../../models/delivery_model.dart';
@@ -26,6 +28,7 @@ import '../../widgets/App_Menu.dart';
 import '../../widgets/custom_radio.dart';
 import '../pay/payment_screen.dart';
 import 'date_time_piker/date_timer_piker.dart';
+import 'package:http/http.dart'as http;
 
 
 class CreateDeliveryForm extends StatefulWidget {
@@ -359,6 +362,10 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   }
 
+
+  bool isPick = false;
+  bool isDeliver = false;
+
   @override
   void dispose() {
     super.dispose();
@@ -433,6 +440,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                               setState(() {
                                 deliveryProvider.pickUpVisible = !deliveryProvider.pickUpVisible;
                                 deliveryProvider.deliveryVisible = false;
+                                isPick = !isPick;
+                                isDeliver = false;
                               });
                             },
                             child: Container(
@@ -489,6 +498,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                               setState(() {
                                 deliveryProvider.deliveryVisible = !deliveryProvider.deliveryVisible;
                                 deliveryProvider.pickUpVisible = false;
+                                isDeliver = !isDeliver;
+                                isPick = false;
                               });
                             },
                             child: Container(
@@ -869,6 +880,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                   MediaQuery.of(context).size.width * 0.5,
                                   child: GestureDetector(
                                     onTap: () {
+
                                       if (deliveryProvider
                                           .pickAddress.text.isEmpty) {
                                         ToastUtils.showWarningToast(
@@ -967,11 +979,13 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       }
 
                                       else {
-                                        setState(() {
-                                          isLoading = true;
-                                        });
 
-                                        createDelivery();
+                                        log(deliveryProvider.distance.toString());
+                                        log(deliveryProvider.duration.toString());
+                                          setState(() {
+                                            isLoading = true;
+                                          });
+                                          createDelivery();
                                       }
                                     },
                                     child: SizedBox(
@@ -1052,12 +1066,17 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           ),
                         )
                       : const SizedBox(),
-                  Visibility(
-                      visible: deliveryProvider.pickUpVisible,
-                      child:  PickUpForm(pick:deliveryProvider.pickUpVisible)),
-                  Visibility(
-                      visible: deliveryProvider.deliveryVisible,
-                      child: const DeliveryForm()),
+                  if(isPick)
+                   PickUpForm(pick:isPick),
+                  if(isDeliver)
+                    DeliveryForm(deliver:isDeliver),
+
+                  // Visibility(
+                  //     visible: deliveryProvider.pickUpVisible,
+                  //     child:  PickUpForm(pick:deliveryProvider.pickUpVisible)),
+                  // Visibility(
+                  //     visible: deliveryProvider.deliveryVisible,
+                  //     child: const DeliveryForm()),
                 ],
               ),
             ],

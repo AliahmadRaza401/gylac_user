@@ -330,17 +330,17 @@ class _PickUpFormState extends State<PickUpForm> {
                       const SizedBox(
                         height: 5,
                       ),
-                      CustomBtn(
+                     /* CustomBtn(
                         onTap: () {
                             setState(() {
-                               widget.pick=false;
+                               widget.pick=!widget.pick;
                             });
 
                         },
                         bgColor: orange,
                         shadowColor: black,
                         text: 'Save',
-                      ),
+                      ),*/
                     ],
                   ),
                 ),

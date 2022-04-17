@@ -60,6 +60,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
         "feedback":feedText.text.toString(),
         "driverId":deliveryProvider.driverId,
         "orderId":deliveryProvider.orderId.toString(),
+        "reviewDate":DateTime.now(),
+        "driverName":deliveryProvider.driverName,
         "rating":rate
 
       })
