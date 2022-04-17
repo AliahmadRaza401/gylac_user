@@ -2,6 +2,12 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_credit_card/credit_card_brand.dart';
+import 'package:flutter_credit_card/credit_card_form.dart';
+import 'package:flutter_credit_card/credit_card_model.dart';
+import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:flutter_credit_card/custom_card_type_icon.dart';
+import 'package:flutter_credit_card/glassmorphism_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math'as math;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,10 +32,26 @@ class PaymentScreen extends StatefulWidget {
 class _PaymentScreenState extends State<PaymentScreen> {
 
   late CreateDeliveryProvider deliveryProvider;
+  String cardNumber = '';
+  String expiryDate = '';
+  String cardHolderName = '';
+  String cvvCode = '';
+  bool isCvvFocused = false;
+  bool useGlassMorphism = false;
+  bool useBackgroundImage = false;
+  OutlineInputBorder? border;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    border = OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.grey.withOpacity(0.7),
+        width: 2.0,
+      ),
+    );
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
     getDriverData();
   }
@@ -864,16 +886,96 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
             ),
+            CreditCardWidget(
+              glassmorphismConfig:
+              useGlassMorphism ? Glassmorphism.defaultConfig() : null,
+              cardNumber: cardNumber,
+              expiryDate: expiryDate,
+              cardHolderName: cardHolderName,
+              cvvCode: cvvCode,
+              showBackView: isCvvFocused,
+              obscureCardNumber: true,
+              obscureCardCvv: true,
+              isHolderNameVisible: true,
+              cardBgColor: orangeDark,
+              backgroundImage: useBackgroundImage ? 'assets/card_bg.png' : null,
+               isSwipeGestureEnabled: true,
+              onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {},
+              customCardTypeIcons: <CustomCardTypeIcon>[
+                CustomCardTypeIcon(
+                  cardType: CardType.mastercard,
+                  cardImage: Image.asset(
+                    'assets/mastercard.png',
+                    height: 48,
+                    width: 48,
+                  ),
+                ),
+              ],
+            ),
+            CreditCardForm(
+              formKey: formKey,
+              obscureCvv: true,
+              obscureNumber: true,
+              cardNumber: cardNumber,
+              cvvCode: cvvCode,
+              isHolderNameVisible: true,
+              isCardNumberVisible: true,
+              isExpiryDateVisible: true,
+              cardHolderName: cardHolderName,
+              expiryDate: expiryDate,
+              themeColor: Colors.blue,
+              textColor: orangeDark,
+              cardNumberDecoration: InputDecoration(
+                labelText: 'Number',
+                hintText: 'XXXX XXXX XXXX XXXX',
+                hintStyle: const TextStyle(color:orange),
+                labelStyle: const TextStyle(color: orange),
+                focusedBorder: border,
+                enabledBorder: border,
+              ),
+              expiryDateDecoration: InputDecoration(
+                hintStyle: const TextStyle(color: orange),
+                labelStyle: const TextStyle(color: orange),
+                focusedBorder: border,
+                enabledBorder: border,
+                labelText: 'Expired Date',
+                hintText: 'XX/XX',
+              ),
+              cvvCodeDecoration: InputDecoration(
+                hintStyle: const TextStyle(color: orange),
+                labelStyle: const TextStyle(color: orange),
+                focusedBorder: border,
+                enabledBorder: border,
+                labelText: 'CVV',
+                hintText: 'XXX',
+              ),
+              cardHolderDecoration: InputDecoration(
+                hintStyle: const TextStyle(color: orange),
+                labelStyle: const TextStyle(color:orange),
+                focusedBorder: border,
+                enabledBorder: border,
+                labelText: 'Card Holder',
+              ),
+              onCreditCardModelChange: onCreditCardModelChange,
+            ),
+            
+
             SizedBox(height: 30,),
             isLoading == true? Center(child: CircularProgressIndicator(color: orange,)): CustomBtn( bgColor: orange,
                 shadowColor: black,
                 size: 15,
                 text: 'PROCEED TO PAY',
                 onTap: (){
-                 setState(() {
-                   isLoading = true;
-                 });
-                 updateId();
+                  if (formKey.currentState!.validate()) {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    Fluttertoast.showToast(msg: "Payment Successful",textColor: Colors.white,backgroundColor: Colors.green);
+                    updateId();
+                  } else {
+                    Fluttertoast.showToast(msg: "Invalid Card Details");
+                  }
+                 
 
                 }),
             SizedBox(height: 20,),
@@ -882,6 +984,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ),
 
     );
+  }
+  void onCreditCardModelChange(CreditCardModel? creditCardModel) {
+    setState(() {
+      cardNumber = creditCardModel!.cardNumber;
+      expiryDate = creditCardModel.expiryDate;
+      cardHolderName = creditCardModel.cardHolderName;
+      cvvCode = creditCardModel.cvvCode;
+      isCvvFocused = creditCardModel.isCvvFocused;
+    });
   }
 
 }

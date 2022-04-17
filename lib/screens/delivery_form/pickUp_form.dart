@@ -12,7 +12,8 @@ import '../../utils/app_route.dart';
 import '../../widgets/custom_btn.dart';
 
 class PickUpForm extends StatefulWidget {
-  const PickUpForm({Key? key}) : super(key: key);
+  bool pick;
+   PickUpForm({Key? key,required this.pick}) : super(key: key);
 
   @override
   _PickUpFormState createState() => _PickUpFormState();
@@ -331,69 +332,9 @@ class _PickUpFormState extends State<PickUpForm> {
                       ),
                       CustomBtn(
                         onTap: () {
-                          // if (deliveryProvider
-                          //     .pickAddress.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Address is required");
-                          // } else if (deliveryProvider
-                          //     .pickName.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Name is required");
-                          // } else if (deliveryProvider
-                          //     .pickPhone.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Phone is required");
-                          // } else if (deliveryProvider
-                          //     .pickEmail.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Email is required");
-                          // } else if (RegExp(
-                          //     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          //     .hasMatch(deliveryProvider
-                          //     .pickEmail.text) ==
-                          //     false) {
-                          //   ToastUtils.showWarningToast(context,
-                          //       "Error", "Enter a valid email!");
-                          // } else if (deliveryProvider
-                          //     .pickParcelName.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Parcel Name is required");
-                          // } else if (deliveryProvider
-                          //     .pickParcelWeight.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Parcel Weight is required");
-                          // } else if (deliveryProvider
-                          //     .pickDescription.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Parcel Description is required");
-                          // } else if (deliveryProvider
-                          //     .pickPrice.text.isEmpty) {
-                          //   ToastUtils.showWarningToast(
-                          //       context,
-                          //       "Required",
-                          //       "Pickup Delivery Price Offer is required");
-                          // }
-                      //    else{
                             setState(() {
-                              if( deliveryProvider.pickUpVisible==true) {
-                                deliveryProvider.pickUpVisible = false;
-                              }
+                               widget.pick=false;
                             });
-                         // }
 
                         },
                         bgColor: orange,

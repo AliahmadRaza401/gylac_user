@@ -157,15 +157,6 @@ class _AppMenuState extends State<AppMenu> {
               ),
               ListTile(
                 leading: Icon(
-                  Icons.account_balance_wallet,
-                  color: Color.fromRGBO(251, 176, 59, 1),
-                ),
-                title: CustomText(text:  "My Wallet"),
-                onTap: () {
-                },
-              ),
-              ListTile(
-                leading: Icon(
                   Icons.history,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
@@ -198,16 +189,50 @@ class _AppMenuState extends State<AppMenu> {
                       context, MaterialPageRoute(builder: (context) => HelpAndSupport()));
                 },
               ),
-              ListTile(
-                leading: Icon(
-                  FontAwesomeIcons.globe,
-                  color: Color.fromRGBO(251, 176, 59, 1),
+              Container(
+                // height: MediaQuery.of(context).size.height * 0.07,
+                // color: Colors.green,
+                width: MediaQuery.of(context).size.width,
+                child: ExpansionTile(
+                  title: Row(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.globe,
+                        color: Color.fromRGBO(251, 176, 59, 1),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                      CustomText(text:"Language")
+                    ],
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      onTap: () async {
+                        var locale = const Locale('en', 'US');
+                        // Get.updateLocale(locale);
+                        Navigator.of(context).pop();
+                      },
+                      title: const Text(
+                        'English',
+                        style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        var locale = const Locale('es', 'ES');
+                        // Get.updateLocale(locale);
+                        Navigator.of(context).pop();
+                      },
+                      title: const Text(
+                        'mongolian',
+                        style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
                 ),
-                title: CustomText(text:"Language"),
-                onTap: () {
-
-                },
               ),
+
               ListTile(
                 leading: Icon(
                   Icons.logout,

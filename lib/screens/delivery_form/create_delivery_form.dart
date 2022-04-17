@@ -1054,7 +1054,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                       : const SizedBox(),
                   Visibility(
                       visible: deliveryProvider.pickUpVisible,
-                      child: const PickUpForm()),
+                      child:  PickUpForm(pick:deliveryProvider.pickUpVisible)),
                   Visibility(
                       visible: deliveryProvider.deliveryVisible,
                       child: const DeliveryForm()),

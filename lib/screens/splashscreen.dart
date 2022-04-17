@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
-import 'package:gyalcuser_project/screens/authentication/Login/login.dart';
 import 'package:gyalcuser_project/screens/home/home_page.dart';
 import 'package:gyalcuser_project/screens/onBoard.dart';
 import 'package:gyalcuser_project/screens/onBoarding/on_boarding_screen.dart';
@@ -20,7 +18,6 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      // just delay for showing this slash page clearer because it too fast
       checkSignedIn();
     });
   }
@@ -28,12 +25,22 @@ class _SplashState extends State<Splash> {
   void checkSignedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var id = prefs.getString("userId");
+    var viewed = prefs.getInt("onBoard");
     if (id.toString() == "null") {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => Intro()),
-        (Route<dynamic> route) => false,
-      );
+      if (viewed != 0) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => OnBoardingScreen()),
+              (Route<dynamic> route) => false,
+        );
+      }
+      else{
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => Intro()),
+              (Route<dynamic> route) => false,
+        );
+      }
     } else if (id.toString() != "null") {
       Navigator.pushAndRemoveUntil(
         context,
@@ -43,7 +50,7 @@ class _SplashState extends State<Splash> {
     } else {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => OnBoardingScreen()),
+        MaterialPageRoute(builder: (context) => Intro()),
         (Route<dynamic> route) => false,
       );
     }

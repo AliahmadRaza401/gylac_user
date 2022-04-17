@@ -61,20 +61,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         PageViewModel(
           title: "Why Gylac?",
           body:
-              "We provide you with peace of mind, giving up to the minute information on the location of your vehicle",
+              "We provide you with peace of mind, giving up to the minute information on the location of your driver vehicle",
           image: _buildImage('assets/images/question.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Product Deliver",
           body:
-              "We provide you variety of packages for your ease. Upgrade anytime.",
+              "We provide you variety of options for your ease.",
           image: _buildImage('assets/images/Delivery.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Chat Supprt",
-          body: "24/7 call center for your help. ",
+          title: "Chat Support",
+          body: "24/7 help & support center for your help. ",
           image: _buildImage('assets/images/Support.json'),
           decoration: pageDecoration,
         ),

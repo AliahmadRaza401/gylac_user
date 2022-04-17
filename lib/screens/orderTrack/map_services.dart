@@ -22,7 +22,17 @@ class MapServices {
         .asUint8List();
   }
   static Future<Uint8List> getMarkerWithSize2(int width) async {
-    ByteData data = await rootBundle.load("assets/images/Pin 3 (1).png");
+    ByteData data = await rootBundle.load("assets/images/package.png");
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
+  }
+
+  static Future<Uint8List> getMarkerWithSize3(int width) async {
+    ByteData data = await rootBundle.load("assets/images/Rider.png");
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
         targetWidth: width);
     ui.FrameInfo fi = await codec.getNextFrame();

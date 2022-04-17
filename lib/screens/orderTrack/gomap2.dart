@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_final_fields
 
 import 'dart:async';
-import 'dart:developer';
+import 'dart:ui' as ui;
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,6 +17,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gyalcuser_project/chat/chat_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../chat/chat_room.dart';
 import '../../chat/model/chat_room_model.dart';
 import '../../chat/model/user_model.dart';
@@ -56,7 +58,10 @@ class _GoMapState extends State<GoMap> {
   var ridedistance = 0.0;
   late LatLng destination;
   late LatLng pickup;
- 
+  Uint8List? markerIcon;
+  Uint8List? startMarkerIcon;
+  Uint8List? endMarkerIcon;
+  final Set<Marker> _marker = <Marker>{};
   late LatLng liveLocation;
   DriverModel? driver;
   late Timer timer;
@@ -68,7 +73,6 @@ class _GoMapState extends State<GoMap> {
     // TODO: implement initState
     super.initState();
     _polylinePoints = PolylinePoints();
-    getLiveBarbar();
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
     _userProvider = Provider.of<UserProvider>(context, listen: false);
   }
@@ -80,18 +84,29 @@ class _GoMapState extends State<GoMap> {
 
   void _onMapCreated(cntlr) {
     _mapController = cntlr;
-    locatePosition(context);
+    getLiveBarbar();
+    userMarkers(LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
+    destinationMarkers(LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong)));
   }
+
 
   bool isPickup = false;
 
   getLiveBarbar() {
+    if(mounted){
+      setState(() {
+        // pickup = LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
+        destination =LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
+      });
+    }
     timer = Timer.periodic(Duration(seconds: 2), (timer) {
       getBarbarData();
     });
   }
 
-  LatLngBounds? bound;
+
+  bool isComplete = false;
+
   Future getBarbarData() async {
     try {
       await FirebaseFirestore.instance
@@ -100,60 +115,60 @@ class _GoMapState extends State<GoMap> {
           .get()
           .then((QuerySnapshot querySnapshot) => {
         querySnapshot.docs.forEach((doc) {
-          print('barber....');
-          print(doc.data());
-          driver = DriverModel.fromMap(doc.data() as Map<String, dynamic>);
-          print(driver!.lat);
 
+          driver = DriverModel.fromMap(doc.data() as Map<String, dynamic>);
+          CameraPosition cameraPosition = CameraPosition(target: LatLng(driver!.lat, driver!.long), zoom: 16);
+          _mapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+
+          if(mounted)
           setState(() {
             liveLocation = LatLng(driver!.lat, driver!.long);
           });
         }),
-        if (driver!.lat !=null)
+
+        if(mounted)
+        setState(() {
+          markers.removeWhere((marker) => marker.markerId.value == 'user');
+          barbarMarkers(liveLocation);
+          ridedistance = calculateHarvesineDistanceInKM(liveLocation, destination);
+          rideTime = calculateETAInMinutes(ridedistance, 30);
+        }),
+        if (ridedistance == 0 || ridedistance < 0.10)
           {
-            setState(() {
-              markers.removeWhere((marker) => marker.markerId.value == 'barbar');
-              barbarMarkers(liveLocation);
-              ridedistance = calculateHarvesineDistanceInKM(liveLocation, destination);
-              rideTime = calculateETAInMinutes(ridedistance, 30);
-            }),
-            if (ridedistance == 0 || ridedistance < 0.10)
-              {
-                if(isPickup == false)
-                {
-                  setState(() {
-                    isPickup = true;
-                    destination = LatLng(double.parse(deliveryProvider.deliveryLat), double.parse(deliveryProvider.deliveryLong));
-                  }),
-                 // timer.cancel(),
-                  _polylineCoordinates.clear(),
-                  _polyline.clear(),
-                  destinationMarkers(destination),
 
-                  MyMotionToast.success(context, "Pickup Location", "${deliveryProvider.driverName} reached pickup location"),
-                  changePosition(),
+            if(isPickup == false){
+              setState(() {
+                _polylineCoordinates.clear();
+                _polyline.clear();
+                destination = LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong));
+                isPickup = true;
+              }),
+              MyMotionToast.success(context, "Pickup Location", "${deliveryProvider.driverName} reached pickup location"),
 
-                if (_polylineCoordinates == null || _polylineCoordinates.isEmpty)
-                  {
-                    setPolylineOnMap(
-                      liveLocation.latitude,
-                      liveLocation.longitude,
-                      double.parse(deliveryProvider.deliveryLat),
-                      double.parse(deliveryProvider.deliveryLong),
-                      // pickup.latitude,
-                      // pickup.longitude,
-                    )
-                  }
-              }
-                else if(isPickup == true)
-                  {
-                    timer.cancel(),
-                    MyMotionToast.success(context, "Deliver Location", "${deliveryProvider.driverName} reached delivery location"),
-                    Navigator.pop(context),
+            }
+            else{
+            _polylineCoordinates.clear(),
+            _polyline.clear(),
+              setState(() {
+              isComplete = true;
+              }),
+              MyMotionToast.success(context, "Delivery Location", "${deliveryProvider.driverName} reached delivery location"),
+             timer.cancel(),
+           },
 
-                  },
-                }
+
+          },
+        if (_polylineCoordinates.isEmpty)
+          {
+            setPolylineOnMap(
+              liveLocation.latitude,
+              liveLocation.longitude,
+              destination.latitude,
+              destination.longitude,
+            )
           }
+
       });
     } catch (e) {
       print(e.toString());
@@ -161,24 +176,7 @@ class _GoMapState extends State<GoMap> {
     }
   }
 
-  changePosition() async{
-    if(liveLocation.latitude > double.parse(deliveryProvider.pickupLat) && liveLocation.longitude >  double.parse(deliveryProvider.pickupLong)){
-      bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng(liveLocation.latitude,liveLocation.longitude));
-    }
-    else if(liveLocation.longitude > double.parse(deliveryProvider.pickupLong)){
-    bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)), northeast: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude));
-    }
-    else if(liveLocation.latitude >  double.parse(deliveryProvider.pickupLat)){
-    bound= LatLngBounds(southwest: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude), northeast: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)));
-    }
-    else{
-    bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,liveLocation.longitude), northeast: LatLng( double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
-    }
-    GoogleMapController controller =
-    await _controller.future;
-    controller.animateCamera(
-    CameraUpdate.newLatLngBounds(bound!, 120));
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -276,34 +274,38 @@ class _GoMapState extends State<GoMap> {
                                   Row(
                                     children: [
                                       deliveryProvider.driverImage.isNotEmpty
-                                          ? Image.network(
+                                          ? SizedBox(
+                                        width:50,
+                                        height:50,
+                                            child: Image.network(
                                         deliveryProvider.driverImage,
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, object, stackTrace) {
-                                          return const Icon(
-                                            Icons.account_circle,
-                                            size: 90,
-                                            color: white,
-                                          );
+                                            return const Icon(
+                                              Icons.account_circle,
+                                              size: 90,
+                                              color: white,
+                                            );
                                         },
                                         loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                                          if (loadingProgress == null) return child;
-                                          return SizedBox(
-                                            width: 90,
-                                            height: 90,
-                                            child: Center(
-                                              child: CircularProgressIndicator(
-                                                color: white,
-                                                value: loadingProgress.expectedTotalBytes != null &&
-                                                    loadingProgress.expectedTotalBytes != null
-                                                    ? loadingProgress.cumulativeBytesLoaded /
-                                                    loadingProgress.expectedTotalBytes!
-                                                    : null,
+                                            if (loadingProgress == null) return child;
+                                            return SizedBox(
+                                              width: 90,
+                                              height: 90,
+                                              child: Center(
+                                                child: CircularProgressIndicator(
+                                                  color: white,
+                                                  value: loadingProgress.expectedTotalBytes != null &&
+                                                      loadingProgress.expectedTotalBytes != null
+                                                      ? loadingProgress.cumulativeBytesLoaded /
+                                                      loadingProgress.expectedTotalBytes!
+                                                      : null,
+                                                ),
                                               ),
-                                            ),
-                                          );
+                                            );
                                         },
-                                      )
+                                      ),
+                                          )
                                           :const Icon(
                                         Icons.account_circle,
                                         size: 90,
@@ -342,18 +344,28 @@ class _GoMapState extends State<GoMap> {
                                   ),
                                   Row(
                                     children: [
-                                      Container(
-                                        padding:const EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                          color: white,
-                                          borderRadius: BorderRadius.circular(5),
-                                          boxShadow:const [
-                                            BoxShadow(
-                                                color: dimOrange,
-                                                blurRadius: 5)
-                                          ],
+                                      GestureDetector(
+                                        onTap:() async{
+                                          var url = "tel:${deliveryProvider.driverMobile}";
+                                          if (await canLaunch(url)) {
+                                            await launch(url);
+                                          } else {
+                                            throw 'Could not launch $url';
+                                          }
+                                        },
+                                        child: Container(
+                                          padding:const EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                            color: white,
+                                            borderRadius: BorderRadius.circular(5),
+                                            boxShadow:const [
+                                              BoxShadow(
+                                                  color: dimOrange,
+                                                  blurRadius: 5)
+                                            ],
+                                          ),
+                                          child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                         ),
-                                        child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                       ),
                                       SizedBox(width: 20,),
                                       GestureDetector(
@@ -475,7 +487,7 @@ class _GoMapState extends State<GoMap> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton(onPressed: (){
+                        isComplete == true ?SizedBox(): TextButton(onPressed: (){
                           openDialog();
                         }, child: Text("Order Cancel"),
                           style: TextButton.styleFrom(
@@ -483,7 +495,7 @@ class _GoMapState extends State<GoMap> {
                               backgroundColor: white,
                               textStyle: const TextStyle(fontFamily: "Poppins",fontSize: 12,decoration: TextDecoration.underline,)),
                         ),
-                        TextButton(onPressed: (){
+                     isComplete == false ?SizedBox():TextButton(onPressed: (){
                           completeOrder();
 
                         }, child: Text("COMPLETE"),
@@ -499,7 +511,6 @@ class _GoMapState extends State<GoMap> {
                 ],
               ),
             ),
-            // bottomDistanceCancelBtn(context, rideTime, ridedistance),
           ],
         ),
       ),
@@ -685,50 +696,6 @@ class _GoMapState extends State<GoMap> {
 
   }
 
-  locatePosition(
-      BuildContext context,
-      ) async {
-    print('i am in the location function');
-
-    LocationPermission permission;
-    permission = await Geolocator.requestPermission();
-    LocationPermission status = await Geolocator.checkPermission();
-    if (status == LocationPermission.denied) {
-      print("Location is Off =======================>>");
-    } else {
-      print("Location is ON =======================>>");
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      var currentPosition = position;
-      pickup = LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
-      destination = LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong));
-
-      // barberMarkers(latLatPosition);
-
-      LatLngBounds bound;
-      if(liveLocation.latitude > double.parse(deliveryProvider.pickupLat) && liveLocation.longitude >  double.parse(deliveryProvider.pickupLong)){
-        bound= LatLngBounds(southwest: LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)), northeast: LatLng(liveLocation.latitude,liveLocation.longitude));
-      }
-      else if(liveLocation.longitude > double.parse(deliveryProvider.pickupLong)){
-        bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)), northeast: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude));
-      }
-      else if(liveLocation.latitude >  double.parse(deliveryProvider.pickupLat)){
-        bound= LatLngBounds(southwest: LatLng( double.parse(deliveryProvider.pickupLat),liveLocation.longitude), northeast: LatLng(liveLocation.latitude,double.parse(deliveryProvider.pickupLong)));
-      }
-      else{
-        bound= LatLngBounds(southwest: LatLng(liveLocation.latitude,liveLocation.longitude), northeast: LatLng( double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong)));
-      }
-      final GoogleMapController controller =
-      await _controller.future;
-      controller.animateCamera(
-          CameraUpdate.newLatLngBounds(bound, 120));
-
-      // CameraPosition cameraPosition = CameraPosition(target: destination, zoom: 14);
-      // _mapController
-      //     .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-
-    }
-  }
 
   void setPolylineOnMap(double startLat, double startLong, double destiLat,
       double destiLong) async {
@@ -742,12 +709,14 @@ class _GoMapState extends State<GoMap> {
       result.points.forEach((PointLatLng point) {
         _polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       });
-      userMarkers(LatLng(destiLat, destiLong));
+
+
+
       setState(() {
         _polyline.add(Polyline(
-            width: 5,
+            width: 4,
             polylineId: PolylineId('polyline'),
-            color: Colors.red,
+            color: orange,
             points: _polylineCoordinates));
       });
     } else {
@@ -760,7 +729,7 @@ class _GoMapState extends State<GoMap> {
     //markers to place on map
     setState(() {
       markers.add(Marker(
-          markerId: MarkerId('barbar'),
+          markerId: MarkerId('user'),
           position: showLocation,
           infoWindow:
           InfoWindow(title: driver!.userName),
@@ -779,9 +748,11 @@ class _GoMapState extends State<GoMap> {
     final Uint8List markerIcon = await MapServices.getMarkerWithSize2(80);
     setState(() {
       markers.add(Marker(
-        markerId: MarkerId("user"),
+        markerId: MarkerId("Pickup Location"),
         position: showLocation,
         draggable: false,
+        infoWindow:
+        InfoWindow(title: deliveryProvider.pickAddress.text.toString()),
         zIndex: 2,
         flat: true,
         anchor: Offset(0.5, 0.5),
@@ -792,16 +763,18 @@ class _GoMapState extends State<GoMap> {
   }
 
   Future<Set<Marker>> destinationMarkers(showLocation) async {
-    final Uint8List markerIcon = await MapServices.getMarkerWithSize2(80);
+    final Uint8List markerIcon = await MapServices.getMarkerWithSize3(80);
     setState(() {
       markers.add(Marker(
-        markerId: MarkerId("destination"),
+        markerId: MarkerId("Delivery Location"),
         position: showLocation,
         draggable: false,
+        infoWindow:
+        InfoWindow(title: deliveryProvider.deliveryAddress.text.toString()),
         zIndex: 2,
         flat: true,
         anchor: Offset(0.5, 0.5),
-        icon: BitmapDescriptor.fromBytes(markerIcon), //Icon for Marker
+        icon: BitmapDescriptor.fromBytes(markerIcon),
       ));
     });
     return markers;

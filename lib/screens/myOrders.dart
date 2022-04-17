@@ -85,34 +85,38 @@ bool del_pressed = false;
                                Row(
                                  children: [
                                    orders[index]["driverImage"].isNotEmpty
-                                       ? Image.network(
+                                       ? SizedBox(
+                                          width: 50,
+                                         height: 50,
+                                         child: Image.network(
                                      orders[index]["driverImage"],
                                      fit: BoxFit.cover,
                                      errorBuilder: (context, object, stackTrace) {
-                                       return const Icon(
-                                         Icons.account_circle,
-                                         size: 90,
-                                         color: white,
-                                       );
+                                         return const Icon(
+                                           Icons.account_circle,
+                                           size: 90,
+                                           color: white,
+                                         );
                                      },
                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                                       if (loadingProgress == null) return child;
-                                       return SizedBox(
-                                         width: 90,
-                                         height: 90,
-                                         child: Center(
-                                           child: CircularProgressIndicator(
-                                             color: white,
-                                             value: loadingProgress.expectedTotalBytes != null &&
-                                                 loadingProgress.expectedTotalBytes != null
-                                                 ? loadingProgress.cumulativeBytesLoaded /
-                                                 loadingProgress.expectedTotalBytes!
-                                                 : null,
+                                         if (loadingProgress == null) return child;
+                                         return SizedBox(
+                                           width: 90,
+                                           height: 90,
+                                           child: Center(
+                                             child: CircularProgressIndicator(
+                                               color: white,
+                                               value: loadingProgress.expectedTotalBytes != null &&
+                                                   loadingProgress.expectedTotalBytes != null
+                                                   ? loadingProgress.cumulativeBytesLoaded /
+                                                   loadingProgress.expectedTotalBytes!
+                                                   : null,
+                                             ),
                                            ),
-                                         ),
-                                       );
+                                         );
                                      },
-                                   )
+                                   ),
+                                       )
                                        :const Icon(
                                      Icons.account_circle,
                                      size: 90,

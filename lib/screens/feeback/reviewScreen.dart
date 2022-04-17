@@ -4,13 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gyalcuser_project/chat/chat_handler.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
+import '../../chat/chat_room.dart';
+import '../../chat/model/chat_room_model.dart';
+import '../../chat/model/user_model.dart';
 import '../../constants/colors.dart';
 import '../../constants/toast_utils.dart';
 import '../../providers/create_delivery_provider.dart';
+import '../../providers/userProvider.dart';
 import '../../utils/app_colors.dart';
+import '../../utils/app_route.dart';
 import '../../utils/image.dart';
 import '../../utils/innerShahdow.dart';
 import '../home/home_page.dart';
@@ -23,13 +30,14 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
-
+  late UserProvider _userProvider;
   late CreateDeliveryProvider deliveryProvider;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    _userProvider = Provider.of<UserProvider>(context, listen: false);
   }
 
   TextEditingController feedText = TextEditingController();
@@ -40,6 +48,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String uniqueId = const Uuid().v1();
+
   //ADDING SUPPORT TO  DB
   addDataToUserDB() async{
     try{
@@ -142,11 +151,48 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Image.asset("assets/images/Avatar.png",width: 60,height: 60,),
+                                  deliveryProvider.driverImage.isNotEmpty
+                                      ? SizedBox(
+                                    width:50,
+                                    height:50,
+                                    child: Image.network(
+                                      deliveryProvider.driverImage,
+                                      fit: BoxFit.fitHeight,
+                                      errorBuilder: (context, object, stackTrace) {
+                                        return const Icon(
+                                          Icons.account_circle,
+                                          size: 90,
+                                          color: white,
+                                        );
+                                      },
+                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return SizedBox(
+                                          width: 90,
+                                          height: 90,
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                              color: white,
+                                              value: loadingProgress.expectedTotalBytes != null &&
+                                                  loadingProgress.expectedTotalBytes != null
+                                                  ? loadingProgress.cumulativeBytesLoaded /
+                                                  loadingProgress.expectedTotalBytes!
+                                                  : null,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                      :const Icon(
+                                    Icons.account_circle,
+                                    size: 90,
+                                    color: white,
+                                  ),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("TEST",style:  TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
+                                      Text(deliveryProvider.driverName,style:  TextStyle(fontFamily: 'Roboto',fontSize: 18,fontWeight: FontWeight.bold)),
                                       Container(
                                         decoration: BoxDecoration(
                                             color: white,
@@ -175,32 +221,72 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               ),
                               Row(
                                 children: [
-                                  Container(
-                                    padding:const EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                      color: white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow:const [
-                                        BoxShadow(
-                                            color: dimOrange,
-                                            blurRadius: 5)
-                                      ],
+                                  GestureDetector(
+                                    onTap:() async{
+                                      var url = "tel:${deliveryProvider.driverMobile}";
+                                      if (await canLaunch(url)) {
+                                        await launch(url);
+                                      } else {
+                                        throw 'Could not launch $url';
+                                      }
+                                    },
+                                    child: Container(
+                                      padding:const EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius: BorderRadius.circular(5),
+                                        boxShadow:const [
+                                          BoxShadow(
+                                              color: dimOrange,
+                                              blurRadius: 5)
+                                        ],
+                                      ),
+                                      child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                     ),
-                                    child: Image.asset("assets/images/bx_bxs-phone-call.png",width: 30,height: 30,),
                                   ),
-                                  SizedBox(width: 20,),
-                                  Container(
-                                    padding:const EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                      color: white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow:const [
-                                        BoxShadow(
-                                            color: dimOrange,
-                                            blurRadius: 5)
-                                      ],
+                                  const SizedBox(width: 20,),
+                                  GestureDetector(
+                                    onTap: () async {
+
+                                      ChatRoomModel? chatRoomModel =
+                                      await chatHandler.getChatRoom(
+                                          deliveryProvider.driverId,
+                                          FirebaseAuth
+                                              .instance.currentUser!.uid);
+
+                                      if (chatRoomModel != null) {
+                                        AppRoutes.push(
+                                            context,
+                                            ChatRoom(
+                                              targetUser: UserModel(
+                                                uid: deliveryProvider.driverId.toString(),
+                                                fullname: deliveryProvider.driverName.toString(),
+                                                email: 'test@gmail.com',
+                                                profilepic:deliveryProvider.driverImage.toString(),
+                                              ),
+                                              userModel: UserModel(
+                                                uid: _userProvider.uid,
+                                                fullname: _userProvider.fullName,
+                                                email: _userProvider.email,
+                                                profilepic: _userProvider.image,
+                                              ),
+                                              chatRoom: chatRoomModel,
+                                            ));
+                                      }
+                                    },
+                                    child: Container(
+                                      padding:const EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius: BorderRadius.circular(5),
+                                        boxShadow:const [
+                                          BoxShadow(
+                                              color: dimOrange,
+                                              blurRadius: 5)
+                                        ],
+                                      ),
+                                      child: Image.asset("assets/images/bpmn_end-event-message.png",width: 30,height: 30,),
                                     ),
-                                    child: Image.asset("assets/images/bpmn_end-event-message.png",width: 30,height: 30,),
                                   )
                                 ],
                               )
