@@ -6,9 +6,11 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final Widget? prefixIcon;
   final controller;
+  final TextInputType? text;
 
   const CustomTextField(
       {Key? key,
+        this.text,
       required this.hint,
        this.prefixIcon,
       required this.controller})
@@ -31,6 +33,7 @@ class CustomTextField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        keyboardType: text??null,
           controller: controller,
           textAlignVertical: TextAlignVertical.center,
           textAlign: TextAlign.left,

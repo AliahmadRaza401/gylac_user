@@ -93,8 +93,9 @@ class _SignUpState extends State<SignUp> {
                                     width:
                                     MediaQuery.of(context).size.width * 0.27,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(25),
+                                       // borderRadius: BorderRadius.circular(25),
                                         color: orange,
+                                        shape: BoxShape.circle,
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.black.withOpacity(0.9),
@@ -105,19 +106,19 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   _image != null
                                       ? ClipOval(
-                                    child: Image.file(
-                                      _image!,
-                                      fit: BoxFit.cover,
-                                      height: MediaQuery.of(context)
-                                          .size
-                                          .height *
-                                          0.12,
-                                      width: MediaQuery.of(context)
-                                          .size
-                                          .width *
-                                          0.25,
-                                    ),
-                                  )
+                                        child: Image.file(
+                                          _image!,
+                                          fit: BoxFit.fill,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.12,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.25,
+                                        ),
+                                      )
                                       : Image.asset(
                                     "assets/images/Camera.png",
                                     height:
@@ -224,6 +225,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         CustomTextField(
                           hint: "XXX-XXX-XXXX",
+                          text: TextInputType.number,
                           prefixIcon: Icon(
                             Icons.phone,
                             color: lightGrey,
