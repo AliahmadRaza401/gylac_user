@@ -8,6 +8,6 @@ Widget curveTop(BuildContext context) {
     decoration:const BoxDecoration(
         // border: Border.all(),
         image: DecorationImage(
-            image: AssetImage('assets/images/signup.png'), fit: BoxFit.cover)),
+            image: AssetImage('assets/images/Frame 32.png'), fit: BoxFit.cover)),
   );
 }

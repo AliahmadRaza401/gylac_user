@@ -17,8 +17,8 @@ import 'package:http/http.dart' as http;
 import '../../constants/keys.dart';
 
 class DeliveryForm extends StatefulWidget {
-  bool deliver;
-   DeliveryForm({Key? key,required this.deliver}) : super(key: key);
+
+   DeliveryForm({Key? key}) : super(key: key);
   @override
   _DeliveryFormState createState() => _DeliveryFormState();
 }
@@ -310,7 +310,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                             getdistanceApi();
                             Fluttertoast.showToast(msg: "Details Added");
                             setState(() {
-                              widget.deliver = false;
+
                             });
                           }
 

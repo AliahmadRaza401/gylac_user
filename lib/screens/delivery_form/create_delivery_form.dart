@@ -1066,17 +1066,13 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           ),
                         )
                       : const SizedBox(),
-                  if(isPick)
-                   PickUpForm(pick:isPick),
-                  if(isDeliver)
-                    DeliveryForm(deliver:isDeliver),
 
-                  // Visibility(
-                  //     visible: deliveryProvider.pickUpVisible,
-                  //     child:  PickUpForm(pick:deliveryProvider.pickUpVisible)),
-                  // Visibility(
-                  //     visible: deliveryProvider.deliveryVisible,
-                  //     child: const DeliveryForm()),
+                  Visibility(
+                      visible: deliveryProvider.pickUpVisible,
+                      child:  PickUpForm()),
+                  Visibility(
+                      visible: deliveryProvider.deliveryVisible,
+                      child: DeliveryForm()),
                 ],
               ),
             ],

@@ -12,8 +12,8 @@ import '../../utils/app_route.dart';
 import '../../widgets/custom_btn.dart';
 
 class PickUpForm extends StatefulWidget {
-  bool pick;
-   PickUpForm({Key? key,required this.pick}) : super(key: key);
+
+   PickUpForm({Key? key}) : super(key: key);
 
   @override
   _PickUpFormState createState() => _PickUpFormState();

@@ -42,38 +42,25 @@ class _SignUpState extends State<SignUp> {
       key: _key,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
+        child:  SingleChildScrollView(
+          child: Column(
             children: [
-              curveTop(context),
-              Container(
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width * 0.8,
-                margin: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.1,
-                ),
-                // color: Colors.black,
+              Image.asset("assets/images/Frame 32.png"),
+              Padding(
+                padding: const EdgeInsets.only(left:25.0,right: 25.0),
                 child: Form(
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
                           children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height * 0.05,
-                              ),
-                              child: const Text("Signup",
-                                  style: TextStyle(
-                                      color: orange,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25)),
-                            ),
+                            const Text("Signup",
+                                style: TextStyle(
+                                    color: orange,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25)),
                           ],
                         ),
                         Row(
@@ -81,7 +68,7 @@ class _SignUpState extends State<SignUp> {
                             Padding(
                               padding: EdgeInsets.only(
                                   bottom:
-                                      MediaQuery.of(context).size.width * 0.04),
+                                  MediaQuery.of(context).size.width * 0.04),
                               child: const Text("Please signup to continue",
                                   style: TextStyle(
                                       color: orange,
@@ -91,69 +78,69 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.12,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.27,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
-                                      color: orange,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.9),
-                                          blurRadius: 7,
-                                          offset: const Offset(0, 6),
-                                        ),
-                                      ]),
-                                ),
-                                _image != null
-                                    ? ClipOval(
-                                        child: Image.file(
-                                          _image!,
-                                          fit: BoxFit.cover,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.12,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.25,
-                                        ),
-                                      )
-                                    : Image.asset(
-                                        "assets/images/Camera.png",
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.12,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.17,
-                                      )
-                              ],
-                            ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.035,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                openFilePicker();
-                              },
-                              child: Text("Add Profile Picture",
+                        InkWell(
+                          onTap: () {
+                            openFilePicker();
+                          },
+                          child: Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height:
+                                    MediaQuery.of(context).size.height * 0.12,
+                                    width:
+                                    MediaQuery.of(context).size.width * 0.27,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: orange,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(0.9),
+                                            blurRadius: 7,
+                                            offset: const Offset(0, 6),
+                                          ),
+                                        ]),
+                                  ),
+                                  _image != null
+                                      ? ClipOval(
+                                    child: Image.file(
+                                      _image!,
+                                      fit: BoxFit.cover,
+                                      height: MediaQuery.of(context)
+                                          .size
+                                          .height *
+                                          0.12,
+                                      width: MediaQuery.of(context)
+                                          .size
+                                          .width *
+                                          0.25,
+                                    ),
+                                  )
+                                      : Image.asset(
+                                    "assets/images/Camera.png",
+                                    height:
+                                    MediaQuery.of(context).size.height *
+                                        0.12,
+                                    width:
+                                    MediaQuery.of(context).size.width *
+                                        0.17,
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.035,
+                              ),
+                              Text("Add Profile Picture",
                                   style: TextStyle(
                                       color: orange,
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
                                       decoration: TextDecoration.underline)),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -245,7 +232,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsets.only(left: 10.0, right: 10.0),
+                          const EdgeInsets.only(left: 10.0, right: 10.0),
                           child: Column(
                             children: [
                               const SizedBox(
@@ -254,73 +241,73 @@ class _SignUpState extends State<SignUp> {
                               loading
                                   ? CircularProgressIndicator()
                                   : CustomBtn(
-                                      text: "SIGN UP",
-                                      onTap: () {
-                                        if (_image == null) {
-                                          ToastUtils.showWarningToast(context, "Required", "Profile Picture is required");
-                                        }
-                                        else if (nameCtl.text.isEmpty) {
-                                          ToastUtils.showWarningToast(context, "Required", "Full Name is required");
-                                        }
-                                        else if (emailCtl.text.isEmpty) {
-                                          ToastUtils.showWarningToast(context, "Required", "Email is required");
-                                        }
-                                        else if(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailCtl.text) == false){
-                                          ToastUtils.showWarningToast(context, "Error", "Enter a valid email!");
-                                        }
-                                        else if (passwordCtl.text.isEmpty) {
-                                          ToastUtils.showWarningToast(context, "Required", "Password is required");
-                                        }
-                                        else if (passwordCtl.text.length < 6) {
-                                          ToastUtils.showWarningToast(context, "Error", "Password should be at least six digits.");
-                                        }
-                                        else if (phoneCtl.text.isEmpty) {
-                                          ToastUtils.showWarningToast(context, "Error", "Phone number is required");
-                                        }
-                                        else{
-                                          AuthServices.signUp(
-                                              context,
-                                              emailCtl.text,
-                                              passwordCtl.text,
-                                              nameCtl.text,
-                                              phoneCtl.text,
-                                              _image);
-                                        }
+                                text: "SIGN UP",
+                                onTap: () {
+                                  if (_image == null) {
+                                    ToastUtils.showWarningToast(context, "Required", "Profile Picture is required");
+                                  }
+                                  else if (nameCtl.text.isEmpty) {
+                                    ToastUtils.showWarningToast(context, "Required", "Full Name is required");
+                                  }
+                                  else if (emailCtl.text.isEmpty) {
+                                    ToastUtils.showWarningToast(context, "Required", "Email is required");
+                                  }
+                                  else if(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailCtl.text) == false){
+                                    ToastUtils.showWarningToast(context, "Error", "Enter a valid email!");
+                                  }
+                                  else if (passwordCtl.text.isEmpty) {
+                                    ToastUtils.showWarningToast(context, "Required", "Password is required");
+                                  }
+                                  else if (passwordCtl.text.length < 6) {
+                                    ToastUtils.showWarningToast(context, "Error", "Password should be at least six digits.");
+                                  }
+                                  else if (phoneCtl.text.isEmpty) {
+                                    ToastUtils.showWarningToast(context, "Error", "Phone number is required");
+                                  }
+                                  else{
+                                    AuthServices.signUp(
+                                        context,
+                                        emailCtl.text,
+                                        passwordCtl.text,
+                                        nameCtl.text,
+                                        phoneCtl.text,
+                                        _image);
+                                  }
 
-                                      },
-                                      bgColor: orange,
-                                      shadowColor: black,
-                                    ),
+                                },
+                                bgColor: orange,
+                                shadowColor: black,
+                              ),
                               const SizedBox(
                                 height: 10.0,
                               ),
 
-                        GestureDetector(
-                          onTap: () {
-                            AppRoutes.replace(context, const Login());
-                          },
-                          child: SizedBox(
-                            // color: Colors.green,
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Already Have an Account? ",
-                                  style: MyTextStyle.poppins(),
-                                ),
-                                const Text(
-                                  " LOGIN",
-                                  style: TextStyle(
-                                    color: orange,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                              GestureDetector(
+                                onTap: () {
+                                  AppRoutes.replace(context, const Login());
+                                },
+                                child: SizedBox(
+                                  // color: Colors.green,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Already Have an Account? ",
+                                        style: MyTextStyle.poppins(),
+                                      ),
+                                      const Text(
+                                        " LOGIN",
+                                        style: TextStyle(
+                                          color: orange,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
+                              ),
                             ],
                           ),
                         ),

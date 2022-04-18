@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_final_fields
 
 import 'dart:async';
+import 'dart:developer';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 
@@ -95,7 +96,6 @@ class _GoMapState extends State<GoMap> {
   getLiveBarbar() {
     if(mounted){
       setState(() {
-        // pickup = LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
         destination =LatLng(double.parse(deliveryProvider.pickupLat),double.parse(deliveryProvider.pickupLong));
       });
     }
@@ -109,6 +109,7 @@ class _GoMapState extends State<GoMap> {
 
   Future getBarbarData() async {
     try {
+      log("COMING HERE");
       await FirebaseFirestore.instance
           .collection('drivers')
           .where('id', isEqualTo: widget.driverId)
@@ -116,7 +117,11 @@ class _GoMapState extends State<GoMap> {
           .then((QuerySnapshot querySnapshot) => {
         querySnapshot.docs.forEach((doc) {
 
+          print('barber....');
+          print(doc.data());
           driver = DriverModel.fromMap(doc.data() as Map<String, dynamic>);
+          log(driver!.lat.toString());
+          log(driver!.long.toString());
           CameraPosition cameraPosition = CameraPosition(target: LatLng(driver!.lat, driver!.long), zoom: 16);
           _mapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
@@ -144,16 +149,15 @@ class _GoMapState extends State<GoMap> {
                 destination = LatLng(double.parse(deliveryProvider.deliveryLat),double.parse(deliveryProvider.deliveryLong));
                 isPickup = true;
               }),
-              MyMotionToast.success(context, "Pickup Location", "${deliveryProvider.driverName} reached pickup location"),
-
+             // MyMotionToast.success(context, "Pickup Location", "${deliveryProvider.driverName} reached pickup location"),
+             Fluttertoast.showToast(msg: "${deliveryProvider.driverName} reached pickup location",textColor: Colors.white,backgroundColor: Colors.green),
             }
             else{
-            _polylineCoordinates.clear(),
-            _polyline.clear(),
               setState(() {
               isComplete = true;
               }),
-              MyMotionToast.success(context, "Delivery Location", "${deliveryProvider.driverName} reached delivery location"),
+              //MyMotionToast.success(context, "Delivery Location", "${deliveryProvider.driverName} reached delivery location"),
+              Fluttertoast.showToast(msg: "${deliveryProvider.driverName} reached destination location",textColor: Colors.white,backgroundColor: Colors.green),
              timer.cancel(),
            },
 
@@ -709,8 +713,6 @@ class _GoMapState extends State<GoMap> {
       result.points.forEach((PointLatLng point) {
         _polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       });
-
-
 
       setState(() {
         _polyline.add(Polyline(
