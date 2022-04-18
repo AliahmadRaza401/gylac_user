@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 import '../constants/colors.dart';
 import '../utils/app_colors.dart';
@@ -37,12 +38,7 @@ Widget inputField(BuildContext context, title, hint, controller,textInputType,su
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.left,
             maxLines: 1,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'required';
-              }
-              return null;
-            },
+            validator: RequiredValidator(errorText: 'Required'),
             style: const TextStyle(
               fontSize: 13,
             ),

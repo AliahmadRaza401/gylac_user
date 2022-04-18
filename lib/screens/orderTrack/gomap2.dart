@@ -386,10 +386,10 @@ class _GoMapState extends State<GoMap> {
                                                 context,
                                                 ChatRoom(
                                                   targetUser: UserModel(
-                                                    uid: driver!.userId.toString(),
-                                                    fullname: driver!.userName.toString(),
+                                                    uid: deliveryProvider.driverId.toString(),
+                                                    fullname: deliveryProvider.driverName.toString(),
                                                     email: 'test@gmail.com',
-                                                    profilepic: driver!.image.toString(),
+                                                    profilepic:deliveryProvider.driverImage.toString(),
                                                   ),
                                                   userModel: UserModel(
                                                     uid: _userProvider.uid,

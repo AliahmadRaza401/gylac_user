@@ -77,45 +77,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 120,
-                  height: 120,
-                  padding: const EdgeInsets.only(
-                    top: 20.0,
-                    bottom: 16.0,
-                  ),
+                  height:
+                  MediaQuery.of(context).size.height * 0.15,
+                  width:
+                  MediaQuery.of(context).size.width * 0.30,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: orange,width: 2),
+                    shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.9),
+                          blurRadius: 7,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
+                    border: Border.all(color: orangeDark,width: 2),
                   ),
                   child: avatarImageFile == null
                       ? userProvider.image.isNotEmpty
-                      ? Image.network(
-                        userProvider.image,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, object, stackTrace) {
-                          return Icon(
-                            Icons.account_circle,
-                            size: 90,
-                            color: orange,
-                          );
-                        },
-                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return SizedBox(
-                            width: 90,
-                            height: 90,
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                color: orange,
-                                value: loadingProgress.expectedTotalBytes != null &&
-                                    loadingProgress.expectedTotalBytes != null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                    : null,
+                      ? ClipOval(
+                        child: Image.network(
+                          userProvider.image,
+                          fit: BoxFit.fill,
+                          errorBuilder: (context, object, stackTrace) {
+                            return Icon(
+                              Icons.account_circle,
+                              size: 90,
+                              color: orange,
+                            );
+                          },
+                          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return SizedBox(
+                              width: 90,
+                              height: 90,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: orange,
+                                  value: loadingProgress.expectedTotalBytes != null &&
+                                      loadingProgress.expectedTotalBytes != null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       )
                       : Icon(
                     Icons.account_circle,

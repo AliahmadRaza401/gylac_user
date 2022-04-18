@@ -55,44 +55,52 @@ class _AppMenuState extends State<AppMenu> {
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child:Container(
-                              width: 100,
-                              height: 100,
-                              padding: const EdgeInsets.only(
-                                top: 20.0,
-                                bottom: 16.0,
-                              ),
+                                height:
+                                MediaQuery.of(context).size.height * 0.12,
+                                width:
+                                MediaQuery.of(context).size.width * 0.27,
+
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: white,width: 2),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: orangeDark,width: 2),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.9),
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 6),
+                                    ),
+                                  ]
                               ),
                               child: userProvider.image.isNotEmpty
-                                  ? Image.network(
-                                    userProvider.image,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, object, stackTrace) {
-                                      return const Icon(
-                                        Icons.account_circle,
-                                        size: 90,
-                                        color: white,
-                                      );
-                                    },
-                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return SizedBox(
-                                        width: 90,
-                                        height: 90,
-                                        child: Center(
-                                          child: CircularProgressIndicator(
-                                            color: white,
-                                            value: loadingProgress.expectedTotalBytes != null &&
-                                                loadingProgress.expectedTotalBytes != null
-                                                ? loadingProgress.cumulativeBytesLoaded /
-                                                loadingProgress.expectedTotalBytes!
-                                                : null,
+                                  ? ClipOval(
+                                    child: Image.network(
+                                      userProvider.image,
+                                      fit: BoxFit.fill,
+                                      errorBuilder: (context, object, stackTrace) {
+                                        return const Icon(
+                                          Icons.account_circle,
+                                          size: 90,
+                                          color: white,
+                                        );
+                                      },
+                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return SizedBox(
+                                          width: 90,
+                                          height: 90,
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                              color: white,
+                                              value: loadingProgress.expectedTotalBytes != null &&
+                                                  loadingProgress.expectedTotalBytes != null
+                                                  ? loadingProgress.cumulativeBytesLoaded /
+                                                  loadingProgress.expectedTotalBytes!
+                                                  : null,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
+                                        );
+                                      },
+                                    ),
                                   )
                                   :const Icon(
                                 Icons.account_circle,
@@ -225,7 +233,7 @@ class _AppMenuState extends State<AppMenu> {
                         Navigator.of(context).pop();
                       },
                       title: const Text(
-                        'mongolian',
+                        'Mongolian',
                         style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w700),
                       ),
                     ),

@@ -81,17 +81,19 @@ class _PayCardState extends State<PayCard> {
       }).then((data) async {
         firebaseFirestore
             .collection("orders")
-            .doc(widget.orderId).update({"trackStatus":"WaitForPickup"});
-        firebaseFirestore
-            .collection("users")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .collection("orders")
-            .doc(widget.orderId)
-            .update({
-          "driverName": deliveryProvider.driverName,
-          "driverImage": deliveryProvider.driverImage,
-          "driverPhone": deliveryProvider.driverMobile,
-        });
+            .doc(widget.orderId).update({"trackStatus":"WaitForPickup"}).then((value) =>
+            firebaseFirestore
+                .collection("users")
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .collection("orders")
+                .doc(widget.orderId)
+                .update({
+              "driverName": deliveryProvider.driverName,
+              "driverImage": deliveryProvider.driverImage,
+              "driverPhone": deliveryProvider.driverMobile,
+            })
+        );
+
         setState(() {
           isLoading = false;
         });
@@ -115,7 +117,7 @@ class _PayCardState extends State<PayCard> {
                       Image.asset("assets/images/Component 17.png"),
                       Image.asset("assets/images/Correct_sign_1_freepik 4.png",width: 100,height: 100,),
                       SizedBox(height: 20,),
-                      Text("Order Complete",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,fontFamily: 'Poppins',color: orange),),
+                      Text("Payment Complete",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,fontFamily: 'Poppins',color: orange),),
                       SizedBox(height: 50,),
                       Text("Your Tracking ID",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,fontFamily: 'Poppins',color: orange),),
                       CustomBtn(
@@ -131,8 +133,8 @@ class _PayCardState extends State<PayCard> {
                 ),
               );
             });
-        Future.delayed(Duration(seconds: 2), () {
-
+        Future.delayed(Duration(seconds: 3), () {
+          Fluttertoast.showToast(msg: "Payment Successful",textColor: Colors.white,backgroundColor: Colors.green);
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OrderDetails())
@@ -257,7 +259,7 @@ class _PayCardState extends State<PayCard> {
                       });
                     }
                     updateId();
-                    Fluttertoast.showToast(msg: "Payment Successful",textColor: Colors.white,backgroundColor: Colors.green);
+
                   } else {
                     Fluttertoast.showToast(msg: "Invalid Card Details");
                   }

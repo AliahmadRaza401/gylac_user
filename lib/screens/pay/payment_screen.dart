@@ -2,12 +2,6 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/credit_card_form.dart';
-import 'package:flutter_credit_card/credit_card_model.dart';
-import 'package:flutter_credit_card/credit_card_widget.dart';
-import 'package:flutter_credit_card/custom_card_type_icon.dart';
-import 'package:flutter_credit_card/glassmorphism_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math'as math;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -122,7 +116,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       Image.asset("assets/images/Component 17.png"),
                       Image.asset("assets/images/Correct_sign_1_freepik 4.png",width: 100,height: 100,),
                       SizedBox(height: 20,),
-                      Text("Order Complete",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,fontFamily: 'Poppins',color: orange),),
+                      Text("Payment Complete",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,fontFamily: 'Poppins',color: orange),),
                       SizedBox(height: 50,),
                       Text("Your Tracking ID",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,fontFamily: 'Poppins',color: orange),),
                       CustomBtn(

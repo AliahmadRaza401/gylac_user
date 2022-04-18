@@ -330,17 +330,61 @@ class _PickUpFormState extends State<PickUpForm> {
                       const SizedBox(
                         height: 5,
                       ),
-                     /* CustomBtn(
+                      CustomBtn(
                         onTap: () {
-                            setState(() {
-                               widget.pick=!widget.pick;
-                            });
+                          if (deliveryProvider
+                              .pickAddress.text.isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required",
+                                "Pickup Address is required");
+                          } else if (deliveryProvider
+                              .pickName.text.isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required",
+                                "Pickup Name is required");
+                          } else if (deliveryProvider
+                              .pickPhone.text.isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required",
+                                "Pickup Phone is required");
+                          } else if (deliveryProvider
+                              .pickEmail.text.isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required",
+                                "Pickup Email is required");
+                          } else if (RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(deliveryProvider
+                              .pickEmail.text) ==
+                              false) {
+                            ToastUtils.showWarningToast(context,
+                                "Error", "Enter a valid email!");
+                          } else if (deliveryProvider
+                              .pickParcelName.text.isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required",
+                                "Pickup Parcel Name is required");
+                          } else if (deliveryProvider
+                              .pickParcelWeight.text.isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required",
+                                "Pickup Parcel Weight is required");
+                          }
+                          else{
+
+                          }
 
                         },
                         bgColor: orange,
                         shadowColor: black,
                         text: 'Save',
-                      ),*/
+                      ),
                     ],
                   ),
                 ),

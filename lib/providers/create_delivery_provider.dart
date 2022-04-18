@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -54,6 +55,9 @@ class CreateDeliveryProvider extends ChangeNotifier {
   String driverMobile="";
   String driverImage = "";
 
+
+  final requiredValidator = RequiredValidator(errorText: 'Required');
+  final emailValidator = EmailValidator(errorText: 'Enter a valid email address');
 
 
   deliveryVisibleFalse() {

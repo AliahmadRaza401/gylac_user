@@ -267,6 +267,12 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                 .delete() // <-- Delete
                 .then((_) => log('Deleted'))
                 .catchError((error) => log('Delete failed: $error'));
+            final collection2 = FirebaseFirestore.instance.collection('users');
+            collection2
+                .doc(FirebaseAuth.instance.currentUser!.uid).collection("orders").doc(id)
+                .delete() // <-- Delete
+                .then((_) => log('Deleted'))
+                .catchError((error) => log('Delete failed: $error'));
           }
         });
       }
@@ -344,7 +350,20 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
           collection
               .doc(id) // <-- Doc ID to be deleted.
               .delete() // <-- Delete
-              .then((_) => log('Deleted'))
+              .then((_)
+              {
+                final collection2 = FirebaseFirestore.instance.collection('users');
+                collection2
+                    .doc(FirebaseAuth.instance.currentUser!.uid).collection("orders").doc(id)
+                    .delete() // <-- Delete
+                    .then((_) => log('Deleted'))
+                    .catchError((error) => log('Delete failed: $error'));
+              Future.delayed(Duration(seconds: 2), () {
+
+            Navigator.of(context).pop(true);
+          });}
+
+                )
               .catchError((error) => log('Delete failed: $error'));
 
         }).catchError((err) {
