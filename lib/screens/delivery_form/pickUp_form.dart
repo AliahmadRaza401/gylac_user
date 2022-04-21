@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
- import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:gyalcuser_project/providers/create_delivery_provider.dart';
 import 'package:gyalcuser_project/utils/app_colors.dart';
 import 'package:gyalcuser_project/widgets/inputField.dart';
@@ -12,23 +12,21 @@ import '../../utils/app_route.dart';
 import '../../widgets/custom_btn.dart';
 
 class PickUpForm extends StatefulWidget {
-
-   PickUpForm({Key? key}) : super(key: key);
+  PickUpForm({Key? key}) : super(key: key);
 
   @override
   _PickUpFormState createState() => _PickUpFormState();
 }
 
 class _PickUpFormState extends State<PickUpForm> {
-   PickResult? selectedPlace2;
+  PickResult? selectedPlace2;
   bool showGoogleMapInContainer = false;
   static const kInitialPosition2 = LatLng(-33.8567844, 151.213108);
-
 
   @override
   Widget build(BuildContext context) {
     final deliveryProvider = Provider.of<CreateDeliveryProvider>(context);
-     // deliveryProvider.pickAddress.text =selectedPlace2 == null ? "Select Pickup Address" : selectedPlace2!.formattedAddress ?? "";
+    // deliveryProvider.pickAddress.text =selectedPlace2 == null ? "Select Pickup Address" : selectedPlace2!.formattedAddress ?? "";
     var media = MediaQuery.of(context).size;
     return Positioned(
       top: media.height * 0.1,
@@ -37,10 +35,8 @@ class _PickUpFormState extends State<PickUpForm> {
         width: media.width * 0.93,
         decoration: BoxDecoration(
           color: Colors.white,
-
           border: Border.all(
-            color:
-                AppColors.primaryColor, //
+            color: AppColors.primaryColor, //
             width: 3.0,
           ),
           boxShadow: [
@@ -53,11 +49,11 @@ class _PickUpFormState extends State<PickUpForm> {
           ],
         ),
         child: Container(
-          margin:const EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             horizontal: 10,
             vertical: 10,
           ),
-          padding:const EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 10,
           ),
@@ -102,53 +98,61 @@ class _PickUpFormState extends State<PickUpForm> {
                                       selectedPlace2 = result;
                                       Navigator.of(context).pop();
                                       setState(() {
-                                        deliveryProvider.pickAddress.text =selectedPlace2!.formattedAddress.toString();
-                                        deliveryProvider.pickupLat = selectedPlace2!.geometry!.location.lat.toString();
-                                        deliveryProvider.pickupLong = selectedPlace2!.geometry!.location.lng.toString();
+                                        deliveryProvider.pickAddress.text =
+                                            selectedPlace2!.formattedAddress
+                                                .toString();
+                                        deliveryProvider.pickupLat =
+                                            selectedPlace2!
+                                                .geometry!.location.lat
+                                                .toString();
+                                        deliveryProvider.pickupLong =
+                                            selectedPlace2!
+                                                .geometry!.location.lng
+                                                .toString();
                                       });
-                                    }
-                                )
-                            ),
+                                    })),
                           );
                         },
                         child: AbsorbPointer(
-                          child: inputField(context, "Address", "Select Pickup Address",
-                              deliveryProvider.pickAddress,TextInputType.text,Padding(
+                          child: inputField(
+                              context,
+                              "Address",
+                              "Select Pickup Address",
+                              deliveryProvider.pickAddress,
+                              TextInputType.text,
+                              Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Image.asset("assets/images/Pin 3 (1).png"),
-                              )
-                          ),
+                                child:
+                                    Image.asset("assets/images/Pin 3 (1).png"),
+                              )),
                         ),
                       ),
-                      const  SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-
-                      inputField(
-                        context,
-                        "Name",
-                        "Enter Name",
-                        deliveryProvider.pickName,
-                          TextInputType.text,
-                        null
-                      ),
-                      const  SizedBox(
+                      inputField(context, "Name", "Enter Name",
+                          deliveryProvider.pickName, TextInputType.text, null),
+                      const SizedBox(
                         height: 10,
                       ),
                       inputField(
-                        context,
-                        "Phone Number",
-                        "Enter Phone Number",
-                        deliveryProvider.pickPhone,
-                          TextInputType.number, null
-                      ),
-                      const  SizedBox(
+                          context,
+                          "Phone Number",
+                          "Enter Phone Number",
+                          deliveryProvider.pickPhone,
+                          TextInputType.number,
+                          null),
+                      const SizedBox(
                         height: 10,
                       ),
-                      inputField(context, "Email", "Enter Email",
+                      inputField(
+                          context,
+                          "Email",
+                          "Enter Email",
                           deliveryProvider.pickEmail,
-                          TextInputType.emailAddress, null),
-                      const  SizedBox(
+                          TextInputType.emailAddress,
+                          null),
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
@@ -156,22 +160,27 @@ class _PickUpFormState extends State<PickUpForm> {
                         children: [
                           Container(
                             width: media.width * 0.37,
-                            child: inputField(context, "Parcel Name", "",
-                                deliveryProvider.pickParcelName,TextInputType.text, null),
+                            child: inputField(
+                                context,
+                                "Parcel Name",
+                                "",
+                                deliveryProvider.pickParcelName,
+                                TextInputType.text,
+                                null),
                           ),
                           Container(
                             width: media.width * 0.37,
                             child: inputField(
-                              context,
-                              "Parcel Weight",
-                              "",
-                              deliveryProvider.pickParcelWeight,
-                                TextInputType.number, null
-                            ),
+                                context,
+                                "Parcel Weight",
+                                "",
+                                deliveryProvider.pickParcelWeight,
+                                TextInputType.number,
+                                null),
                           ),
                         ],
                       ),
-                      const  SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Column(
@@ -193,7 +202,8 @@ class _PickUpFormState extends State<PickUpForm> {
                             decoration: BoxDecoration(
                               color: white,
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: textFieldStroke, width: 1),
+                              border:
+                                  Border.all(color: textFieldStroke, width: 1),
                               boxShadow: [
                                 BoxShadow(
                                     offset: Offset(1, 1),
@@ -227,17 +237,17 @@ class _PickUpFormState extends State<PickUpForm> {
                                   ),
 
                                   labelStyle: const TextStyle(),
-                                  border:const OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  focusedBorder:const OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  enabledBorder:const OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
@@ -271,7 +281,8 @@ class _PickUpFormState extends State<PickUpForm> {
                             decoration: BoxDecoration(
                               color: white,
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: textFieldStroke, width: 1),
+                              border:
+                                  Border.all(color: textFieldStroke, width: 1),
                               boxShadow: [
                                 BoxShadow(
                                     offset: Offset(1, 1),
@@ -282,12 +293,10 @@ class _PickUpFormState extends State<PickUpForm> {
                             width: media.width * 0.35,
                             height: MediaQuery.of(context).size.height * 0.05,
                             child: TextFormField(
-                                keyboardType:  TextInputType.number,
+                                keyboardType: TextInputType.number,
                                 controller: deliveryProvider.pickPrice,
-
                                 textAlignVertical: TextAlignVertical.center,
                                 textAlign: TextAlign.left,
-
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'required';
@@ -306,17 +315,17 @@ class _PickUpFormState extends State<PickUpForm> {
                                   ),
 
                                   labelStyle: const TextStyle(),
-                                  border:const OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  focusedBorder:const OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  enabledBorder:const OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
@@ -332,54 +341,39 @@ class _PickUpFormState extends State<PickUpForm> {
                       ),
                       CustomBtn(
                         onTap: () {
-                          if (deliveryProvider
-                              .pickAddress.text.isEmpty) {
+                          if (deliveryProvider.pickAddress.text.isEmpty) {
                             ToastUtils.showWarningToast(
-                                context,
-                                "Required",
-                                "Pickup Address is required");
-                          } else if (deliveryProvider
-                              .pickName.text.isEmpty) {
+                                context, "Required", "Address is required");
+                          } else if (deliveryProvider.pickName.text.isEmpty) {
                             ToastUtils.showWarningToast(
-                                context,
-                                "Required",
-                                "Pickup Name is required");
-                          } else if (deliveryProvider
-                              .pickPhone.text.isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required",
-                                "Pickup Phone is required");
-                          } else if (deliveryProvider
-                              .pickEmail.text.isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required",
-                                "Pickup Email is required");
-                          } else if (RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(deliveryProvider
-                              .pickEmail.text) ==
-                              false) {
-                            ToastUtils.showWarningToast(context,
-                                "Error", "Enter a valid email!");
+                                context, "Required", "PickUp Name is required");
+                          } else if (deliveryProvider.pickPhone.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required",
+                                "PickUp Phone is required");
                           } else if (deliveryProvider
                               .pickParcelName.text.isEmpty) {
                             ToastUtils.showWarningToast(
-                                context,
-                                "Required",
-                                "Pickup Parcel Name is required");
+                                context, "Required", "Parcel Name is required");
                           } else if (deliveryProvider
                               .pickParcelWeight.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required",
+                                "Parcel weight is required");
+                          } else if (deliveryProvider
+                              .pickDescription.text.isEmpty) {
                             ToastUtils.showWarningToast(
-                                context,
-                                "Required",
-                                "Pickup Parcel Weight is required");
+                                context, "Required", "description is required");
+                          } else if (deliveryProvider.pickPrice.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required",
+                                "PickUp price is required");
+                          } else if (deliveryProvider.pickEmail.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required",
+                                "PickUp Email is required");
+                          } else {
+                            setState(() {
+                              deliveryProvider.pickVisibleFalse();
+                              //  widget.pick=!widget.pick;
+                            });
                           }
-                          else{
-
-                          }
-
                         },
                         bgColor: orange,
                         shadowColor: black,
@@ -395,5 +389,4 @@ class _PickUpFormState extends State<PickUpForm> {
       ),
     );
   }
-
 }

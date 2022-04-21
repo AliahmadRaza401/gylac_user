@@ -43,29 +43,30 @@ class CreateDeliveryProvider extends ChangeNotifier {
   String deliveryLat = "";
   String deliveryLong = "";
   String distance = "";
-  String duration ="";
+  String duration = "";
   int driverLength = 0;
   int rejectionCount = 0;
   String orderId = "";
 
-  String driverId="";
-  double driverLat=0.0;
-  double driverLong=0.0;
-  String driverName="";
-  String driverMobile="";
+  String driverId = "";
+  double driverLat = 0.0;
+  double driverLong = 0.0;
+  String driverName = "";
+  String driverMobile = "";
   String driverImage = "";
 
-
   final requiredValidator = RequiredValidator(errorText: 'Required');
-  final emailValidator = EmailValidator(errorText: 'Enter a valid email address');
-
+  final emailValidator =
+      EmailValidator(errorText: 'Enter a valid email address');
 
   deliveryVisibleFalse() {
     deliveryVisible = false;
+    notifyListeners();
   }
 
   pickVisibleFalse() {
     pickUpVisible = false;
+    notifyListeners();
   }
 
   //Map
@@ -90,10 +91,11 @@ class CreateDeliveryProvider extends ChangeNotifier {
     print('currentPosition: $currentPosition');
 
     currentlatLatPosition = LatLng(position.latitude, position.longitude);
-    currentCameraPosition = CameraPosition(target: currentlatLatPosition, zoom: 14);
+    currentCameraPosition =
+        CameraPosition(target: currentlatLatPosition, zoom: 14);
     // address = await AssistantMethods.searchCoordinateAddress(position, context);
     // print('This is your address ::' + address);
-   //  mapController.animateCamera(CameraUpdate.newCameraPosition(currentCameraPosition));
+    //  mapController.animateCamera(CameraUpdate.newCameraPosition(currentCameraPosition));
     notifyListeners();
     return currentlatLatPosition;
   }

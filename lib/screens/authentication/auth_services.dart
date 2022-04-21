@@ -18,33 +18,35 @@ class AuthServices {
   //SignIn
   static signIn(BuildContext context, String email, String password) async {
     final auth = FirebaseAuth.instance;
-    UserProvider _userProvider = Provider.of<UserProvider>(context, listen: false);
+    UserProvider _userProvider =
+        Provider.of<UserProvider>(context, listen: false);
     SharedPreferences pref = await SharedPreferences.getInstance();
-    LoadingProvider _loadingProvider = Provider.of<LoadingProvider>(context, listen: false);
+    LoadingProvider _loadingProvider =
+        Provider.of<LoadingProvider>(context, listen: false);
     _loadingProvider.setLoading(true);
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-        pref.setString("userId", auth.currentUser!.uid),
+                pref.setString("userId", auth.currentUser!.uid),
                 AppRoutes.replace(
                   context,
                   const HomePage(),
                 ),
-        ToastUtils.showSuccessToast(
-            context, "Success", "Login Successful!!"),
+                ToastUtils.showSuccessToast(
+                    context, "Success", "Login Successful!!"),
                 userLoggedIn(true),
                 _loadingProvider.setLoading(false),
               });
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
         case "invalid-email":
-
           ToastUtils.showErrorToast(
               context, "Error", "Your email address is invalid");
           break;
         case "wrong-password":
-          ToastUtils.showErrorToast(context, "Error", "Your password is wrong.");
+          ToastUtils.showErrorToast(
+              context, "Error", "Your password is wrong.");
 
           break;
         case "user-not-found":
@@ -94,7 +96,7 @@ class AuthServices {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
-            pref.setString("userId", _auth.currentUser!.uid),
+                pref.setString("userId", _auth.currentUser!.uid),
                 postDetailsToFirestore(context, fullName, email, mobilenumber,
                     password, imageFile),
               })
@@ -104,12 +106,12 @@ class AuthServices {
     } on FirebaseAuthException catch (error) {
       switch (error.code) {
         case "invalid-email":
-
           ToastUtils.showErrorToast(
               context, "Error", "Your email address is invalid");
           break;
         case "wrong-password":
-          ToastUtils.showErrorToast(context, "Error", "Your password is wrong.");
+          ToastUtils.showErrorToast(
+              context, "Error", "Your password is wrong.");
 
           break;
         case "user-not-found":
@@ -131,6 +133,11 @@ class AuthServices {
               "Signing in with Email and Password is not enabled.");
 
           break;
+        case "email-already-in-use":
+          ToastUtils.showErrorToast(context, "Oops!",
+              "Email already exist, kindly try some one else");
+
+          break;
         default:
           ToastUtils.showErrorToast(
               context, "Error", "An undefined Error happened");
@@ -146,7 +153,6 @@ class AuthServices {
 
   static postDetailsToFirestore(BuildContext context, fullName, email,
       mobileNumber, password, imageFile) async {
-
     final _auth = FirebaseAuth.instance;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
@@ -154,7 +160,8 @@ class AuthServices {
         Provider.of<LoadingProvider>(context, listen: false);
 
     var image = await FirebaseServices.imageUpload(imageFile, email);
-    UserProvider _userProvider = Provider.of<UserProvider>(context, listen: false);
+    UserProvider _userProvider =
+        Provider.of<UserProvider>(context, listen: false);
 
     await firebaseFirestore.collection("users").doc(user!.uid).set({
       'uid': user.uid,
@@ -164,7 +171,6 @@ class AuthServices {
       'mobileNumber': '0$mobileNumber',
       'image': image,
     }).then((value) {
-
       _userProvider.uid = user.uid.toString();
       // _userProvider.email = email.toString();
       // _userProvider.password = password.toString();
@@ -175,9 +181,7 @@ class AuthServices {
       AppRoutes.push(context, HomePage());
       ToastUtils.showSuccessToast(
           context, "Success", "Account Created Successfully!!");
-    }).catchError((e) {
-
-    });
+    }).catchError((e) {});
     _loadingProvider.setLoading(false);
 
     // AppRoutes.push(

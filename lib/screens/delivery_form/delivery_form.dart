@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
- import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
- import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'dart:convert';
 import 'package:gyalcuser_project/utils/app_colors.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
@@ -17,52 +17,53 @@ import 'package:http/http.dart' as http;
 import '../../constants/keys.dart';
 
 class DeliveryForm extends StatefulWidget {
-
-   DeliveryForm({Key? key}) : super(key: key);
+  DeliveryForm({Key? key}) : super(key: key);
   @override
   _DeliveryFormState createState() => _DeliveryFormState();
 }
 
 class _DeliveryFormState extends State<DeliveryForm> {
-   PickResult? selectedPlace;
+  PickResult? selectedPlace;
   static const kInitialPosition = LatLng(-33.8567844, 151.213108);
   bool showGoogleMapInContainer = false;
 
+  late CreateDeliveryProvider deliveryProvider;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    deliveryProvider =
+        Provider.of<CreateDeliveryProvider>(context, listen: false);
+  }
 
-   late CreateDeliveryProvider deliveryProvider;
-   @override
-   void initState() {
-     // TODO: implement initState
-     super.initState();
-     deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
-   }
+  ////////////////////////Get Distance Places
+  Future<void> getdistanceApi() async {
+    try {
+      final response = await http.get(Uri.parse(
+          'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${deliveryProvider.pickupLat}, ${deliveryProvider.pickupLong}&destinations=${deliveryProvider.deliveryLat}, ${deliveryProvider.deliveryLong}&key=$mapKey'));
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonResponse =
+            Map<String, dynamic>.from(json.decode(response.body));
 
-   ////////////////////////Get Distance Places
-   Future<void> getdistanceApi() async {
-
-     try {
-       final response = await http.get(Uri.parse(
-           'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${deliveryProvider.pickupLat}, ${deliveryProvider.pickupLong}&destinations=${deliveryProvider.deliveryLat}, ${deliveryProvider.deliveryLong}&key=$mapKey'));
-       if (response.statusCode == 200) {
-         Map<String, dynamic> jsonResponse =
-         Map<String, dynamic>.from(json.decode(response.body));
-
-         if (jsonResponse["rows"][0]["elements"][0]["status"].toString() ==
-             "ZERO_RESULTS") {
-         } else {
-           setState(() {
-             deliveryProvider.distance = jsonResponse["rows"][0]["elements"][0]["distance"]["text"].toString();
-             deliveryProvider.duration = jsonResponse["rows"][0]["elements"][0]["duration"]["text"].toString();
-           });
-
-         }
-       } else {
-         throw Exception('Unexpected error occurred!');
-       }
-     } catch (e) {
-       ToastUtils.showWarningToast(context,"Failed","No Data Found");
-     }
-   }
+        if (jsonResponse["rows"][0]["elements"][0]["status"].toString() ==
+            "ZERO_RESULTS") {
+        } else {
+          setState(() {
+            deliveryProvider.distance = jsonResponse["rows"][0]["elements"][0]
+                    ["distance"]["text"]
+                .toString();
+            deliveryProvider.duration = jsonResponse["rows"][0]["elements"][0]
+                    ["duration"]["text"]
+                .toString();
+          });
+        }
+      } else {
+        throw Exception('Unexpected error occurred!');
+      }
+    } catch (e) {
+      ToastUtils.showWarningToast(context, "Failed", "No Data Found");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,6 @@ class _DeliveryFormState extends State<DeliveryForm> {
         width: media.width * 0.93,
         decoration: BoxDecoration(
           color: Colors.white,
-
           border: Border.all(
             color:
                 AppColors.primaryColor, //                   <--- border color
@@ -93,11 +93,11 @@ class _DeliveryFormState extends State<DeliveryForm> {
           ],
         ),
         child: Container(
-          margin:const EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             horizontal: 10,
             vertical: 10,
           ),
-          padding:const EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 20,
           ),
@@ -142,48 +142,65 @@ class _DeliveryFormState extends State<DeliveryForm> {
                                       selectedPlace = result;
                                       Navigator.of(context).pop();
                                       setState(() {
-                                        deliveryProvider.deliveryAddress.text =  selectedPlace!.formattedAddress.toString();
-                                        deliveryProvider.deliveryLat = selectedPlace!.geometry!.location.lat.toString();
-                                        deliveryProvider.deliveryLong = selectedPlace!.geometry!.location.lng.toString();
+                                        deliveryProvider.deliveryAddress.text =
+                                            selectedPlace!.formattedAddress
+                                                .toString();
+                                        deliveryProvider.deliveryLat =
+                                            selectedPlace!
+                                                .geometry!.location.lat
+                                                .toString();
+                                        deliveryProvider.deliveryLong =
+                                            selectedPlace!
+                                                .geometry!.location.lng
+                                                .toString();
                                       });
-                                    }
-                                )
-                            ),
+                                    })),
                           );
                         },
                         child: AbsorbPointer(
-                          child: inputField(context, "Address", "Select Delivery Address",
-                              deliveryProvider.deliveryAddress,TextInputType.text,Padding(
+                          child: inputField(
+                              context,
+                              "Address",
+                              "Select Delivery Address",
+                              deliveryProvider.deliveryAddress,
+                              TextInputType.text,
+                              Padding(
                                 padding: const EdgeInsets.all(5.0),
-                                child: Image.asset("assets/images/Pin 3 (1).png"),
+                                child:
+                                    Image.asset("assets/images/Pin 3 (1).png"),
                               )),
                         ),
                       ),
-                      const  SizedBox(
-                        height: 10,
-                      ),
-                      inputField(
-                        context,
-                        "Name",
-                        "Enter Name",
-                        deliveryProvider.deliveryName,
-                          TextInputType.text, null
-                      ),
                       const SizedBox(
                         height: 10,
                       ),
                       inputField(
-                        context,
-                        "Phone Number",
-                        "Enter Phone Number",
-                        deliveryProvider.deliveryPhone,
-                          TextInputType.number, null
-                      ),
+                          context,
+                          "Name",
+                          "Enter Name",
+                          deliveryProvider.deliveryName,
+                          TextInputType.text,
+                          null),
                       const SizedBox(
                         height: 10,
                       ),
-                      inputField(context, "Email", "Enter Email",
-                          deliveryProvider.deliveryEmail,TextInputType.emailAddress, null),
+                      inputField(
+                          context,
+                          "Phone Number",
+                          "Enter Phone Number",
+                          deliveryProvider.deliveryPhone,
+                          TextInputType.number,
+                          null),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      inputField(
+                          context,
+                          "Email",
+                          "Enter Email",
+                          deliveryProvider.deliveryEmail,
+                          TextInputType.emailAddress,
+                          null),
                       const SizedBox(
                         height: 10,
                       ),
@@ -206,7 +223,8 @@ class _DeliveryFormState extends State<DeliveryForm> {
                             decoration: BoxDecoration(
                               color: white,
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: textFieldStroke, width: 1),
+                              border:
+                                  Border.all(color: textFieldStroke, width: 1),
                               boxShadow: [
                                 BoxShadow(
                                     offset: Offset(1, 1),
@@ -241,17 +259,17 @@ class _DeliveryFormState extends State<DeliveryForm> {
                                   ),
 
                                   labelStyle: const TextStyle(),
-                                  border:const OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  focusedBorder:const OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
                                   ),
-                                  enabledBorder:const OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: AppColors.primaryColor,
                                     ),
@@ -265,61 +283,46 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       const SizedBox(
                         height: 10,
                       ),
-
                       CustomBtn(
                         onTap: () {
-                           if (deliveryProvider
-                              .deliveryAddress.text.isEmpty) {
-                          ToastUtils.showWarningToast(
-                          context,
-                          "Required",
-                          "Delivery Address is required");
+                          if (deliveryProvider.deliveryAddress.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required",
+                                "Delivery Address is required");
                           } else if (deliveryProvider
                               .deliveryName.text.isEmpty) {
-                          ToastUtils.showWarningToast(
-                          context,
-                          "Required",
-                          "Delivery Name is required");
+                            ToastUtils.showWarningToast(context, "Required",
+                                "Delivery Name is required");
                           } else if (deliveryProvider
                               .deliveryPhone.text.isEmpty) {
-                          ToastUtils.showWarningToast(
-                          context,
-                          "Required",
-                          "Delivery Phone is required");
+                            ToastUtils.showWarningToast(context, "Required",
+                                "Delivery Phone is required");
                           } else if (deliveryProvider
                               .deliveryEmail.text.isEmpty) {
-                          ToastUtils.showWarningToast(
-                          context,
-                          "Required",
-                          "Delivery Email is required");
+                            ToastUtils.showWarningToast(context, "Required",
+                                "Delivery Email is required");
                           } else if (RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(deliveryProvider
-                              .deliveryEmail.text) ==
-                          false) {
-                          ToastUtils.showWarningToast(context,
-                          "Error", "Enter a valid email!");
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(
+                                      deliveryProvider.deliveryEmail.text) ==
+                              false) {
+                            ToastUtils.showWarningToast(
+                                context, "Error", "Enter a valid email!");
                           } else if (deliveryProvider
                               .deliveryDescription.text.isEmpty) {
-                          ToastUtils.showWarningToast(
-                          context,
-                          "Required",
-                          "Delivery Description is required");
-                          }
-                          else{
+                            ToastUtils.showWarningToast(context, "Required",
+                                "Delivery Description is required");
+                          } else {
                             getdistanceApi();
+                            deliveryProvider.deliveryVisibleFalse();
+                            deliveryProvider.deliveryVisible = false;
                             Fluttertoast.showToast(msg: "Details Added");
-                            setState(() {
-
-                            });
+                           
                           }
-
                         },
                         bgColor: orange,
                         shadowColor: black,
                         text: 'Save',
                       ),
-
                     ],
                   ),
                 ),
@@ -331,4 +334,3 @@ class _DeliveryFormState extends State<DeliveryForm> {
     );
   }
 }
-
