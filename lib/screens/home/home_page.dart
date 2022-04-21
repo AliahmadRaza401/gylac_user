@@ -11,6 +11,7 @@ import 'package:gyalcuser_project/chat/model/user_model.dart';
 import 'package:gyalcuser_project/constants/keys.dart';
 import 'package:gyalcuser_project/screens/delivery_form/create_delivery_form.dart';
 import 'package:gyalcuser_project/screens/orderTrack/go_map.dart';
+import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -67,7 +68,6 @@ class _HomePageState extends State<HomePage> {
       deliveryProvider.driverLength = count;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -207,8 +207,13 @@ class _HomePageState extends State<HomePage> {
                                 width: media.width * 0.5,
                                 child: CustomBtn(
                                   text: "POPULAR DELIVERIES",
-                                  onTap: ()  {
-
+                                  onTap: () {
+                                
+                                    FCMServices.sendFCM(
+                                        "user",
+                                        FirebaseAuth.instance.currentUser!.uid,
+                                        "title",
+                                        "description");
                                   },
                                   bgColor: orange,
                                   size: 15,

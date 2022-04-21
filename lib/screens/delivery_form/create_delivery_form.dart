@@ -1,8 +1,7 @@
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:math'as math;
+import 'dart:math' as math;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +27,7 @@ import '../../widgets/App_Menu.dart';
 import '../../widgets/custom_radio.dart';
 import '../pay/payment_screen.dart';
 import 'date_time_piker/date_timer_piker.dart';
-import 'package:http/http.dart'as http;
-
+import 'package:http/http.dart' as http;
 
 class CreateDeliveryForm extends StatefulWidget {
   const CreateDeliveryForm({Key? key}) : super(key: key);
@@ -52,7 +50,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     // TODO: implement initState
     super.initState();
     _userProvider = Provider.of<UserProvider>(context, listen: false);
-    deliveryProvider = Provider.of<CreateDeliveryProvider>(context, listen: false);
+    deliveryProvider =
+        Provider.of<CreateDeliveryProvider>(context, listen: false);
     currentDateTime = DateFormat('yyyy-MM-dd kk:mm:ss').format(now);
     deliveryProvider.vehicle = "CAR";
   }
@@ -94,55 +93,59 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   //FOR ADDING DELIVERY PROVIDER
   Future createDelivery() async {
-    var rnd =  math.Random();
+    var rnd = math.Random();
     var next = rnd.nextDouble() * 1000000;
     while (next < 100000) {
       next *= 10;
     }
     try {
       DeliveryModel addInfo = DeliveryModel(
-        trackStatus: "Pending",
-        pickupAddress: deliveryProvider.pickAddress.text.toString(),
-        pickupName: deliveryProvider.pickName.text.toString(),
-        pickupEmail: deliveryProvider.pickEmail.text.toString(),
-        pickupPhone: deliveryProvider.pickPhone.text.toString(),
-        pickupParcelName: deliveryProvider.pickParcelName.text.toString(),
-        pickupParcelWeight: deliveryProvider.pickParcelWeight.text,
-        pickupParcelDesc: deliveryProvider.pickDescription.text.toString(),
-        pickupDeliveryPrice: deliveryProvider.pickPrice.text,
-        deliveryAddress: deliveryProvider.deliveryAddress.text.toString(),
-        deliveryName: deliveryProvider.deliveryName.text.toString(),
-        deliveryEmail: deliveryProvider.deliveryEmail.text.toString(),
-        deliveryPhone: deliveryProvider.deliveryPhone.text.toString(),
-        deliveryParcelDesc: deliveryProvider.deliveryDescription.text.toString(),
-        parcel: deliveryProvider.parcel,
-        checkIllegal: selectedCheck.toString(),
-        vehicle: deliveryProvider.vehicle.toString(),
-        orderDate: deliveryProvider.date.toString() == "" ? currentDateTime : deliveryProvider.date.toString(),
-        orderTime: deliveryProvider.time.toString() == "" ? currentDateTime : deliveryProvider.time.toString(),
-        pickupLat: deliveryProvider.pickupLat,
-        pickupLong: deliveryProvider.pickupLong,
-        distance:deliveryProvider.distance,
-        driverId: "",
-        userName: _userProvider.fullName,
-        userid: _auth.currentUser!.uid,
-        orderStatus: "Pending",
-        orderType: deliveryProvider.scheduleOrder,
-        deliveryLong: deliveryProvider.deliveryLong,
-        deliveryLat: deliveryProvider.deliveryLat,
-        tracking: "",
-        orderID: next.toInt().toString(),
-        rejectCount: 0,
-        rejections: [],
-        time: deliveryProvider.duration
-      );
+          trackStatus: "Pending",
+          pickupAddress: deliveryProvider.pickAddress.text.toString(),
+          pickupName: deliveryProvider.pickName.text.toString(),
+          pickupEmail: deliveryProvider.pickEmail.text.toString(),
+          pickupPhone: deliveryProvider.pickPhone.text.toString(),
+          pickupParcelName: deliveryProvider.pickParcelName.text.toString(),
+          pickupParcelWeight: deliveryProvider.pickParcelWeight.text,
+          pickupParcelDesc: deliveryProvider.pickDescription.text.toString(),
+          pickupDeliveryPrice: deliveryProvider.pickPrice.text,
+          deliveryAddress: deliveryProvider.deliveryAddress.text.toString(),
+          deliveryName: deliveryProvider.deliveryName.text.toString(),
+          deliveryEmail: deliveryProvider.deliveryEmail.text.toString(),
+          deliveryPhone: deliveryProvider.deliveryPhone.text.toString(),
+          deliveryParcelDesc:
+              deliveryProvider.deliveryDescription.text.toString(),
+          parcel: deliveryProvider.parcel,
+          checkIllegal: selectedCheck.toString(),
+          vehicle: deliveryProvider.vehicle.toString(),
+          orderDate: deliveryProvider.date.toString() == ""
+              ? currentDateTime
+              : deliveryProvider.date.toString(),
+          orderTime: deliveryProvider.time.toString() == ""
+              ? currentDateTime
+              : deliveryProvider.time.toString(),
+          pickupLat: deliveryProvider.pickupLat,
+          pickupLong: deliveryProvider.pickupLong,
+          distance: deliveryProvider.distance,
+          driverId: "",
+          userName: _userProvider.fullName,
+          userid: _auth.currentUser!.uid,
+          orderStatus: "Pending",
+          orderType: deliveryProvider.scheduleOrder,
+          deliveryLong: deliveryProvider.deliveryLong,
+          deliveryLat: deliveryProvider.deliveryLat,
+          tracking: "",
+          orderID: next.toInt().toString(),
+          rejectCount: 0,
+          rejections: [],
+          time: deliveryProvider.duration);
       firebaseFirestore
           .collection("orders")
           .doc(next.toInt().toString())
           .set(addInfo.toJson())
           .then((data) async {
         setState(() {
-          deliveryProvider.orderId =next.toInt().toString();
+          deliveryProvider.orderId = next.toInt().toString();
           isLoading = false;
           setLoading = true;
           seconds = 60;
@@ -209,19 +212,18 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
           .collection("notifications")
           .doc(orderId)
           .set({
-        "msg": "Order $orderId has been placed successfully",
-        "status": "pending",
-        "timestamp": FieldValue.serverTimestamp(),
-        "title": "Order Placed",
-      }).then((data) async {
-
-
-      }).catchError((err) {
-        setState(() {
-          isLoading = false;
-        });
-        Fluttertoast.showToast(msg: err.toString());
-      });
+            "msg": "Order $orderId has been placed successfully",
+            "status": "pending",
+            "timestamp": FieldValue.serverTimestamp(),
+            "title": "Order Placed",
+          })
+          .then((data) async {})
+          .catchError((err) {
+            setState(() {
+              isLoading = false;
+            });
+            Fluttertoast.showToast(msg: err.toString());
+          });
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
@@ -240,7 +242,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
           if (seconds > 0) {
             seconds--;
             getUpdate(id);
-
           } else {
             _timer!.cancel();
             timer.cancel();
@@ -249,7 +250,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
               seconds = 0;
               setLoading = false;
             });
-            ToastUtils.showWarningToast(context, "Warning", "Please retry again, no driver accepted your request.");
+            ToastUtils.showWarningToast(context, "Warning",
+                "Please retry again, no driver accepted your request.");
             firebaseFirestore
                 .collection("users")
                 .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -269,7 +271,9 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                 .catchError((error) => log('Delete failed: $error'));
             final collection2 = FirebaseFirestore.instance.collection('users');
             collection2
-                .doc(FirebaseAuth.instance.currentUser!.uid).collection("orders").doc(id)
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .collection("orders")
+                .doc(id)
                 .delete() // <-- Delete
                 .then((_) => log('Deleted'))
                 .catchError((error) => log('Delete failed: $error'));
@@ -279,108 +283,98 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     });
   }
 
-  getUpdate(String id) async{
-
-      firebaseFirestore
-          .collection("orders")
-          .doc(id).get().then((value){
-            if(mounted) {
-              setState(() {
+  getUpdate(String id) async {
+    firebaseFirestore.collection("orders").doc(id).get().then((value) {
+      if (mounted) {
+        setState(() {
           deliveryProvider.driverId = value.data()!["driverId"].toString();
           deliveryProvider.rejectionCount = value.data()!["rejectCount"];
         });
-            }
+      }
+    });
+
+    if (deliveryProvider.driverId != "") {
+      firebaseFirestore
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("notifications")
+          .doc(id)
+          .set({
+        "msg": "Order $id accepted by driver ${deliveryProvider.driverId}",
+        "status": "accepted",
+        "timestamp": FieldValue.serverTimestamp(),
+        "title": "Order Accepted",
+      }).then((data) async {
+        firebaseFirestore
+            .collection("orders")
+            .doc(id)
+            .update({"trackStatus": "Accepted"});
+        setState(() {
+          isLoading = false;
+          seconds = 0;
+          setLoading = false;
+        });
+        _timer!.cancel();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PaymentScreen(orderId: id.toString())));
+      }).catchError((err) {
+        setState(() {
+          isLoading = false;
+        });
+        Fluttertoast.showToast(msg: err.toString());
       });
-
-      if(deliveryProvider.driverId !=""){
-        firebaseFirestore
-            .collection("users")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .collection("notifications")
-            .doc(id)
-            .set({
-          "msg": "Order $id accepted by driver ${deliveryProvider.driverId}",
-          "status": "accepted",
-          "timestamp": FieldValue.serverTimestamp(),
-          "title": "Order Accepted",
-        }).then((data) async {
-          firebaseFirestore
+    } else if (deliveryProvider.rejectionCount ==
+        deliveryProvider.driverLength) {
+      firebaseFirestore
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("notifications")
+          .doc(id)
+          .set({
+        "msg":
+            "Order $id rejected by all drivers. Increase your price so you get more attention of drivers.",
+        "status": "rejected",
+        "timestamp": FieldValue.serverTimestamp(),
+        "title": "Order Rejected",
+      }).then((data) async {
+        setState(() {
+          isLoading = false;
+          seconds = 0;
+          setLoading = false;
+        });
+        _timer!.cancel();
+        Fluttertoast.showToast(
+            msg:
+                "Delivery got rejected by all drivers, increase price and again add order.",
+            textColor: Colors.white,
+            backgroundColor: Colors.red);
+        final collection = FirebaseFirestore.instance.collection('orders');
+        collection
+            .doc(id) // <-- Doc ID to be deleted.
+            .delete() // <-- Delete
+            .then((_) {
+          final collection2 = FirebaseFirestore.instance.collection('users');
+          collection2
+              .doc(FirebaseAuth.instance.currentUser!.uid)
               .collection("orders")
-              .doc(id).update({"trackStatus":"Accepted"});
-          setState(() {
-            isLoading = false;
-            seconds = 0;
-            setLoading = false;
-          });
-          _timer!.cancel();
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PaymentScreen(orderId:id.toString()))
-          );
-
-        }).catchError((err) {
-          setState(() {
-            isLoading = false;
-          });
-          Fluttertoast.showToast(msg: err.toString());
-        });
-
-      }
-
-      else if(deliveryProvider.rejectionCount == deliveryProvider.driverLength){
-        firebaseFirestore
-            .collection("users")
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .collection("notifications")
-            .doc(id)
-            .set({
-          "msg": "Order $id rejected by all drivers. Increase your price so you get more attention of drivers.",
-          "status": "rejected",
-          "timestamp": FieldValue.serverTimestamp(),
-          "title": "Order Rejected",
-        }).then((data) async {
-          setState(() {
-            isLoading = false;
-            seconds = 0;
-            setLoading = false;
-          });
-          _timer!.cancel();
-          Fluttertoast.showToast(msg: "Delivery got rejected by all drivers, increase price and again add order.",textColor: Colors.white,backgroundColor: Colors.red);
-          final collection = FirebaseFirestore.instance.collection('orders');
-          collection
-              .doc(id) // <-- Doc ID to be deleted.
+              .doc(id)
               .delete() // <-- Delete
-              .then((_)
-              {
-                final collection2 = FirebaseFirestore.instance.collection('users');
-                collection2
-                    .doc(FirebaseAuth.instance.currentUser!.uid).collection("orders").doc(id)
-                    .delete() // <-- Delete
-                    .then((_) => log('Deleted'))
-                    .catchError((error) => log('Delete failed: $error'));
-              Future.delayed(Duration(seconds: 2), () {
-
-            Navigator.of(context).pop(true);
-          });}
-
-                )
+              .then((_) => log('Deleted'))
               .catchError((error) => log('Delete failed: $error'));
-
-        }).catchError((err) {
-          setState(() {
-            isLoading = false;
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
           });
-          Fluttertoast.showToast(msg: err.toString());
+        }).catchError((error) => log('Delete failed: $error'));
+      }).catchError((err) {
+        setState(() {
+          isLoading = false;
         });
-
-
-      }
-      else{
-
-      }
-
+        Fluttertoast.showToast(msg: err.toString());
+      });
+    } else {}
   }
-
 
   bool isPick = false;
   bool isDeliver = false;
@@ -399,7 +393,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     deliveryProvider.deliveryLat = "";
     deliveryProvider.deliveryLong = "";
     deliveryProvider.distance = "";
-    deliveryProvider.duration ="";
+    deliveryProvider.duration = "";
     deliveryProvider.rejectionCount = 0;
     deliveryProvider.pickEmail.text = "";
     deliveryProvider.pickAddress.text = "";
@@ -426,19 +420,24 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         leading: Builder(
-          builder:(context)=>IconButton(
-            icon: Image.asset(menuimage,width: 30,height: 30,),
+          builder: (context) => IconButton(
+            icon: Image.asset(
+              menuimage,
+              width: 30,
+              height: 30,
+            ),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
-        backgroundColor:orange,
+        backgroundColor: orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('CREATE A DELIVERY TASK', style: TextStyle(
-            color: white,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            fontFamily: 'Poppins')),
+        title: const Text('CREATE A DELIVERY TASK',
+            style: TextStyle(
+                color: white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                fontFamily: 'Poppins')),
         centerTitle: true,
       ),
       drawer: AppMenu(),
@@ -457,7 +456,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                deliveryProvider.pickUpVisible = !deliveryProvider.pickUpVisible;
+                                deliveryProvider.pickUpVisible =
+                                    !deliveryProvider.pickUpVisible;
                                 deliveryProvider.deliveryVisible = false;
                                 isPick = !isPick;
                                 isDeliver = false;
@@ -465,17 +465,26 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: deliveryProvider.pickUpVisible==false?orange:redOrange, width: deliveryProvider.pickUpVisible==false?1:3),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.25),
-                                      blurRadius: 5,
-                                      offset: const Offset(0, 4), // changes position of shadow
-                                    ),
-                                  ],
-                                  borderRadius: const BorderRadius.all(
-                                       Radius.circular(20.0)),
+                                color: Colors.white,
+                                border: Border.all(
+                                    color:
+                                        deliveryProvider.pickUpVisible == false
+                                            ? orange
+                                            : redOrange,
+                                    width:
+                                        deliveryProvider.pickUpVisible == false
+                                            ? 1
+                                            : 3),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(
+                                        0, 4), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
                               ),
                               padding: const EdgeInsets.all(10),
                               child: Row(
@@ -494,8 +503,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       ),
                                       const Text(
                                         'PICK-UP DETAILS',
-                                        style:  TextStyle(
-                                          fontFamily: 'Roboto',
+                                        style: TextStyle(
+                                            fontFamily: 'Roboto',
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -515,7 +524,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                deliveryProvider.deliveryVisible = !deliveryProvider.deliveryVisible;
+                                deliveryProvider.deliveryVisible =
+                                    !deliveryProvider.deliveryVisible;
                                 deliveryProvider.pickUpVisible = false;
                                 isDeliver = !isDeliver;
                                 isPick = false;
@@ -523,21 +533,31 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
-                                border: Border.all(color: deliveryProvider.deliveryVisible==false?orange:redOrange, width: deliveryProvider.deliveryVisible==false?1:3),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.25),
-                                      blurRadius: 5,
-                                      offset: const Offset(0, 4), // changes position of shadow
-                                    ),
-                                  ],
-                                  borderRadius: const BorderRadius.all(
-                                       Radius.circular(20.0)),
-                                 ),
+                                color: Colors.white,
+                                border: Border.all(
+                                    color: deliveryProvider.deliveryVisible ==
+                                            false
+                                        ? orange
+                                        : redOrange,
+                                    width: deliveryProvider.deliveryVisible ==
+                                            false
+                                        ? 1
+                                        : 3),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    blurRadius: 5,
+                                    offset: const Offset(
+                                        0, 4), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                              ),
                               padding: const EdgeInsets.all(10),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -551,14 +571,17 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       ),
                                       const Text(
                                         'DELIVERY DETAILS',
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
-                                  const Icon(Icons.add,
-                                      color: AppColors.primaryColor,size: 30,)
+                                  const Icon(
+                                    Icons.add,
+                                    color: AppColors.primaryColor,
+                                    size: 30,
+                                  )
                                 ],
                               ),
                             ),
@@ -572,11 +595,12 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           child: InnerShadow(
                             blur: 5,
                             color: brownDark.withOpacity(0.5),
-                            offset:Offset(0,4),
+                            offset: Offset(0, 4),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20.0)),
                                   border: Border.all(color: orange)),
                               padding: const EdgeInsets.all(10),
                               child: Column(
@@ -584,7 +608,10 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                 children: [
                                   const Text(
                                     "SCHEDULE ORDER",
-                                    style: TextStyle( fontFamily: 'Roboto',fontSize: 16,fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -596,41 +623,52 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-
                                       Row(
                                         children: [
                                           CustomRadioWidget(
-                                            value:1,
+                                            value: 1,
                                             groupValue: selectedRadio,
                                             onChanged: (val) {
                                               setState(() {
                                                 deliveryProvider.scheduleOrder =
-                                                "rightAway";
+                                                    "rightAway";
                                               });
                                               setSelectedRadio(
-                                                // val
+                                                  // val
                                                   1);
                                             },
                                           ),
-                                          const Text('RIGHT AWAY', style: TextStyle( fontFamily: 'Roboto',fontSize: 12,fontWeight: FontWeight.w600),)
+                                          const Text(
+                                            'RIGHT AWAY',
+                                            style: TextStyle(
+                                                fontFamily: 'Roboto',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600),
+                                          )
                                         ],
                                       ),
                                       Row(
                                         children: [
                                           CustomRadioWidget(
-                                            value:2,
+                                            value: 2,
                                             groupValue: selectedRadio,
                                             onChanged: (val) {
                                               setState(() {
                                                 deliveryProvider.scheduleOrder =
-                                                "scheduleForLater";
+                                                    "scheduleForLater";
                                               });
                                               setSelectedRadio(
-                                                // val
+                                                  // val
                                                   2);
                                             },
                                           ),
-                                          const Text('SCHEDULE FOR LATER', style: TextStyle( fontFamily: 'Roboto',fontSize: 12,fontWeight: FontWeight.w600),)
+                                          const Text(
+                                            'SCHEDULE FOR LATER',
+                                            style: TextStyle(
+                                                fontFamily: 'Roboto',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600),
+                                          )
                                         ],
                                       ),
                                     ],
@@ -707,7 +745,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                   fontWeight: FontWeight.w300)),
                                           Text(currentDateTime.toString(),
                                               style: const TextStyle(
-
                                                   color: Colors.white,
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600)),
@@ -724,7 +761,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                         InnerShadow(
                           blur: 5,
                           color: brownDark.withOpacity(0.5),
-                          offset:Offset(0,3),
+                          offset: Offset(0, 3),
                           child: Container(
                             margin: EdgeInsets.symmetric(
                               horizontal:
@@ -742,7 +779,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                   children: const [
                                     Text(
                                       'SELECT VEHICLE',
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -751,16 +789,16 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                 ),
                                 const Divider(
                                   thickness: 2,
-                                  color:orange,
+                                  color: orange,
                                 ),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-
                                   child: Wrap(
-                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.center,
                                     spacing: 0.0,
                                     runSpacing: 5,
                                     runAlignment: WrapAlignment.center,
@@ -784,285 +822,347 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                         const SizedBox(
                           height: 20,
                         ),
-                       setLoading == false?Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left:12.0),
-                              child: Text(
-                                'CHOOSE PARCEL VALUE',
-                                style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
-                              ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
+                        setLoading == false
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      CustomRadioWidget(
-                                        value:1,
-                                        groupValue: selectedRadioParcel,
-                                        onChanged: (val) {
-                                          setSelectedRadioParcel(1);
-                                        },
-                                      ),
-
-                                      const Text('UP TO 100000 MNT',style: TextStyle(fontWeight: FontWeight.bold),)
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CustomRadioWidget(
-                                        value:2,
-                                        groupValue: selectedRadioParcel,
-                                        onChanged: (val) {
-                                          setSelectedRadioParcel(2);
-                                        },
-                                      ),
-
-                                      const Text('BETWEEN 100k & 500k MNT', style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),)
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      CustomRadioWidget(
-                                        value:3,
-                                        groupValue: selectedRadioParcel,
-                                        onChanged: (val) {
-                                          setSelectedRadioParcel(3);
-                                        },
-                                      ),
-                                      const Text('BETWEEN 500k & 1 MILLION MNT', style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),)
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Checkbox(
-                                      value: selectedCheck,
-                                      checkColor: Colors.green,
-                                      activeColor: white,
-                                      // fillColor: Colors.red,
-                                      onChanged: (bool? val) {
-                                        setState(() {
-                                          selectedCheck = val!;
-
-                                        });
-                                      }),
-                                   Text(
-                                    "Prohibited & illegal item does not \ninclude in this parcel".toUpperCase(),
-                                    style:const TextStyle(
-                                      fontWeight: FontWeight.bold,
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 12.0),
+                                    child: Text(
+                                      'CHOOSE PARCEL VALUE',
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  )
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            CustomRadioWidget(
+                                              value: 1,
+                                              groupValue: selectedRadioParcel,
+                                              onChanged: (val) {
+                                                setSelectedRadioParcel(1);
+                                              },
+                                            ),
+                                            const Text(
+                                              'UP TO 100000 MNT',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            CustomRadioWidget(
+                                              value: 2,
+                                              groupValue: selectedRadioParcel,
+                                              onChanged: (val) {
+                                                setSelectedRadioParcel(2);
+                                              },
+                                            ),
+                                            const Text(
+                                              'BETWEEN 100k & 500k MNT',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            CustomRadioWidget(
+                                              value: 3,
+                                              groupValue: selectedRadioParcel,
+                                              onChanged: (val) {
+                                                setSelectedRadioParcel(3);
+                                              },
+                                            ),
+                                            const Text(
+                                              'BETWEEN 500k & 1 MILLION MNT',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Checkbox(
+                                            value: selectedCheck,
+                                            checkColor: Colors.green,
+                                            activeColor: white,
+                                            // fillColor: Colors.red,
+                                            onChanged: (bool? val) {
+                                              setState(() {
+                                                selectedCheck = val!;
+                                              });
+                                            }),
+                                        Text(
+                                          "Prohibited & illegal item does not \ninclude in this parcel"
+                                              .toUpperCase(),
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  isLoading == true
+                                      ? const Center(
+                                          child: CircularProgressIndicator(
+                                          color: brownDark,
+                                        ))
+                                      : Center(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      offset:
+                                                          const Offset(1, 3),
+                                                      blurRadius: 5,
+                                                      color: black
+                                                          .withOpacity(0.45))
+                                                ],
+                                                border: Border.all(
+                                                    color: brownDark),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                color: orange),
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            margin: const EdgeInsets.symmetric(
+                                              horizontal: 30,
+                                            ),
+                                            child: SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.5,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  if (deliveryProvider
+                                                      .pickAddress
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Address is required");
+                                                  } else if (deliveryProvider
+                                                      .pickName.text.isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Name is required");
+                                                  } else if (deliveryProvider
+                                                      .pickPhone.text.isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Phone is required");
+                                                  } else if (deliveryProvider
+                                                      .pickEmail.text.isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Email is required");
+                                                  } else if (RegExp(
+                                                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                          .hasMatch(
+                                                              deliveryProvider
+                                                                  .pickEmail
+                                                                  .text) ==
+                                                      false) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Error",
+                                                        "Enter a valid email!");
+                                                  } else if (deliveryProvider
+                                                      .pickParcelName
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Parcel Name is required");
+                                                  } else if (deliveryProvider
+                                                      .pickParcelWeight
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Parcel Weight is required");
+                                                  } else if (deliveryProvider
+                                                      .pickDescription
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Parcel Description is required");
+                                                  } else if (deliveryProvider
+                                                      .pickPrice.text.isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Delivery Price Offer is required");
+                                                  } else if (deliveryProvider
+                                                      .deliveryAddress
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Delivery Address is required");
+                                                  } else if (deliveryProvider
+                                                      .deliveryName
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Delivery Name is required");
+                                                  } else if (deliveryProvider
+                                                      .deliveryPhone
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Delivery Phone is required");
+                                                  } else if (deliveryProvider
+                                                      .deliveryEmail
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Delivery Email is required");
+                                                  } else if (RegExp(
+                                                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                          .hasMatch(
+                                                              deliveryProvider
+                                                                  .deliveryEmail
+                                                                  .text) ==
+                                                      false) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Error",
+                                                        "Enter a valid email!");
+                                                  } else if (deliveryProvider
+                                                      .deliveryDescription
+                                                      .text
+                                                      .isEmpty) {
+                                                    ToastUtils.showWarningToast(
+                                                        context,
+                                                        "Required",
+                                                        "Pickup Delivery Description is required");
+                                                  } else if (deliveryProvider
+                                                              .distance ==
+                                                          "" &&
+                                                      deliveryProvider
+                                                              .duration ==
+                                                          "") {
+                                                    Fluttertoast.showToast(
+                                                        msg:
+                                                            "Please save delivery details");
+                                                  } else {
+                                                    log(deliveryProvider
+                                                        .distance
+                                                        .toString());
+                                                    log(deliveryProvider
+                                                        .duration
+                                                        .toString());
+                                                    setState(() {
+                                                      isLoading = true;
+                                                    });
+                                                    createDelivery();
+                                                  }
+                                                },
+                                                child: SizedBox(
+                                                  height: 60.0,
+                                                  child: Center(
+                                                      child: Text(
+                                                    "CONFIRM BOOKING",
+                                                    style: MyTextStyle
+                                                            .poppinsBold()
+                                                        .copyWith(
+                                                            fontSize: 18.0,
+                                                            color:
+                                                                Colors.white),
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
                                 ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            isLoading == true
-                                ?const Center(child: CircularProgressIndicator(color: brownDark,))
-                                : Center(
-                                  child: Container(
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        offset:const Offset(1, 3),
-                                        blurRadius: 5,
-                                        color: black.withOpacity(0.45))
+                              )
+                            : Container(
+                                margin: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(45),
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        Color(0xFFFBB03B),
+                                        Color(0xFFFF5922)
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                                    color: white,
+                                    border:
+                                        Border.all(color: orange, width: 10)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset(
+                                        "assets/images/Component 16.png"),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    const SpinKitCircle(
+                                      color: white,
+                                      size: 120.0,
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    const Text(
+                                      "LOOKING FOR DRIVER",
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: white),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
                                   ],
-                                border: Border.all(color: brownDark),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    color: orange),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                              ),
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 30,
-                              ),
-                              child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * 0.5,
-                                  child: GestureDetector(
-                                    onTap: () {
-
-                                      if (deliveryProvider
-                                          .pickAddress.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Address is required");
-                                      } else if (deliveryProvider
-                                          .pickName.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Name is required");
-                                      } else if (deliveryProvider
-                                          .pickPhone.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Phone is required");
-                                      } else if (deliveryProvider
-                                          .pickEmail.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Email is required");
-                                      } else if (RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                          .hasMatch(deliveryProvider
-                                          .pickEmail.text) ==
-                                          false) {
-                                        ToastUtils.showWarningToast(context,
-                                            "Error", "Enter a valid email!");
-                                      } else if (deliveryProvider
-                                          .pickParcelName.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Parcel Name is required");
-                                      } else if (deliveryProvider
-                                          .pickParcelWeight.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Parcel Weight is required");
-                                      } else if (deliveryProvider
-                                          .pickDescription.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Parcel Description is required");
-                                      } else if (deliveryProvider
-                                          .pickPrice.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Delivery Price Offer is required");
-                                      } else if (deliveryProvider
-                                          .deliveryAddress.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Delivery Address is required");
-                                      } else if (deliveryProvider
-                                          .deliveryName.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Delivery Name is required");
-                                      } else if (deliveryProvider
-                                          .deliveryPhone.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Delivery Phone is required");
-                                      } else if (deliveryProvider
-                                          .deliveryEmail.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Delivery Email is required");
-                                      } else if (RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                          .hasMatch(deliveryProvider
-                                          .deliveryEmail.text) ==
-                                          false) {
-                                        ToastUtils.showWarningToast(context,
-                                            "Error", "Enter a valid email!");
-                                      } else if (deliveryProvider
-                                          .deliveryDescription.text.isEmpty) {
-                                        ToastUtils.showWarningToast(
-                                            context,
-                                            "Required",
-                                            "Pickup Delivery Description is required");
-                                      }
-                                      else if(deliveryProvider.distance =="" && deliveryProvider.duration ==""){
-                                        Fluttertoast.showToast(msg: "Please save delivery details");
-                                      }
-
-                                      else {
-
-                                        log(deliveryProvider.distance.toString());
-                                        log(deliveryProvider.duration.toString());
-                                          setState(() {
-                                            isLoading = true;
-                                          });
-                                          createDelivery();
-                                      }
-                                    },
-                                    child: SizedBox(
-                                      height: 60.0,
-                                      child: Center(
-                                          child: Text(
-                                            "CONFIRM BOOKING",
-                                            style: MyTextStyle.poppinsBold()
-                                                .copyWith(
-                                                fontSize: 18.0,
-                                                color: Colors.white),
-                                          )),
-                                    ),
-                                  ),
-                              ),
-                            ),
                                 ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ):
-                        Container(
-                          margin: EdgeInsets.all(20),
-
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(45),
-                              gradient:const LinearGradient(
-                                colors: [Color(0xFFFBB03B), Color(0xFFFF5922)],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
                               ),
-                            color: white,
-                            border: Border.all(color: orange,width: 10)
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Image.asset("assets/images/Component 16.png"),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                           const SpinKitCircle(
-                              color: white,
-                             size: 120.0,
-                            ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const  Text("LOOKING FOR DRIVER",style: TextStyle(
-                                fontFamily: 'Poppins',fontSize: 22,fontWeight: FontWeight.bold,color: white
-                              ),),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-                        ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -1081,14 +1181,13 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.91,
-                           // color: AppColors.primaryColor.withOpacity(0.4),
+                            // color: AppColors.primaryColor.withOpacity(0.4),
                           ),
                         )
                       : const SizedBox(),
-
                   Visibility(
                       visible: deliveryProvider.pickUpVisible,
-                      child:  PickUpForm()),
+                      child: PickUpForm()),
                   Visibility(
                       visible: deliveryProvider.deliveryVisible,
                       child: DeliveryForm()),
@@ -1136,7 +1235,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-
         margin: EdgeInsets.only(bottom: 10),
         child: Column(
           children: [
@@ -1144,8 +1242,9 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
             Text(
               title,
               style: TextStyle(
-                fontSize: selectedIndex == i ?16:14,
-                fontWeight: selectedIndex == i ? FontWeight.bold : FontWeight.normal,
+                fontSize: selectedIndex == i ? 16 : 14,
+                fontWeight:
+                    selectedIndex == i ? FontWeight.bold : FontWeight.normal,
                 color: selectedIndex == i ? orange : black,
               ),
             )

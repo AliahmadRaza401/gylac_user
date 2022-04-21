@@ -54,7 +54,6 @@ dependencies:
   http: ^0.13.4
   firebase_core: ^1.8.0
   # firebase_analytics: ^5.0.6
-  firebase_messaging: ^10.0.0
   flutter_screenutil: ^5.3.1
   image_picker: ^0.8.2
   google_maps_place_picker_mb: ^2.0.0-mb.15
@@ -79,6 +78,8 @@ dependencies:
   email_validator: ^2.0.1
   form_field_validator: ^1.1.0
   awesome_notifications: ^0.6.21
+  firebase_messaging: ^11.1.0
+  flutter_local_notifications: ^8.2.0
 
 
 dev_dependencies:
