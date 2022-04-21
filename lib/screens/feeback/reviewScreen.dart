@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gyalcuser_project/chat/chat_handler.dart';
+import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -70,6 +71,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
           isLoading = false;
           feedText.text ="";
         });
+        FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
+        "Rating recived", "User give $rate star rating");
         ToastUtils.showSuccessToast(
             context, "Success", "Feedback Sent Successfully!");
         Future.delayed(Duration(seconds: 2), () {

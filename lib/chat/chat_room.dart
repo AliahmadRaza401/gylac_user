@@ -7,18 +7,21 @@ import 'package:gyalcuser_project/chat/model/chat_room_model.dart';
 import 'package:gyalcuser_project/chat/model/message_model.dart';
 import 'package:gyalcuser_project/chat/model/user_model.dart';
 import 'package:gyalcuser_project/constants/keys.dart';
+import 'package:gyalcuser_project/providers/create_delivery_provider.dart';
+import 'package:gyalcuser_project/services/fcm_services.dart';
+import 'package:provider/provider.dart';
 
 class ChatRoom extends StatefulWidget {
   final UserModel targetUser;
   final ChatRoomModel chatRoom;
   final UserModel userModel;
 
-  const ChatRoom(
-      {Key? key,
-      required this.targetUser,
-      required this.chatRoom,
-      required this.userModel})
-      : super(key: key);
+  const ChatRoom({
+    Key? key,
+    required this.targetUser,
+    required this.chatRoom,
+    required this.userModel,
+  }) : super(key: key);
 
   @override
   State<ChatRoom> createState() => _ChatRoomState();
@@ -27,6 +30,13 @@ class ChatRoom extends StatefulWidget {
 class _ChatRoomState extends State<ChatRoom> {
   TextEditingController masgContrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  late CreateDeliveryProvider deliveryProvider;
+  @override
+  void initState() {
+    super.initState();
+    deliveryProvider =
+        Provider.of<CreateDeliveryProvider>(context, listen: false);
+  }
 
   sendMsg() async {
     MessageModel newMessage = MessageModel(
@@ -49,6 +59,9 @@ class _ChatRoomState extends State<ChatRoom> {
         .collection('chatrooms')
         .doc(widget.chatRoom.chatroomid)
         .set(widget.chatRoom.toMap());
+
+    FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
+        "New Message", masgContrl.text.toString());
 
     masgContrl.clear();
   }

@@ -10,6 +10,7 @@ import 'package:flutter_credit_card/custom_card_type_icon.dart';
 import 'package:flutter_credit_card/glassmorphism_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:provider/provider.dart';
 import 'dart:math'as math;
 import '../../constants/colors.dart';
@@ -93,6 +94,9 @@ class _PayCardState extends State<PayCard> {
               "driverPhone": deliveryProvider.driverMobile,
             })
         );
+         FCMServices.sendFCM(
+            "driver",deliveryProvider.driverId.toString(),
+             "Payment Success!", "Delivery Payment Successfully");
 
         setState(() {
           isLoading = false;

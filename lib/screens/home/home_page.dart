@@ -209,11 +209,7 @@ class _HomePageState extends State<HomePage> {
                                   text: "POPULAR DELIVERIES",
                                   onTap: () {
                                 
-                                    FCMServices.sendFCM(
-                                        "user",
-                                        FirebaseAuth.instance.currentUser!.uid,
-                                        "title",
-                                        "description");
+                                    
                                   },
                                   bgColor: orange,
                                   size: 15,

@@ -70,7 +70,7 @@ Future<void> _messageHandler(RemoteMessage event) async {
 fcmListen() async {
   // var sfID = await AuthServices.getTraderID();
   FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-    log('event: $event');
+    // log('event: $event');
     if (event.data['id'] == FirebaseAuth.instance.currentUser?.uid ||
         event.data['id'].toString() == "all") {
       LocalNotificationsService.instance.showNotification(

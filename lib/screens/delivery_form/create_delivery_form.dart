@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gyalcuser_project/screens/delivery_form/delivery_form.dart';
 import 'package:gyalcuser_project/screens/delivery_form/pickUp_form.dart';
 import 'package:gyalcuser_project/screens/home/home_page.dart';
+import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -161,6 +162,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
             "",
             deliveryProvider.vehicle,
             deliveryProvider.pickPrice.text);
+        FCMServices.sendFCM(
+            "driver", "all", "New Request", "User Create a new Request");
       }).catchError((err) {
         setState(() {
           isLoading = false;
