@@ -2,19 +2,14 @@
 
 import 'dart:async';
 import 'dart:developer';
-import 'dart:ui' as ui;
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gyalcuser_project/chat/chat_handler.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
@@ -31,12 +26,11 @@ import '../../providers/userProvider.dart';
 import '../../utils/app_route.dart';
 import '../../utils/image.dart';
 import '../../utils/innerShahdow.dart';
-import '../../utils/motion_toast.dart';
 import '../feeback/reviewScreen.dart';
 import '../home/home_page.dart';
 import 'distace_calculate.dart';
 import 'map_services.dart';
-import 'map_widget.dart';
+import 'package:get/get.dart';
 
 class GoMap extends StatefulWidget {
   String driverId;
@@ -207,7 +201,7 @@ class _GoMapState extends State<GoMap> {
         backgroundColor: orange,
         elevation: 5,
         shadowColor: blackLight,
-        title: Text('TRACK YOUR ORDER ',
+        title: Text('TRACK YOUR ORDER'.tr,
             style: TextStyle(
                 color: white,
                 fontWeight: FontWeight.bold,
@@ -241,7 +235,7 @@ class _GoMapState extends State<GoMap> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "YOUR DRIVER WILL ARRIVE IN",
+                          "YOUR DRIVER WILL ARRIVE IN".tr,
                           style: TextStyle(
                               fontSize: 12,
                               fontFamily: 'Poppins',
@@ -672,7 +666,7 @@ class _GoMapState extends State<GoMap> {
                                 onPressed: () {
                                   openDialog();
                                 },
-                                child: Text("Order Cancel"),
+                                child: Text("Order Cancel".tr),
                                 style: TextButton.styleFrom(
                                     primary: black,
                                     backgroundColor: white,
@@ -688,7 +682,7 @@ class _GoMapState extends State<GoMap> {
                                 onPressed: () {
                                   completeOrder();
                                 },
-                                child: Text("COMPLETE"),
+                                child: Text("COMPLETE".tr),
                                 style: TextButton.styleFrom(
                                     primary: white,
                                     backgroundColor: greenColor,
@@ -738,16 +732,16 @@ class _GoMapState extends State<GoMap> {
                       ),
                       margin: const EdgeInsets.only(bottom: 10),
                     ),
-                    const Text(
-                      'Cancel Order',
+                     Text(
+                      'Cancel Order'.tr,
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
-                    const Text(
-                      'Are you sure you want to cancel order?',
+                     Text(
+                      'Are you sure you want to cancel order?'.tr,
                       style: TextStyle(
                           color: Colors.white70,
                           fontFamily: 'Poppins',
@@ -769,8 +763,8 @@ class _GoMapState extends State<GoMap> {
                       ),
                       margin: const EdgeInsets.only(right: 10),
                     ),
-                    const Text(
-                      'Cancel',
+                     Text(
+                      'Cancel'.tr,
                       style:
                           TextStyle(color: orange, fontWeight: FontWeight.bold),
                     )
@@ -790,8 +784,8 @@ class _GoMapState extends State<GoMap> {
                       ),
                       margin: const EdgeInsets.only(right: 10),
                     ),
-                    const Text(
-                      'Yes',
+                     Text(
+                      'Yes'.tr,
                       style: TextStyle(
                           color: orange,
                           fontFamily: 'Poppins',

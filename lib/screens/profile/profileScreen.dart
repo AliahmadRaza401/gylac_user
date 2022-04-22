@@ -37,7 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       MaterialPageRoute(builder: (context) => Login()),
           (Route<dynamic> route) => false,
     );
-    Fluttertoast.showToast(msg: "Logged Out Successfully");
+    Fluttertoast.showToast(msg: "Logged Out Successfully".tr);
   }
 
 

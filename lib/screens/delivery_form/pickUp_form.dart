@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../../constants/colors.dart';
 import '../../constants/keys.dart';
 import '../../constants/toast_utils.dart';
-import '../../utils/app_route.dart';
+import 'package:get/get.dart';
 import '../../widgets/custom_btn.dart';
 
 class PickUpForm extends StatefulWidget {
@@ -116,8 +116,8 @@ class _PickUpFormState extends State<PickUpForm> {
                         child: AbsorbPointer(
                           child: inputField(
                               context,
-                              "Address",
-                              "Select Pickup Address",
+                              "Address".tr,
+                              "Select Pickup Address".tr,
                               deliveryProvider.pickAddress,
                               TextInputType.text,
                               Padding(
@@ -130,15 +130,15 @@ class _PickUpFormState extends State<PickUpForm> {
                       const SizedBox(
                         height: 10,
                       ),
-                      inputField(context, "Name", "Enter Name",
+                      inputField(context, "Name".tr, "Enter Name".tr,
                           deliveryProvider.pickName, TextInputType.text, null),
                       const SizedBox(
                         height: 10,
                       ),
                       inputField(
                           context,
-                          "Phone Number",
-                          "Enter Phone Number",
+                          "Phone Number".tr,
+                          "Enter Phone Number".tr,
                           deliveryProvider.pickPhone,
                           TextInputType.number,
                           null),
@@ -147,8 +147,8 @@ class _PickUpFormState extends State<PickUpForm> {
                       ),
                       inputField(
                           context,
-                          "Email",
-                          "Enter Email",
+                          "Email".tr,
+                          "Enter Email".tr,
                           deliveryProvider.pickEmail,
                           TextInputType.emailAddress,
                           null),
@@ -162,7 +162,7 @@ class _PickUpFormState extends State<PickUpForm> {
                             width: media.width * 0.37,
                             child: inputField(
                                 context,
-                                "Parcel Name",
+                                "Parcel Name".tr,
                                 "",
                                 deliveryProvider.pickParcelName,
                                 TextInputType.text,
@@ -172,7 +172,7 @@ class _PickUpFormState extends State<PickUpForm> {
                             width: media.width * 0.37,
                             child: inputField(
                                 context,
-                                "Parcel Weight",
+                                "Parcel Weight".tr,
                                 "",
                                 deliveryProvider.pickParcelWeight,
                                 TextInputType.number,
@@ -188,7 +188,7 @@ class _PickUpFormState extends State<PickUpForm> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Parcel Description",
+                              Text("Parcel Description".tr,
                                   style: TextStyle(
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.bold,
@@ -267,7 +267,7 @@ class _PickUpFormState extends State<PickUpForm> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Delivery Price Offer",
+                              Text("Delivery Price Offer".tr,
                                   style: TextStyle(
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.bold,
@@ -377,7 +377,7 @@ class _PickUpFormState extends State<PickUpForm> {
                         },
                         bgColor: orange,
                         shadowColor: black,
-                        text: 'Save',
+                        text: 'Save'.tr,
                       ),
                     ],
                   ),

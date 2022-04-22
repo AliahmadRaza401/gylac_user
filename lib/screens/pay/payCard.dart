@@ -17,6 +17,8 @@ import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../widgets/custom_btn.dart';
 import '../orderDetails/orderDetails.dart';
+import 'package:get/get.dart';
+
 class PayCard extends StatefulWidget {
   String orderId;
    PayCard({Key? key,required this.orderId}) : super(key: key);
@@ -138,7 +140,7 @@ class _PayCardState extends State<PayCard> {
               );
             });
         Future.delayed(Duration(seconds: 3), () {
-          Fluttertoast.showToast(msg: "Payment Successful",textColor: Colors.white,backgroundColor: Colors.green);
+          Fluttertoast.showToast(msg: "Payment Successful".tr,textColor: Colors.white,backgroundColor: Colors.green);
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OrderDetails())
@@ -170,7 +172,7 @@ class _PayCardState extends State<PayCard> {
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('PAYMENT', style: TextStyle(
+        title: Text('PAYMENT'.tr, style: TextStyle(
             color: white,
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -219,7 +221,7 @@ class _PayCardState extends State<PayCard> {
               themeColor: Colors.blue,
               textColor: orangeDark,
               cardNumberDecoration: InputDecoration(
-                labelText: 'Number',
+                labelText: 'Number'.tr,
                 hintText: 'XXXX XXXX XXXX XXXX',
                 hintStyle: const TextStyle(color:orange),
                 labelStyle: const TextStyle(color: orange),
@@ -231,7 +233,7 @@ class _PayCardState extends State<PayCard> {
                 labelStyle: const TextStyle(color: orange),
                 focusedBorder: border,
                 enabledBorder: border,
-                labelText: 'Expired Date',
+                labelText: 'Expiry Date'.tr,
                 hintText: 'XX/XX',
               ),
               cvvCodeDecoration: InputDecoration(
@@ -239,7 +241,7 @@ class _PayCardState extends State<PayCard> {
                 labelStyle: const TextStyle(color: orange),
                 focusedBorder: border,
                 enabledBorder: border,
-                labelText: 'CVV',
+                labelText: 'CVV'.tr,
                 hintText: 'XXX',
               ),
               cardHolderDecoration: InputDecoration(
@@ -247,14 +249,14 @@ class _PayCardState extends State<PayCard> {
                 labelStyle: const TextStyle(color:orange),
                 focusedBorder: border,
                 enabledBorder: border,
-                labelText: 'Card Holder',
+                labelText: 'Card Holder'.tr,
               ),
               onCreditCardModelChange: onCreditCardModelChange,
             ),
             isLoading == true? Center(child: CircularProgressIndicator(color: orange,)):  CustomBtn( bgColor: orange,
                 shadowColor: black,
                 size: 15,
-                text: 'PAY',
+                text: 'PAY'.tr,
                 onTap: (){
                   if (formKey.currentState!.validate()) {
                     if(mounted){
@@ -265,7 +267,7 @@ class _PayCardState extends State<PayCard> {
                     updateId();
 
                   } else {
-                    Fluttertoast.showToast(msg: "Invalid Card Details");
+                    Fluttertoast.showToast(msg: "Invalid Card Details".tr);
                   }
 
 

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math'as math;
+import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gyalcuser_project/screens/pay/payCard.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
@@ -169,7 +170,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('ORDER SUMMARY', style: TextStyle(
+        title: Text('ORDER SUMMARY'.tr, style: TextStyle(
             color: white,
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -204,8 +205,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       height: 50,
                       width: 50,
                     ),
-                    const Text(
-                      'PICK-UP DETAILS',
+                     Text(
+                      'PICK-UP DETAILS'.tr,
                       style:  TextStyle(
                         fontFamily: 'Roboto',
                           color: black,
@@ -229,7 +230,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         child: Column(
                           children: [
                             AbsorbPointer(
-                              child: inputField(context, "Address", "Select Pickup Address",
+                              child: inputField(context, "Address".tr, "Select Pickup Address".tr,
                                   deliveryProvider.pickAddress,TextInputType.text,Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Image.asset("assets/images/Pin 3 (1).png"),
@@ -242,8 +243,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Name",
-                                  "Enter Name",
+                                  "Name".tr,
+                                  "Enter Name".tr,
                                   deliveryProvider.pickName,
                                   TextInputType.text,null
                               ),
@@ -254,8 +255,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Phone Number",
-                                  "Enter Phone Number",
+                                  "Phone Number".tr,
+                                  "Enter Phone Number".tr,
                                   deliveryProvider.pickPhone,
                                   TextInputType.number,null
                               ),
@@ -264,7 +265,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               height: 10,
                             ),
                             AbsorbPointer(
-                              child: inputField(context, "Email", "Enter Email",
+                              child: inputField(context, "Email".tr, "Enter Email".tr,
                                   deliveryProvider.pickEmail,
                                   TextInputType.emailAddress,null),
                             ),
@@ -277,7 +278,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 Container(
                                   width: media.width * 0.37,
                                   child: AbsorbPointer(
-                                    child: inputField(context, "Parcel Name", "",
+                                    child: inputField(context, "Parcel Name".tr, "",
                                         deliveryProvider.pickParcelName,TextInputType.text,null),
                                   ),
                                 ),
@@ -286,7 +287,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   child: AbsorbPointer(
                                     child: inputField(
                                         context,
-                                        "Parcel Weight",
+                                        "Parcel Weight".tr,
                                         "",
                                         deliveryProvider.pickParcelWeight,
                                         TextInputType.number,null
@@ -303,7 +304,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Parcel Description",
+                                    Text("Parcel Description".tr,
                                         style: TextStyle(
                                           color: AppColors.primaryColor,
                                           fontWeight: FontWeight.bold,
@@ -382,7 +383,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Delivery Price Offer",
+                                    Text("Delivery Price Offer".tr,
                                         style: TextStyle(
                                           color: AppColors.primaryColor,
                                           fontWeight: FontWeight.bold,
@@ -488,8 +489,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       height: 50,
                       width: 50,
                     ),
-                    const Text(
-                      'DELIVERY DETAILS',
+                     Text(
+                      'DELIVERY DETAILS'.tr,
                       style: TextStyle(
                           color: black,
                           fontFamily: 'Roboto',
@@ -514,7 +515,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         child:Column(
                           children: [
                             AbsorbPointer(
-                              child: inputField(context, "Address", "Select Delivery Address",
+                              child: inputField(context, "Address".tr, "Select Delivery Address".tr,
                                   deliveryProvider.deliveryAddress,TextInputType.text,Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Image.asset("assets/images/Pin 3 (1).png"),
@@ -526,8 +527,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Name",
-                                  "Enter Name",
+                                  "Name".tr,
+                                  "Enter Name".tr,
                                   deliveryProvider.deliveryName,
                                   TextInputType.text,null
                               ),
@@ -538,8 +539,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Phone Number",
-                                  "Enter Phone Number",
+                                  "Phone Number".tr,
+                                  "Enter Phone Number".tr,
                                   deliveryProvider.deliveryPhone,
                                   TextInputType.number,null
                               ),
@@ -548,7 +549,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               height: 10,
                             ),
                             AbsorbPointer(
-                              child: inputField(context, "Email", "Enter Email",
+                              child: inputField(context, "Email".tr, "Enter Email".tr,
                                   deliveryProvider.deliveryEmail,TextInputType.emailAddress,null),
                             ),
                             const SizedBox(
@@ -559,7 +560,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Parcel Description",
+                                    Text("Parcel Description".tr,
                                         style: TextStyle(
                                           color: AppColors.primaryColor,
                                           fontWeight: FontWeight.bold,
@@ -717,7 +718,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text("Parcel Name",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
+                 Text("Parcel Name".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
                 Text(deliveryProvider.pickParcelName.text.toString()+" (Order)",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
               ],
             ),
@@ -725,7 +726,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text("Weight",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
+                 Text("Weight".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
                 Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
               ],
             ),
@@ -739,7 +740,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 children: [
                   Column(
                     children: [
-                      Text("Price Order",style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
+                      Text("Price Order".tr,style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
                       Text(deliveryProvider.pickPrice.text.toString()+" MNT",style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold)),
 
                     ],
@@ -753,14 +754,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     children: [
                       Row(
                         children: [
-                          Text("Distance",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          Text("Distance".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                           SizedBox(width: 10,),
                           Text(deliveryProvider.distance,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
                       Row(
                         children: [
-                          Text("Time",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          Text("Time".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                           SizedBox(width: 10,),
                           Text(deliveryProvider.duration,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
@@ -789,7 +790,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                   Image.asset("assets/images/qpay.png",width: 100,height: 100,),
-                     const Text("Q PAY",style: TextStyle(color: orange,fontWeight: FontWeight.bold,fontSize: 30),),
+                      Text("Q PAY".tr,style: TextStyle(color: orange,fontWeight: FontWeight.bold,fontSize: 30),),
                       Container(
                         width: 20,
                         height: 20,
@@ -831,7 +832,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                   const Text("ADD PROMO / GIFT CODE",style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),),
+                    Text("ADD PROMO / GIFT CODE".tr,style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),),
                     Container(
                       decoration: BoxDecoration(
                         color: orange.withOpacity(0.5),
@@ -872,7 +873,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             CustomBtn( bgColor: orange,
                 shadowColor: black,
                 size: 15,
-                text: 'PROCEED TO PAY',
+                text: 'PROCEED TO PAY'.tr,
                 onTap: (){
                   Navigator.push(
                       context,

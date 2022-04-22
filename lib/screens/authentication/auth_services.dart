@@ -8,7 +8,7 @@ import 'package:gyalcuser_project/screens/onBoard.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:get/get.dart';
 import '../../providers/userProvider.dart';
 import '../../services/firebase_services.dart';
 
@@ -42,44 +42,39 @@ class AuthServices {
       switch (error.code) {
         case "invalid-email":
           ToastUtils.showErrorToast(
-              context, "Error", "Your email address is invalid");
+              context, "Error".tr, "Your email address is invalid".tr);
           break;
         case "wrong-password":
           ToastUtils.showErrorToast(
-              context, "Error", "Your password is wrong.");
+              context, "Error".tr, "Your password is wrong.".tr);
 
           break;
         case "user-not-found":
           ToastUtils.showErrorToast(
-              context, "Error", "User with this email doesn't exist.");
+              context, "Error".tr, "User with this email does not exist.".tr);
 
           break;
         case "user-disabled":
           ToastUtils.showErrorToast(
-              context, "Error", "User with this email has been disabled.");
+              context, "Error".tr, "User with this email has been disabled.".tr);
 
           break;
         case "too-many-requests":
-          ToastUtils.showErrorToast(context, "Error", "Too many requests");
+          ToastUtils.showErrorToast(context, "Error".tr, "Too many requests".tr);
 
           break;
         case "operation-not-allowed":
-          ToastUtils.showErrorToast(context, "Error",
-              "Signing in with Email and Password is not enabled.");
+          ToastUtils.showErrorToast(context, "Error".tr,
+              "Signing in with Email and Password is not enabled.".tr);
 
           break;
         default:
           ToastUtils.showErrorToast(
-              context, "Error", "An undefined Error happened");
+              context, "Error".tr, "An undefined Error happened".tr);
       }
       _loadingProvider.setLoading(false);
 
-      // GeneralDialogs.showOopsDialog(context, errorMessage);
-      // MyMotionToast.error(
-      //   context,
-      //   "Error",
-      //   errorMessage,
-      // );
+
       return "false";
     }
   }
@@ -107,47 +102,42 @@ class AuthServices {
       switch (error.code) {
         case "invalid-email":
           ToastUtils.showErrorToast(
-              context, "Error", "Your email address is invalid");
+              context, "Error".tr, "Your email address is invalid".tr);
           break;
         case "wrong-password":
           ToastUtils.showErrorToast(
-              context, "Error", "Your password is wrong.");
+              context, "Error".tr, "Your password is wrong.".tr);
 
           break;
         case "user-not-found":
           ToastUtils.showErrorToast(
-              context, "Error", "User with this email doesn't exist.");
+              context, "Error".tr, "User with this email does not exist.".tr);
 
           break;
         case "user-disabled":
           ToastUtils.showErrorToast(
-              context, "Error", "User with this email has been disabled.");
+              context, "Error".tr, "User with this email has been disabled.".tr);
 
           break;
         case "too-many-requests":
-          ToastUtils.showErrorToast(context, "Error", "Too many requests");
+          ToastUtils.showErrorToast(context, "Error", "Too many requests".tr);
 
           break;
         case "operation-not-allowed":
-          ToastUtils.showErrorToast(context, "Error",
-              "Signing in with Email and Password is not enabled.");
+          ToastUtils.showErrorToast(context, "Error".tr,
+              "Signing in with Email and Password is not enabled.".tr);
 
           break;
         case "email-already-in-use":
-          ToastUtils.showErrorToast(context, "Oops!",
-              "Email already exist, kindly try some one else");
+          ToastUtils.showErrorToast(context, "Error".tr,
+              "Email already exist, kindly try some one else".tr);
 
           break;
         default:
           ToastUtils.showErrorToast(
-              context, "Error", "An undefined Error happened");
+              context, "Error".tr, "An undefined Error happened".tr);
       }
       _loadingProvider.setLoading(false);
-      // MyMotionToast.error(
-      //   context,
-      //   "Error",
-      //   errorMessage,
-      // );
     }
   }
 
@@ -180,7 +170,7 @@ class AuthServices {
 
       AppRoutes.push(context, HomePage());
       ToastUtils.showSuccessToast(
-          context, "Success", "Account Created Successfully!!");
+          context, "Success".tr, "Account Created Successfully!!");
     }).catchError((e) {});
     _loadingProvider.setLoading(false);
 

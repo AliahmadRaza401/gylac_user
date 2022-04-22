@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:math' as math;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,14 +8,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gyalcuser_project/screens/delivery_form/delivery_form.dart';
 import 'package:gyalcuser_project/screens/delivery_form/pickUp_form.dart';
-import 'package:gyalcuser_project/screens/home/home_page.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../constants/colors.dart';
-import '../../constants/keys.dart';
 import '../../constants/text_style.dart';
 import '../../constants/toast_utils.dart';
 import '../../models/delivery_model.dart';
@@ -28,8 +25,8 @@ import '../../widgets/App_Menu.dart';
 import '../../widgets/custom_radio.dart';
 import '../pay/payment_screen.dart';
 import 'date_time_piker/date_timer_piker.dart';
-import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+
 class CreateDeliveryForm extends StatefulWidget {
   const CreateDeliveryForm({Key? key}) : super(key: key);
 
@@ -55,31 +52,32 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         Provider.of<CreateDeliveryProvider>(context, listen: false);
     currentDateTime = DateFormat('yyyy-MM-dd kk:mm:ss').format(now);
     deliveryProvider.vehicle = "CAR";
+    deliveryProvider.parcel = "UP TO 10000 MNT";
   }
 
   var list = [
     {
-      'title': 'CAR',
+      'title': 'CAR'.tr,
       'image': carimage,
     },
     {
-      'title': 'MINI TRUCK',
+      'title': 'MINI TRUCK'.tr,
       'image': miniTruckimage,
     },
     {
-      'title': 'BIKE',
+      'title': 'BIKE'.tr,
       'image': cycleimage,
     },
     {
-      'title': 'SCOOTER',
+      'title': 'SCOOTER'.tr,
       'image': scooterimage,
     },
     {
-      'title': 'TRUCK',
+      'title': 'TRUCK'.tr,
       'image': truckimage,
     },
     {
-      'title': 'VAN',
+      'title': 'VAN'.tr,
       'image': vanimage,
     },
   ];
@@ -435,7 +433,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         backgroundColor: orange,
         elevation: 5,
         shadowColor: blackLight,
-        title: const Text('CREATE A DELIVERY TASK',
+        title:  Text('CREATE A DELIVERY TASK'.tr,
             style: TextStyle(
                 color: white,
                 fontWeight: FontWeight.bold,
@@ -504,8 +502,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      const Text(
-                                        'PICK-UP DETAILS',
+                                       Text(
+                                        'PICK-UP DETAILS'.tr,
                                         style: TextStyle(
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.bold),
@@ -572,8 +570,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      const Text(
-                                        'DELIVERY DETAILS',
+                                       Text(
+                                        'DELIVERY DETAILS'.tr,
                                         style: TextStyle(
                                             fontFamily: 'Roboto',
                                             fontWeight: FontWeight.bold),
@@ -609,8 +607,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "SCHEDULE ORDER",
+                                   Text(
+                                    "SCHEDULE ORDER".tr,
                                     style: TextStyle(
                                         fontFamily: 'Roboto',
                                         fontSize: 16,
@@ -641,8 +639,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                   1);
                                             },
                                           ),
-                                          const Text(
-                                            'RIGHT AWAY',
+                                           Text(
+                                            'RIGHT AWAY'.tr,
                                             style: TextStyle(
                                                 fontFamily: 'Roboto',
                                                 fontSize: 12,
@@ -665,8 +663,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                   2);
                                             },
                                           ),
-                                          const Text(
-                                            'SCHEDULE FOR LATER',
+                                           Text(
+                                            'SCHEDULE FOR LATER'.tr,
                                             style: TextStyle(
                                                 fontFamily: 'Roboto',
                                                 fontSize: 12,
@@ -710,7 +708,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text('SELECT TIME & DATE',
+                                         Text('SELECT TIME & DATE'.tr,
                                             style:
                                                 TextStyle(color: Colors.white)),
                                         Image.asset(
@@ -740,7 +738,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                     children: [
                                       Column(
                                         children: [
-                                          const Text("Current Date/Time",
+                                           Text("Current Date/Time".tr,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: 'Poppins',
@@ -779,9 +777,9 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      'SELECT VEHICLE',
+                                      'SELECT VEHICLE'.tr,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -829,10 +827,10 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Padding(
+                                   Padding(
                                     padding: EdgeInsets.only(left: 12.0),
                                     child: Text(
-                                      'CHOOSE PARCEL VALUE',
+                                      'CHOOSE PARCEL VALUE'.tr,
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold),
@@ -851,8 +849,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 setSelectedRadioParcel(1);
                                               },
                                             ),
-                                            const Text(
-                                              'UP TO 100000 MNT',
+                                             Text(
+                                              'UP TO 100000 MNT'.tr,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             )
@@ -867,8 +865,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 setSelectedRadioParcel(2);
                                               },
                                             ),
-                                            const Text(
-                                              'BETWEEN 100k & 500k MNT',
+                                             Text(
+                                              'BETWEEN 100k & 500k MNT'.tr,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -884,8 +882,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 setSelectedRadioParcel(3);
                                               },
                                             ),
-                                            const Text(
-                                              'BETWEEN 500k & 1 MILLION MNT',
+                                             Text(
+                                              'BETWEEN 500k & 1 MILLION MNT'.tr,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -913,7 +911,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                               });
                                             }),
                                         Text(
-                                          "Prohibited & illegal item does not \ninclude in this parcel"
+                                          "Prohibited & illegal item does not \ninclude in this parcel".tr
                                               .toUpperCase(),
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -1103,7 +1101,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                   height: 60.0,
                                                   child: Center(
                                                       child: Text(
-                                                    "CONFIRM BOOKING",
+                                                    "CONFIRM BOOKING".tr,
                                                     style: MyTextStyle
                                                             .poppinsBold()
                                                         .copyWith(
@@ -1152,8 +1150,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                     const SizedBox(
                                       height: 20,
                                     ),
-                                    const Text(
-                                      "LOOKING FOR DRIVER",
+                                     Text(
+                                      "LOOKING FOR DRIVER".tr,
                                       style: TextStyle(
                                           fontFamily: 'Poppins',
                                           fontSize: 22,
@@ -1224,12 +1222,12 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
       selectedRadioParcel = val;
 
       if (val == 1) {
-        deliveryProvider.parcel = "UP TO 10000 MNT";
+        deliveryProvider.parcel = "UP TO 10000 MNT".tr;
       } else if (val == 2) {
-          deliveryProvider.parcel = "BETWEEN 100K & 500K MNT";
+          deliveryProvider.parcel = "BETWEEN 100K & 500K MNT".tr;
       }
       if (val == 3) {
-        deliveryProvider.parcel = "BETWEEN 500K & 1M MNT";
+        deliveryProvider.parcel = "BETWEEN 500K & 1M MNT".tr;
       }
     });
   }
@@ -1243,7 +1241,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
           children: [
             Image.asset(image, width: MediaQuery.of(context).size.width * .25),
             Text(
-              title,
+              "${title}".tr,
               style: TextStyle(
                 fontSize: selectedIndex == i ? 16 : 14,
                 fontWeight:

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uuid/uuid.dart';
-
 import '../constants/colors.dart';
 import '../constants/toast_utils.dart';
 import '../utils/image.dart';
@@ -60,7 +59,7 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
           dropdownvalue ="Select your Issue".tr;
         });
         ToastUtils.showSuccessToast(
-            context, "Success", "Report Sent Successfully!");
+            context, "Success".tr, "Report Sent Successfully!".tr);
       }).catchError((err) {
         setState(() {
           isLoading = false;

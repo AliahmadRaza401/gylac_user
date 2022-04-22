@@ -8,16 +8,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:gyalcuser_project/chat/chat_room.dart';
-import 'package:gyalcuser_project/chat/model/chat_room_model.dart';
-import 'package:gyalcuser_project/chat/model/user_model.dart';
-import 'package:gyalcuser_project/constants/keys.dart';
 import 'package:gyalcuser_project/screens/delivery_form/create_delivery_form.dart';
-import 'package:gyalcuser_project/screens/orderTrack/go_map.dart';
-import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
+
 import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../providers/userProvider.dart';

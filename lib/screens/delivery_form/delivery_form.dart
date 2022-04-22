@@ -1,11 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'dart:convert';
 import 'package:gyalcuser_project/utils/app_colors.dart';
-import 'package:gyalcuser_project/utils/app_route.dart';
+import 'package:get/get.dart';
 import 'package:gyalcuser_project/widgets/inputField.dart';
 import 'package:provider/provider.dart';
 import '../../constants/colors.dart';
@@ -14,7 +13,7 @@ import '../../constants/toast_utils.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../widgets/custom_btn.dart';
 import 'package:http/http.dart' as http;
-import '../../constants/keys.dart';
+
 
 class DeliveryForm extends StatefulWidget {
   DeliveryForm({Key? key}) : super(key: key);
@@ -160,8 +159,8 @@ class _DeliveryFormState extends State<DeliveryForm> {
                         child: AbsorbPointer(
                           child: inputField(
                               context,
-                              "Address",
-                              "Select Delivery Address",
+                              "Address".tr,
+                              "Select Delivery Address".tr,
                               deliveryProvider.deliveryAddress,
                               TextInputType.text,
                               Padding(
@@ -176,8 +175,8 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       ),
                       inputField(
                           context,
-                          "Name",
-                          "Enter Name",
+                          "Name".tr,
+                          "Enter Name".tr,
                           deliveryProvider.deliveryName,
                           TextInputType.text,
                           null),
@@ -186,8 +185,8 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       ),
                       inputField(
                           context,
-                          "Phone Number",
-                          "Enter Phone Number",
+                          "Phone Number".tr,
+                          "Enter Phone Number".tr,
                           deliveryProvider.deliveryPhone,
                           TextInputType.number,
                           null),
@@ -196,8 +195,8 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       ),
                       inputField(
                           context,
-                          "Email",
-                          "Enter Email",
+                          "Email".tr,
+                          "Enter Email".tr,
                           deliveryProvider.deliveryEmail,
                           TextInputType.emailAddress,
                           null),
@@ -209,7 +208,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Parcel Description",
+                              Text("Parcel Description".tr,
                                   style: TextStyle(
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.bold,
@@ -321,7 +320,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                         },
                         bgColor: orange,
                         shadowColor: black,
-                        text: 'Save',
+                        text: 'Save'.tr,
                       ),
                     ],
                   ),

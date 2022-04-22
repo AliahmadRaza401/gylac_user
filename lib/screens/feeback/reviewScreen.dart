@@ -5,7 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gyalcuser_project/chat/chat_handler.dart';
-import 'package:gyalcuser_project/models/delivery_model.dart';
+import 'package:get/get.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
@@ -93,6 +93,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
            "driverId": deliveryProvider.driverId,
            "userName": _userProvider.fullName,
            "userid": _auth.currentUser!.uid,
+           "rating": rate,
            "driverImage": deliveryProvider.driverImage,
            "driverMobile":deliveryProvider.driverMobile,
            "orderType": deliveryProvider.scheduleOrder,
@@ -108,13 +109,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
          FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
              "Rating received", "User give $rate star rating"),
          ToastUtils.showSuccessToast(
-             context, "Success", "Feedback Sent Successfully!"),
-         Future.delayed(Duration(seconds: 3), () {
-           Navigator.of(context).pushAndRemoveUntil(
-             MaterialPageRoute(builder: (context) => HomePage()),
-                 (Route<dynamic> route) => false,
-           );
-         }),
+             context, "Success".tr, "Feedback Sent Successfully!".tr),
+         // Future.delayed(Duration(seconds: 3), () {
+         //   Navigator.of(context).pushAndRemoveUntil(
+         //     MaterialPageRoute(builder: (context) => HomePage()),
+         //         (Route<dynamic> route) => false,
+         //   );
+         // }),
          });
 
        }
@@ -126,7 +127,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
          FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
              "Rating received", "User give $rate star rating");
          ToastUtils.showSuccessToast(
-             context, "Success", "Feedback Sent Successfully!");
+             context, "Success".tr, "Feedback Sent Successfully!".tr);
          Future.delayed(Duration(seconds: 2), () {
            Navigator.of(context).pushAndRemoveUntil(
              MaterialPageRoute(builder: (context) => HomePage()),
@@ -171,7 +172,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           ),
         ),
         backgroundColor: orange,
-        title:const Text("TRACK YOUR ORDER",style: TextStyle(fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold,color: white),),
+        title: Text("TRACK YOUR ORDER".tr,style: TextStyle(fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold,color: white),),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -179,7 +180,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              CustomBtn(shadowColor: black,size: 20,text: "ORDER COMPLETE", onTap: (){},bgColor: greenColor,w: 300,txtColor: white,),
+              CustomBtn(shadowColor: black,size: 20,text: "ORDER COMPLETE".tr, onTap: (){},bgColor: greenColor,w: 300,txtColor: white,),
               const SizedBox(height: 10,),
               Container(
                   decoration: BoxDecoration(
@@ -462,7 +463,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           color: AppColors.primaryColor,
                         ),
                       ),
-                      hintText: "How’s Your Order?  Feedback Please",
+                      hintText: "How’s Your Order?  Feedback Please".tr,
                       hintStyle:const TextStyle(fontSize: 15,fontFamily: 'Poppins')
                       // labelText:"Your Name"
                     )),
@@ -488,13 +489,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
           ),
 
               const SizedBox(height: 20,),
-              isLoading == true? Center(child: CircularProgressIndicator(color: orange,)): CustomBtn(size: 18,text: "SEND FEEDBACK",
+              isLoading == true? Center(child: CircularProgressIndicator(color: orange,)): CustomBtn(size: 18,text: "SEND FEEDBACK".tr,
                 onTap: (){
                   if(feedText.text.isEmpty){
-                    Fluttertoast.showToast(msg: "Please enter orderId");
+                    Fluttertoast.showToast(msg: "Please enter orderId".tr);
                   }
                   else if(rate == ""){
-                    Fluttertoast.showToast(msg: "Please add rating");
+                    Fluttertoast.showToast(msg: "Please add rating".tr);
                   }
                   else{
                     setState(() {

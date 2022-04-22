@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gyalcuser_project/chat/chat_handler.dart';
-import 'package:gyalcuser_project/screens/orderTrack/go_map.dart';
+import 'package:get/get.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
@@ -101,7 +101,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           _timer!.cancel();
         });
       }
-      Fluttertoast.showToast(msg: "Order Delivered Successfully",textColor: Colors.white,backgroundColor: Colors.green);
+      Fluttertoast.showToast(msg: "Order Delivered Successfully".tr,textColor: Colors.white,backgroundColor: Colors.green);
     }
 
     else{
@@ -121,7 +121,7 @@ class _OrderDetailsState extends State<OrderDetails> {
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('ORDER SUMMARY', style: TextStyle(
+        title: Text('ORDER SUMMARY'.tr, style: TextStyle(
             color: white,
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -153,11 +153,11 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: [
                     Image.asset(
                       pickPhoneimage,
-                      height: 40,
-                      width: 60,
+                      height: 50,
+                      width: 50,
                     ),
-                    const Text(
-                      'PICK-UP DETAILS',
+                    Text(
+                      'PICK-UP DETAILS'.tr,
                       style:  TextStyle(
                           fontFamily: 'Roboto',
                           color: black,
@@ -172,7 +172,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 children: <Widget>[
                   Container(
                       width:MediaQuery.of(context).size.width,
-                      decoration:const BoxDecoration(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(bottomRight: Radius.circular(28),bottomLeft: Radius.circular(28)),
                         color: white,
                       ),
@@ -181,7 +181,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         child: Column(
                           children: [
                             AbsorbPointer(
-                              child: inputField(context, "Address", "Select Pickup Address",
+                              child: inputField(context, "Address".tr, "Select Pickup Address".tr,
                                   deliveryProvider.pickAddress,TextInputType.text,Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Image.asset("assets/images/Pin 3 (1).png"),
@@ -194,8 +194,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Name",
-                                  "Enter Name",
+                                  "Name".tr,
+                                  "Enter Name".tr,
                                   deliveryProvider.pickName,
                                   TextInputType.text,null
                               ),
@@ -206,8 +206,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Phone Number",
-                                  "Enter Phone Number",
+                                  "Phone Number".tr,
+                                  "Enter Phone Number".tr,
                                   deliveryProvider.pickPhone,
                                   TextInputType.number,null
                               ),
@@ -216,7 +216,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                               height: 10,
                             ),
                             AbsorbPointer(
-                              child: inputField(context, "Email", "Enter Email",
+                              child: inputField(context, "Email".tr, "Enter Email".tr,
                                   deliveryProvider.pickEmail,
                                   TextInputType.emailAddress,null),
                             ),
@@ -226,19 +226,19 @@ class _OrderDetailsState extends State<OrderDetails> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(
+                                Container(
                                   width: media.width * 0.37,
                                   child: AbsorbPointer(
-                                    child: inputField(context, "Parcel Name", "",
+                                    child: inputField(context, "Parcel Name".tr, "",
                                         deliveryProvider.pickParcelName,TextInputType.text,null),
                                   ),
                                 ),
-                                SizedBox(
+                                Container(
                                   width: media.width * 0.37,
                                   child: AbsorbPointer(
                                     child: inputField(
                                         context,
-                                        "Parcel Weight",
+                                        "Parcel Weight".tr,
                                         "",
                                         deliveryProvider.pickParcelWeight,
                                         TextInputType.number,null
@@ -255,7 +255,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Parcel Description",
+                                    Text("Parcel Description".tr,
                                         style: TextStyle(
                                           color: AppColors.primaryColor,
                                           fontWeight: FontWeight.bold,
@@ -272,7 +272,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     border: Border.all(color: textFieldStroke, width: 1),
                                     boxShadow: [
                                       BoxShadow(
-                                          offset:const Offset(1, 1),
+                                          offset: Offset(1, 1),
                                           color: black.withOpacity(0.25),
                                           blurRadius: 3)
                                     ],
@@ -334,7 +334,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Delivery Price Offer",
+                                    Text("Delivery Price Offer".tr,
                                         style: TextStyle(
                                           color: AppColors.primaryColor,
                                           fontWeight: FontWeight.bold,
@@ -351,7 +351,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     border: Border.all(color: textFieldStroke, width: 1),
                                     boxShadow: [
                                       BoxShadow(
-                                          offset: const Offset(1, 1),
+                                          offset: Offset(1, 1),
                                           color: black.withOpacity(0.25),
                                           blurRadius: 3)
                                     ],
@@ -437,11 +437,11 @@ class _OrderDetailsState extends State<OrderDetails> {
                   children: [
                     Image.asset(
                       yvanimage,
-                      height: 40,
-                      width: 60,
+                      height: 50,
+                      width: 50,
                     ),
-                    const Text(
-                      'DELIVERY DETAILS',
+                    Text(
+                      'DELIVERY DETAILS'.tr,
                       style: TextStyle(
                           color: black,
                           fontFamily: 'Roboto',
@@ -456,8 +456,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                 children: <Widget>[
                   Container(
                       width:MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(28),bottomLeft: const Radius.circular(28)),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(28),bottomLeft: Radius.circular(28)),
                         color: white,
 
                       ),
@@ -466,7 +466,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         child:Column(
                           children: [
                             AbsorbPointer(
-                              child: inputField(context, "Address", "Select Delivery Address",
+                              child: inputField(context, "Address".tr, "Select Delivery Address".tr,
                                   deliveryProvider.deliveryAddress,TextInputType.text,Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Image.asset("assets/images/Pin 3 (1).png"),
@@ -478,8 +478,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Name",
-                                  "Enter Name",
+                                  "Name".tr,
+                                  "Enter Name".tr,
                                   deliveryProvider.deliveryName,
                                   TextInputType.text,null
                               ),
@@ -490,8 +490,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                             AbsorbPointer(
                               child: inputField(
                                   context,
-                                  "Phone Number",
-                                  "Enter Phone Number",
+                                  "Phone Number".tr,
+                                  "Enter Phone Number".tr,
                                   deliveryProvider.deliveryPhone,
                                   TextInputType.number,null
                               ),
@@ -500,7 +500,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                               height: 10,
                             ),
                             AbsorbPointer(
-                              child: inputField(context, "Email", "Enter Email",
+                              child: inputField(context, "Email".tr, "Enter Email".tr,
                                   deliveryProvider.deliveryEmail,TextInputType.emailAddress,null),
                             ),
                             const SizedBox(
@@ -511,7 +511,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Parcel Description",
+                                    Text("Parcel Description".tr,
                                         style: TextStyle(
                                           color: AppColors.primaryColor,
                                           fontWeight: FontWeight.bold,
@@ -528,7 +528,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                                     border: Border.all(color: textFieldStroke, width: 1),
                                     boxShadow: [
                                       BoxShadow(
-                                          offset: const Offset(1, 1),
+                                          offset: Offset(1, 1),
                                           color: black.withOpacity(0.25),
                                           blurRadius: 3)
                                     ],
@@ -845,7 +845,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ],
                     ),
-                    const Text("Waiting For Acceptance",style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
+                     Text("Waiting For Acceptance".tr,style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
                   ],
                 ),
                 Row(
@@ -870,7 +870,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ],
                     ),
-                    Text("${deliveryProvider.driverName} accept your Request",style:const TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
+                    Text("${deliveryProvider.driverName} accept your Request".tr,style:const TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
                   ],
                 ),
                 Row(
@@ -896,7 +896,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ],
                     ),
-                    const Text("Waiting for Pickup",style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color: Colors.black),)
+                     Text("Waiting for Pickup".tr,style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color: Colors.black),)
                   ],
                 ),
                 Row(
@@ -921,7 +921,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ],
                     ),
-                     Text("Parcel Picked up",style: TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color:step4 ==false? Colors.grey:Colors.black),)
+                     Text("Parcel Picked up".tr,style: TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color:step4 ==false? Colors.grey:Colors.black),)
                   ],
                 ),
                 Row(
@@ -934,7 +934,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                       margin: const EdgeInsets.all(5),
                       child: const Icon(Icons.check,color: white,),
                     ),
-                     Text("Delivered Location",style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color: step5 ==false? Colors.grey:Colors.black),)
+                     Text("Delivered Location".tr,style:  TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold, color: step5 ==false? Colors.grey:Colors.black),)
                   ],
                 ),
               ],
@@ -944,7 +944,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text("Parcel Name",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
+                 Text("Parcel Name".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
                 Text(deliveryProvider.pickParcelName.text.toString(),style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
               ],
             ),
@@ -952,7 +952,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text("Weight",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
+                 Text("Weight".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
                 Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
               ],
             ),
@@ -966,7 +966,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                 children: [
                   Column(
                     children: [
-                      const Text("Price Order",style:  const TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
+                       Text("Price Order".tr,style:  const TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
                       Text(deliveryProvider.pickPrice.text.toString()+" MNT",style:  const TextStyle(color: white,fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold)),
 
                     ],
@@ -980,14 +980,14 @@ class _OrderDetailsState extends State<OrderDetails> {
                     children: [
                       Row(
                         children: [
-                          const Text("Distance",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                           Text("Distance".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                           const SizedBox(width: 10,),
                           Text(deliveryProvider.distance,style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
                       Row(
                         children: [
-                          const Text("Time",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                           Text("Time".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                           const SizedBox(width: 10,),
                           Text(deliveryProvider.duration,style:  const TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
@@ -1003,7 +1003,7 @@ class _OrderDetailsState extends State<OrderDetails> {
             CustomBtn( bgColor: orange,
                 shadowColor: black,
                 size: 15,
-                text: 'TRACK ORDER',
+                text: 'TRACK ORDER'.tr,
                 onTap: (){
               AppRoutes.push(context,  GoMap(driverId:driverId));
                 }),

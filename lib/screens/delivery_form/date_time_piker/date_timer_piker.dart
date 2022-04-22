@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:developer';
 
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gyalcuser_project/providers/create_delivery_provider.dart';
 import 'package:gyalcuser_project/utils/app_colors.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../../../constants/colors.dart';
 import '../../../widgets/custom_btn.dart';
-import '../../../widgets/inputField.dart';
+import 'package:get/get.dart';
 
 class DateTimeForm extends StatefulWidget {
   @override
@@ -81,8 +78,8 @@ class _DateTimeFormState extends State<DateTimeForm> {
                     vertical: 0,
                     horizontal: 10,
                   ),
-                  child: const Text(
-                    "SELECT DATE & TIME",
+                  child:  Text(
+                    "SELECT TIME & DATE".tr,
                     style: TextStyle(
                       color: orange,
 
@@ -148,9 +145,9 @@ class _DateTimeFormState extends State<DateTimeForm> {
                             child: Column(children: <Widget>[
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children:const [
+                                children: [
                                   Text(
-                                    'Select date ',
+                                    'Select date '.tr,
                                     style: TextStyle(
                                       color: AppColors.orangeColor,
                                       fontWeight: FontWeight.w500,
@@ -211,9 +208,9 @@ class _DateTimeFormState extends State<DateTimeForm> {
                             child: Column(children: <Widget>[
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: const[
+                                children: [
                                   Text(
-                                    'Select Time ',
+                                    'Select Time '.tr,
                                     style:  TextStyle(
                                       color: AppColors.orangeColor,
                                       fontWeight: FontWeight.w500,
@@ -261,11 +258,11 @@ class _DateTimeFormState extends State<DateTimeForm> {
                   },
                   bgColor: orange,
                   shadowColor: black,
-                  text: 'Save',
+                  text: 'Save'.tr,
                 ),
                 TextButton(onPressed: (){
                   Navigator.of(context).pop(true);
-                }, child:const Text("Cancel",style: TextStyle(color: black, decoration: TextDecoration.underline,),))
+                }, child: Text("Cancel".tr,style: TextStyle(color: black, decoration: TextDecoration.underline,),))
               ],
             ),
           ),
