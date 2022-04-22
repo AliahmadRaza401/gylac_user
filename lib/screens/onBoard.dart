@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
@@ -41,9 +42,135 @@ class _IntroState extends State<Intro> {
           const SizedBox(
             width: 20,
           ),
+
           GestureDetector(
             onTap: (){
-              showDialog(
+              showGeneralDialog(
+                context: context,
+                barrierDismissible: true,
+                transitionDuration: Duration(milliseconds: 500),
+                barrierLabel: MaterialLocalizations.of(context).dialogLabel,
+                barrierColor: Colors.black.withOpacity(0.5),
+                pageBuilder: (context, _, __) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        width: 300,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                        ),
+
+                        child:StatefulBuilder(
+                          builder: (BuildContext context,StateSetter setter){
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 10,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: (){
+                                        if(mounted){
+                                          setter(() {
+                                            isSelected2 = false;
+                                            isSelected1 = true;
+                                          });
+                                          Get.updateLocale(Locale('en', 'US'));
+                                        }
+                                      },
+                                      child: Container(
+                                        width:120,
+
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(15),
+                                            color:orange,
+                                            border: Border.all(color: stroke, width: 1),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color:black.withOpacity(0.5),
+                                                  offset: Offset(1, 4),
+                                                  blurRadius: 4)
+                                            ]
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Center(
+                                            child: CustomText(
+                                              text: "ENGLISH",
+                                              color:isSelected1 == false?white:black,
+                                              size: 15,
+                                              weight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        if(mounted){
+                                          setter(() {
+                                            isSelected2 = true;
+                                            isSelected1 = false;
+                                          });
+                                          Get.updateLocale(Locale('mn', 'MN'));
+                                        }
+                                      },
+                                      child: Container(
+                                        width:120,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(15),
+                                            color:orange,
+                                            border: Border.all(color: stroke, width: 1),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color:black.withOpacity(0.5),
+                                                  offset: Offset(1, 4),
+                                                  blurRadius: 4)
+                                            ]
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Center(
+                                            child: CustomText(
+                                              text: "MONGOLIAN",
+                                              color:isSelected2 == false?white:black,
+                                              size: 15,
+                                              weight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 10,),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                },
+                transitionBuilder: (context, animation, secondaryAnimation, child) {
+                  return SlideTransition(
+                    position: CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeOut,
+                    ).drive(Tween<Offset>(
+                      begin: Offset(0, -1.0),
+                      end: Offset.zero,
+                    )),
+                    child: child,
+                  );
+                },
+              );
+            /*  showDialog(
                   barrierColor: orange.withOpacity(0.2),
                   context: context,
                   builder: (BuildContext context) {
@@ -147,7 +274,8 @@ class _IntroState extends State<Intro> {
                         ),
                       ),
                     );
-                  });
+                  });*/
+
             },
             child: Container(
               padding: const EdgeInsets.all(2),

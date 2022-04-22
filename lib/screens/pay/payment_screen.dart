@@ -14,6 +14,7 @@ import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/image.dart';
+import '../../widgets/App_Menu.dart';
 import '../../widgets/inputField.dart';
 import '../orderDetails/orderDetails.dart';
 
@@ -163,10 +164,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
     return Scaffold(
+
       key: scaffoldState,
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        leading: Icon(FontAwesomeIcons.grip,color: white,),
+
+       leading: Icon(FontAwesomeIcons.grip,color: white,),
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
@@ -489,13 +492,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       height: 50,
                       width: 50,
                     ),
-                     Text(
-                      'DELIVERY DETAILS'.tr,
-                      style: TextStyle(
-                          color: black,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.bold),
+                     SizedBox(
+                       width: 150,
+                       child: Text(
+                        'DELIVERY DETAILS'.tr,
+                        style: TextStyle(
+                            color: black,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.bold),
                     ),
+                     ),
                   ],
                 ),
                 trailing:const Icon(
@@ -832,7 +838,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("ADD PROMO / GIFT CODE".tr,style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),),
+                    SizedBox(
+                        width: 200,
+                        child: Text("ADD PROMO / GIFT CODE".tr,style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),)),
                     Container(
                       decoration: BoxDecoration(
                         color: orange.withOpacity(0.5),

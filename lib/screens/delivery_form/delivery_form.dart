@@ -284,32 +284,57 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       ),
                       CustomBtn(
                         onTap: () {
-                          if (deliveryProvider.deliveryAddress.text.isEmpty) {
-                            ToastUtils.showWarningToast(context, "Required",
-                                "Delivery Address is required");
+                          if (deliveryProvider
+                              .deliveryAddress
+                              .text
+                              .isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required".tr,
+                                "Delivery Address is required".tr);
                           } else if (deliveryProvider
-                              .deliveryName.text.isEmpty) {
-                            ToastUtils.showWarningToast(context, "Required",
-                                "Delivery Name is required");
+                              .deliveryName
+                              .text
+                              .isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required".tr,
+                                "Delivery Name is required".tr);
                           } else if (deliveryProvider
-                              .deliveryPhone.text.isEmpty) {
-                            ToastUtils.showWarningToast(context, "Required",
-                                "Delivery Phone is required");
+                              .deliveryPhone
+                              .text
+                              .isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required".tr,
+                                "Delivery Phone is required".tr);
                           } else if (deliveryProvider
-                              .deliveryEmail.text.isEmpty) {
-                            ToastUtils.showWarningToast(context, "Required",
-                                "Delivery Email is required");
+                              .deliveryEmail
+                              .text
+                              .isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required".tr,
+                                "Delivery Email is required".tr);
                           } else if (RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                  .hasMatch(
-                                      deliveryProvider.deliveryEmail.text) ==
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(
+                              deliveryProvider
+                                  .deliveryEmail
+                                  .text) ==
                               false) {
                             ToastUtils.showWarningToast(
-                                context, "Error", "Enter a valid email!");
+                                context,
+                                "Error".tr,
+                                "Enter a valid email!".tr);
                           } else if (deliveryProvider
-                              .deliveryDescription.text.isEmpty) {
-                            ToastUtils.showWarningToast(context, "Required",
-                                "Delivery Description is required");
+                              .deliveryDescription
+                              .text
+                              .isEmpty) {
+                            ToastUtils.showWarningToast(
+                                context,
+                                "Required".tr,
+                                "Delivery Description is required".tr);
                           } else {
                             getdistanceApi();
                             deliveryProvider.deliveryVisibleFalse();

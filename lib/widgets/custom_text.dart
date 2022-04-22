@@ -15,7 +15,8 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,style: TextStyle(fontFamily: 'Roboto',fontSize: size ?? 16, color: color ?? black, fontWeight: weight ?? FontWeight.normal),
+      text,style: TextStyle(fontFamily: 'Roboto',fontSize: size ?? 16, color: color ?? black, fontWeight: weight ?? FontWeight.normal,decoration: TextDecoration.none),
+
     );
   }
 }

@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                           height: 20,
                         ),
                         StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance.collection("topRated").limit(10).snapshots(),
+                          stream: FirebaseFirestore.instance.collection("topRated").limit(15).snapshots(),
                           builder: (BuildContext context, snapshot) {
                             if (snapshot.data == null) {
                               return const Center(child: CircularProgressIndicator(color: orange));
@@ -239,13 +239,12 @@ class _HomePageState extends State<HomePage> {
                                   gridDelegate:
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                       maxCrossAxisExtent: 200,
-                                      childAspectRatio: 3 / 2,
+                                      childAspectRatio: 2 / 2,
                                       crossAxisSpacing: 5,
                                       mainAxisSpacing: 10),
                                   itemCount: orders.length,
                                   itemBuilder: (BuildContext ctx, index) {
                                     return Container(
-
                                         decoration: BoxDecoration(
                                           border: Border.all(color: stroke, width: 1),
                                           boxShadow: [
@@ -261,6 +260,7 @@ class _HomePageState extends State<HomePage> {
                                           padding: const EdgeInsets.all(3.0),
                                           child: Column(
                                             children: [
+
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -308,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                                                       Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text(orders[index]["driverName"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 8,fontWeight: FontWeight.bold)),
+                                                          Text(orders[index]["driverName"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 10,fontWeight: FontWeight.bold)),
                                                           Container(
                                                             decoration: BoxDecoration(
                                                                 color: white,
@@ -336,11 +336,14 @@ class _HomePageState extends State<HomePage> {
                                                   )
                                                 ],
                                               ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(orders[index]["parcel"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 6,fontWeight: FontWeight.bold)),
+                                                  Text(orders[index]["parcel"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 7,fontWeight: FontWeight.bold)),
                                                   SizedBox(
                                                     width: 80,
                                                     height: 20,
@@ -362,12 +365,15 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ],
                                               ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
                                                     width:100,
-                                                    height: 50,
+                                                    height: 70,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: black, width: 1),
                                                       borderRadius: BorderRadius.circular(10),
@@ -381,7 +387,7 @@ class _HomePageState extends State<HomePage> {
                                                        "\$ " +orders[index]["pickupDeliveryPrice"],
                                                         style: TextStyle(
                                                             decoration: TextDecoration.underline,
-                                                            fontSize: 8,
+                                                            fontSize: 10,
                                                             fontFamily: 'Poppins',
                                                             fontWeight: FontWeight.bold),
                                                         gradient: LinearGradient(
@@ -395,17 +401,17 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                       Column(
                                                         children: [
-                                                          orders[index]["vehicle"] == "VAN"?Image.asset(vanimage,width: 35,height: 35,):
-                                                          orders[index]["vehicle"] == "CAR"?Image.asset(carimage,width: 40,height: 35,):
-                                                          orders[index]["vehicle"] == "SCOOTER"?Image.asset(scooterimage,width: 35,height: 35,):
-                                                          orders[index]["vehicle"] == "TRUCK"?Image.asset(truckimage,width: 35,height: 35,):
-                                                          orders[index]["vehicle"] == "BIKE"?Image.asset(cycleimage,width: 35,height: 35,):
-                                                          orders[index]["vehicle"] == "MINI TRUCK"?Image.asset(miniTruckimage,width: 35,height: 35,):
-                                                          Image.asset("assets/images/Group 8504.png",width: 35,height: 35,),
+                                                          orders[index]["vehicle"] == "VAN"?Image.asset(vanimage,width: 50,height: 50,):
+                                                          orders[index]["vehicle"] == "CAR"?Image.asset(carimage,width: 50,height: 50,):
+                                                          orders[index]["vehicle"] == "SCOOTER"?Image.asset(scooterimage,width: 50,height: 50,):
+                                                          orders[index]["vehicle"] == "TRUCK"?Image.asset(truckimage,width: 50,height: 50,):
+                                                          orders[index]["vehicle"] == "BIKE"?Image.asset(cycleimage,width: 50,height: 50,):
+                                                          orders[index]["vehicle"] == "MINI TRUCK"?Image.asset(miniTruckimage,width: 50,height: 50,):
+                                                          Image.asset("assets/images/Group 8504.png",width: 50,height: 50,),
                                                           GradientText(
                                                             orders[index]["vehicle"],
                                                             style: TextStyle(
-                                                                fontSize: 8,
+                                                                fontSize: 10,
                                                                 fontFamily: 'Poppins',
                                                                 fontWeight: FontWeight.bold),
                                                             gradient: LinearGradient(

@@ -19,9 +19,11 @@ import '../../chat/model/user_model.dart';
 import '../../constants/colors.dart';
 import '../../providers/create_delivery_provider.dart';
 import '../../providers/userProvider.dart';
+import '../../services/fcm_services.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/image.dart';
 import '../../widgets/inputField.dart';
+import '../feeback/reviewScreen.dart';
 import '../orderTrack/gomap2.dart';
 
 class OrderDetails extends StatefulWidget {
@@ -116,8 +118,10 @@ class _OrderDetailsState extends State<OrderDetails> {
     return Scaffold(
       key: scaffoldState,
       backgroundColor: Colors.grey[200],
+
       appBar: AppBar(
         leading:const Icon(FontAwesomeIcons.grip,color: white,),
+
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
@@ -440,12 +444,15 @@ class _OrderDetailsState extends State<OrderDetails> {
                       height: 50,
                       width: 50,
                     ),
-                    Text(
-                      'DELIVERY DETAILS'.tr,
-                      style: TextStyle(
-                          color: black,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.bold),
+                    SizedBox(
+                      width: 150,
+                      child: Text(
+                        'DELIVERY DETAILS'.tr,
+                        style: TextStyle(
+                            color: black,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),
@@ -870,7 +877,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                         ),
                       ],
                     ),
-                    Text("${deliveryProvider.driverName} accept your Request".tr,style:const TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold),)
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(text: deliveryProvider.driverName,
+                              style:const TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold)),
+                          TextSpan(
+                            text: ' accept your Request'.tr,
+                              style:const TextStyle(fontSize: 15,fontFamily: 'Poppins',fontWeight: FontWeight.bold)
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
                 Row(
@@ -1000,7 +1018,20 @@ class _OrderDetailsState extends State<OrderDetails> {
               ),
             ),
             const SizedBox(height: 30,),
-            CustomBtn( bgColor: orange,
+            trackStatus =="Delivered"?  TextButton(
+              onPressed: () {
+                completeOrder();
+              },
+              child: Text("COMPLETE".tr),
+              style: TextButton.styleFrom(
+                  primary: white,
+                  backgroundColor: greenColor,
+                  textStyle: const TextStyle(
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  )),
+            ) :CustomBtn( bgColor: orange,
                 shadowColor: black,
                 size: 15,
                 text: 'TRACK ORDER'.tr,
@@ -1014,6 +1045,47 @@ class _OrderDetailsState extends State<OrderDetails> {
 
     );
 
+  }
+  Future completeOrder() async {
+    firebaseFirestore
+        .collection("orders")
+        .doc(deliveryProvider.orderId)
+        .update({
+      "orderStatus": "completed",
+    });
+    firebaseFirestore
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("orders")
+        .doc(deliveryProvider.orderId)
+        .update({
+      "OrderStatus": "completed",
+    }).then((data) async {
+      firebaseFirestore
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("notifications")
+          .doc(deliveryProvider.orderId)
+          .set({
+        "msg":
+        "Order ${deliveryProvider.orderId} has been successfully completed",
+        "status": "completed",
+        "timestamp": FieldValue.serverTimestamp(),
+        "title": "Order Completed",
+      });
+      Fluttertoast.showToast(
+          msg: "Order Completed", backgroundColor: greenColor);
+      FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
+          "Order Complete", "User complete order Successfully!");
+
+      Future.delayed(Duration(seconds: 2), () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ReviewScreen()));
+      });
+    }).catchError((err) {
+
+      Fluttertoast.showToast(msg: err.toString());
+    });
   }
 }
 

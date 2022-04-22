@@ -140,6 +140,14 @@ class _ChatRoomState extends State<ChatRoom> {
                                       decoration: currentMessage.sender ==
                                               widget.userModel.uid
                                           ? BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(0.25),
+                                            blurRadius: 5,
+                                            offset: const Offset(
+                                                0, 4), // changes position of shadow
+                                          ),
+                                        ],
                                               color: Color(0xffFBB03B),
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -155,6 +163,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                       child: Text(
                                         currentMessage.text.toString(),
                                         style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 15,
                                           color: Colors.black,
                                         ),
                                       )),
@@ -165,7 +175,7 @@ class _ChatRoomState extends State<ChatRoom> {
                         } else if (snapshot.hasError) {
                           return Center(
                             child: Text(
-                                "An error occured! Please check your internet connection."),
+                                "An error occurred! Please check your internet connection."),
                           );
                         } else {
                           return Center(

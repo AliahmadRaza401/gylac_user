@@ -91,9 +91,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
            "pickupLong": deliveryProvider.pickupLong,
            "distance": deliveryProvider.distance,
            "driverId": deliveryProvider.driverId,
+           "driverName": deliveryProvider.deliveryName,
            "userName": _userProvider.fullName,
            "userid": _auth.currentUser!.uid,
            "rating": rate,
+           "parcel": deliveryProvider.parcel,
            "driverImage": deliveryProvider.driverImage,
            "driverMobile":deliveryProvider.driverMobile,
            "orderType": deliveryProvider.scheduleOrder,
@@ -110,12 +112,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
              "Rating received", "User give $rate star rating"),
          ToastUtils.showSuccessToast(
              context, "Success".tr, "Feedback Sent Successfully!".tr),
-         // Future.delayed(Duration(seconds: 3), () {
-         //   Navigator.of(context).pushAndRemoveUntil(
-         //     MaterialPageRoute(builder: (context) => HomePage()),
-         //         (Route<dynamic> route) => false,
-         //   );
-         // }),
+         Future.delayed(Duration(seconds: 3), () {
+           Navigator.of(context).pushAndRemoveUntil(
+             MaterialPageRoute(builder: (context) => HomePage()),
+                 (Route<dynamic> route) => false,
+           );
+         }),
          });
 
        }
