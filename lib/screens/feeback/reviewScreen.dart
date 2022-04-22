@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gyalcuser_project/chat/chat_handler.dart';
+import 'package:gyalcuser_project/models/delivery_model.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:provider/provider.dart';
@@ -67,20 +68,73 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
       })
           .then((data) async {
-        setState(() {
-          isLoading = false;
-          feedText.text ="";
-        });
-        FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
-        "Rating recived", "User give $rate star rating");
-        ToastUtils.showSuccessToast(
-            context, "Success", "Feedback Sent Successfully!");
-        Future.delayed(Duration(seconds: 2), () {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => HomePage()),
-                (Route<dynamic> route) => false,
-          );
-        });
+       if(rate == "4.0" || rate == "5.0"){
+         firebaseFirestore
+             .collection("topRated")
+             .doc(uniqueId)
+             .set({
+           "pickupAddress": deliveryProvider.pickAddress.text.toString(),
+           "pickupName": deliveryProvider.pickName.text.toString(),
+           "pickupEmail": deliveryProvider.pickEmail.text.toString(),
+           "pickupPhone": deliveryProvider.pickPhone.text.toString(),
+           "pickupParcelName": deliveryProvider.pickParcelName.text.toString(),
+           "pickupParcelWeight": deliveryProvider.pickParcelWeight.text,
+           "pickupParcelDesc": deliveryProvider.pickDescription.text.toString(),
+           "pickupDeliveryPrice": deliveryProvider.pickPrice.text,
+           "deliveryAddress": deliveryProvider.deliveryAddress.text.toString(),
+           "deliveryName": deliveryProvider.deliveryName.text.toString(),
+           "deliveryEmail": deliveryProvider.deliveryEmail.text.toString(),
+           "deliveryPhone": deliveryProvider.deliveryPhone.text.toString(),
+           "deliveryParcelDesc": deliveryProvider.deliveryDescription.text.toString(),
+           "vehicle": deliveryProvider.vehicle.toString(),
+           "pickupLat": deliveryProvider.pickupLat,
+           "pickupLong": deliveryProvider.pickupLong,
+           "distance": deliveryProvider.distance,
+           "driverId": deliveryProvider.driverId,
+           "userName": _userProvider.fullName,
+           "userid": _auth.currentUser!.uid,
+           "driverImage": deliveryProvider.driverImage,
+           "driverMobile":deliveryProvider.driverMobile,
+           "orderType": deliveryProvider.scheduleOrder,
+           "deliveryLong": deliveryProvider.deliveryLong,
+           "deliveryLat": deliveryProvider.deliveryLat,
+           "orderID": deliveryProvider.orderId.toString(),
+           "time": deliveryProvider.duration,
+         }).then((value) => {
+         setState(() {
+         isLoading = false;
+         feedText.text ="";
+         }),
+         FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
+             "Rating received", "User give $rate star rating"),
+         ToastUtils.showSuccessToast(
+             context, "Success", "Feedback Sent Successfully!"),
+         Future.delayed(Duration(seconds: 3), () {
+           Navigator.of(context).pushAndRemoveUntil(
+             MaterialPageRoute(builder: (context) => HomePage()),
+                 (Route<dynamic> route) => false,
+           );
+         }),
+         });
+
+       }
+       else{
+         setState(() {
+           isLoading = false;
+           feedText.text ="";
+         });
+         FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
+             "Rating received", "User give $rate star rating");
+         ToastUtils.showSuccessToast(
+             context, "Success", "Feedback Sent Successfully!");
+         Future.delayed(Duration(seconds: 2), () {
+           Navigator.of(context).pushAndRemoveUntil(
+             MaterialPageRoute(builder: (context) => HomePage()),
+                 (Route<dynamic> route) => false,
+           );
+         });
+       }
+
       }).catchError((err) {
         setState(() {
           isLoading = false;
@@ -418,7 +472,6 @@ class _ReviewScreenState extends State<ReviewScreen> {
             initialRating: 0,
             minRating: 1,
             direction: Axis.horizontal,
-            allowHalfRating: true,
             itemCount: 5,
             itemPadding:const EdgeInsets.symmetric(horizontal: 4.0),
             itemBuilder: (context, _) => const Icon(

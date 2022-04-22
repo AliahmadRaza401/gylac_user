@@ -4,9 +4,8 @@ import 'package:gyalcuser_project/screens/authentication/auth_services.dart';
 import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:gyalcuser_project/widgets/custom_textfield.dart';
-import 'package:gyalcuser_project/widgets/top_curve.dart';
 import 'package:provider/provider.dart';
-
+import 'package:get/get.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/text_style.dart';
 import '../../../providers/loading_provider.dart';
@@ -48,7 +47,7 @@ class _LoginState extends State<Login> {
                       children: [
                         Row(
                           children: [
-                            const Text("Customer Login",
+                             Text("Customer Login".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontFamily: 'Poppins',
@@ -62,7 +61,7 @@ class _LoginState extends State<Login> {
                               padding: EdgeInsets.only(
                                   bottom:
                                   MediaQuery.of(context).size.width * 0.04),
-                              child: const Text("Please Login to continue",
+                              child:  Text("Please Login to continue".tr,
                                   style: TextStyle(
                                       color: orange,
                                       fontFamily: 'Poppins',
@@ -76,8 +75,8 @@ class _LoginState extends State<Login> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children:const [
-                            Text("Email",
+                          children: [
+                            Text("Email".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontWeight: FontWeight.bold,
@@ -86,7 +85,7 @@ class _LoginState extends State<Login> {
                           ],
                         ),
                         CustomTextField(
-                          hint: "Your email",
+                          hint: "Your email".tr,
                           prefixIcon:const Icon(
                             Icons.email,
                             color: lightGrey,
@@ -98,8 +97,8 @@ class _LoginState extends State<Login> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children:const [
-                            Text("Password",
+                          children: [
+                            Text("Password".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontFamily: 'Poppins',
@@ -108,7 +107,7 @@ class _LoginState extends State<Login> {
                           ],
                         ),
                         CustomTextField(
-                          hint: "Type a password",
+                          hint: "Type a password".tr,
                           prefixIcon:const Icon(
                             Icons.lock_outline,
                             color: lightGrey,
@@ -120,7 +119,7 @@ class _LoginState extends State<Login> {
                           children: [
                             TextButton(
                               child: Text(
-                                'Forgot Password?',
+                                'Forgot Password?'.tr,
                                 style: MyTextStyle.poppins().copyWith(
                                   color: orange,
                                   fontWeight: FontWeight.bold,
@@ -157,7 +156,7 @@ class _LoginState extends State<Login> {
                               loading
                                   ?const CircularProgressIndicator()
                                   : CustomBtn(
-                                text: "LOGIN",
+                                text: "LOGIN".tr,
                                 onTap: () {
                                   if (emailCtl.text.isEmpty) {
                                     ToastUtils.showWarningToast(context, "Required", "Email is required");
@@ -196,11 +195,11 @@ class _LoginState extends State<Login> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Do not Have an Account? ",
+                                  "Do not Have an Account? ".tr,
                                   style: MyTextStyle.poppins(),
                                 ),
-                                const Text(
-                                  " SIGNUP",
+                                   Text(
+                                  " SIGN UP".tr,
                                   style: TextStyle(
                                     color: orange,
                                     fontWeight: FontWeight.bold,

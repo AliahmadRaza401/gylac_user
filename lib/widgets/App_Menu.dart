@@ -14,6 +14,7 @@ import '../screens/myOrders.dart';
 import '../screens/notifications.dart';
 import '../screens/profile/profileScreen.dart';
 import 'custom_text.dart';
+import 'package:get/get.dart';
 
 class AppMenu extends StatefulWidget{
 
@@ -146,8 +147,9 @@ class _AppMenuState extends State<AppMenu> {
                   Icons.home,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
-                title: CustomText(text: "Home"),
+                title: CustomText(text: "Home".tr),
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomePage()));
                 },
@@ -157,8 +159,9 @@ class _AppMenuState extends State<AppMenu> {
                   FontAwesomeIcons.clipboardList,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
-                title: CustomText(text:  "My Orders"),
+                title: CustomText(text:  "My Orders".tr),
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => MyOrders()));
                 },
@@ -168,8 +171,9 @@ class _AppMenuState extends State<AppMenu> {
                   Icons.history,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
-                title: CustomText(text: "Order History"),
+                title: CustomText(text: "Order History".tr),
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => orderHistory()));
                 },
@@ -180,8 +184,9 @@ class _AppMenuState extends State<AppMenu> {
                   Icons.notifications,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
-                title: CustomText(text: "Notifications"),
+                title: CustomText(text: "Notifications".tr),
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Notifications()));
                 },
@@ -191,8 +196,9 @@ class _AppMenuState extends State<AppMenu> {
                   FontAwesomeIcons.gear,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
-                title: CustomText(text:"Help & Support"),
+                title: CustomText(text:"Help & Support".tr),
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => HelpAndSupport()));
                 },
@@ -211,29 +217,27 @@ class _AppMenuState extends State<AppMenu> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.08,
                       ),
-                      CustomText(text:"Language")
+                      CustomText(text:"Language".tr)
                     ],
                   ),
                   children: <Widget>[
                     ListTile(
                       onTap: () async {
-                        var locale = const Locale('en', 'US');
-                        // Get.updateLocale(locale);
+                        Get.updateLocale(Locale('en', 'US'));
                         Navigator.of(context).pop();
                       },
-                      title: const Text(
-                        'English',
+                      title:  Text(
+                        'English'.tr,
                         style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w700),
                       ),
                     ),
                     ListTile(
                       onTap: () {
-                        var locale = const Locale('es', 'ES');
-                        // Get.updateLocale(locale);
+                        Get.updateLocale(Locale('mn', 'MN'));
                         Navigator.of(context).pop();
                       },
-                      title: const Text(
-                        'Mongolian',
+                      title:  Text(
+                        'Mongolian'.tr,
                         style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w700),
                       ),
                     ),
@@ -246,7 +250,7 @@ class _AppMenuState extends State<AppMenu> {
                   Icons.logout,
                   color: Color.fromRGBO(251, 176, 59, 1),
                 ),
-                title: CustomText(text: "Logout"),
+                title: CustomText(text: "Logout".tr),
                 onTap: () {
                   showAlertDialog(context);
 
@@ -260,14 +264,14 @@ class _AppMenuState extends State<AppMenu> {
   showAlertDialog(BuildContext context) {
 
     Widget okButton = FlatButton(
-      child: Text("Ok"),
+      child: Text("Ok".tr),
       onPressed: () {
         handleSignOut();
       },
     );
 
     Widget noButton = FlatButton(
-      child: Text("Cancel"),
+      child: Text("Cancel".tr),
       onPressed: () {
         Navigator.of(context).pop();
 
@@ -277,7 +281,7 @@ class _AppMenuState extends State<AppMenu> {
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
       //title: Text("Simple Alert"),
-      content: Text("Do you want to Logout ?"),
+      content: Text("Do you want to Logout?".tr),
       actions: [okButton, noButton],
     );
 

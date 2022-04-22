@@ -1,7 +1,6 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
 import 'package:gyalcuser_project/screens/authentication/Login/login.dart';
 import 'package:gyalcuser_project/screens/authentication/SignUp/signUp.dart';
@@ -33,7 +32,7 @@ class _IntroState extends State<Intro> {
         backgroundColor: orange,
         title: Row(
             mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Text('Change App Language',
+           Text('Change App Language'.tr,
               style: TextStyle(
                   color: white,
                   fontSize: 20,
@@ -73,6 +72,7 @@ class _IntroState extends State<Intro> {
                                             isSelected2 = false;
                                             isSelected1 = true;
                                           });
+                                          Get.updateLocale(Locale('en', 'US'));
                                         }
                                       },
                                       child: Container(
@@ -109,6 +109,7 @@ class _IntroState extends State<Intro> {
                                             isSelected2 = true;
                                             isSelected1 = false;
                                           });
+                                          Get.updateLocale(Locale('mn', 'MN'));
                                         }
                                       },
                                       child: Container(
@@ -179,7 +180,7 @@ class _IntroState extends State<Intro> {
                 Column(
                   children: [
                     CustomBtn(
-                      text: "SIGN IN",
+                      text: "SIGN IN".tr,
                       onTap: () {
                         AppRoutes.push(context, Login());
                       },
@@ -189,7 +190,7 @@ class _IntroState extends State<Intro> {
                       height: 15,
                     ),
                     Text(
-                      "OR",
+                      "OR".tr,
                       style: MyTextStyle.poppins()
                           .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
@@ -197,7 +198,7 @@ class _IntroState extends State<Intro> {
                       height: 15,
                     ),
                     CustomBtn(
-                        text: "SIGN UP",
+                        text: "SIGN UP".tr,
                         bgColor: orange,
                         onTap: () {
                           AppRoutes.push(context, SignUp());

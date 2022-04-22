@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 import '../../../constants/text_style.dart';
 import '../../../constants/toast_utils.dart';
 import '../../../utils/app_route.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _SignUpState extends State<SignUp> {
                       children: [
                         Row(
                           children: [
-                            const Text("Signup",
+                             Text("Signup".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontFamily: 'Poppins',
@@ -69,7 +70,7 @@ class _SignUpState extends State<SignUp> {
                               padding: EdgeInsets.only(
                                   bottom:
                                   MediaQuery.of(context).size.width * 0.04),
-                              child: const Text("Please signup to continue",
+                              child:  Text("Please signup to continue".tr,
                                   style: TextStyle(
                                       color: orange,
                                       fontFamily: 'Poppins',
@@ -133,7 +134,7 @@ class _SignUpState extends State<SignUp> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.035,
                               ),
-                              Text("Add Profile Picture",
+                              Text("Add Profile Picture".tr,
                                   style: TextStyle(
                                       color: orange,
                                       fontFamily: 'Poppins',
@@ -148,8 +149,8 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text("Full Name",
+                          children:  [
+                            Text("Full Name".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontWeight: FontWeight.bold,
@@ -158,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                           ],
                         ),
                         CustomTextField(
-                          hint: "Your name",
+                          hint: "Your name".tr,
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Image.asset("assets/images/Profile.png"),
@@ -170,8 +171,8 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text("Email",
+                          children:  [
+                            Text("Email".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontFamily: 'Poppins',
@@ -180,7 +181,7 @@ class _SignUpState extends State<SignUp> {
                           ],
                         ),
                         CustomTextField(
-                          hint: "Your email",
+                          hint: "Your email".tr,
                           prefixIcon: Icon(
                             Icons.email,
                             color: lightGrey,
@@ -192,8 +193,8 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text("Create Password",
+                          children:  [
+                            Text("Create Password".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontFamily: 'Poppins',
@@ -202,7 +203,7 @@ class _SignUpState extends State<SignUp> {
                           ],
                         ),
                         CustomTextField(
-                          hint: "Type a strong password",
+                          hint: "Type a strong password".tr,
                           prefixIcon: Icon(
                             Icons.lock_outline,
                             color: lightGrey,
@@ -214,8 +215,8 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
-                            Text("Phone Number",
+                          children:  [
+                            Text("Phone Number".tr,
                                 style: TextStyle(
                                     color: orange,
                                     fontFamily: 'Poppins',
@@ -243,7 +244,7 @@ class _SignUpState extends State<SignUp> {
                               loading
                                   ? CircularProgressIndicator()
                                   : CustomBtn(
-                                text: "SIGN UP",
+                                text: "SIGN UP".tr,
                                 onTap: () {
                                   if (_image == null) {
                                     ToastUtils.showWarningToast(context, "Required", "Profile Picture is required");
@@ -295,11 +296,11 @@ class _SignUpState extends State<SignUp> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "Already Have an Account? ",
+                                        "Already Have an Account? ".tr,
                                         style: MyTextStyle.poppins(),
                                       ),
-                                      const Text(
-                                        " LOGIN",
+                                       Text(
+                                        " LOGIN".tr,
                                         style: TextStyle(
                                           color: orange,
                                           fontWeight: FontWeight.bold,

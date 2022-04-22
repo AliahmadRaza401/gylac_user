@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,15 +23,15 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
   TextEditingController orderText = TextEditingController();
   TextEditingController issueText = TextEditingController();
   // Initial Selected Value
-  String dropdownvalue = 'Select your Issue';
+  String dropdownvalue = 'Select your Issue'.tr;
 
   // List of items in our dropdown menu
   var items = [
-    'Select your Issue',
-    'Issue Regarding Product Damage',
-    'Product Misplace',
-    'Late Delivery',
-    'Bad user experience',
+    'Select your Issue'.tr,
+    'Issue Regarding Product Damage'.tr,
+    'Product Misplace'.tr,
+    'Late Delivery'.tr,
+    'Bad user experience'.tr,
   ];
 
   bool isLoading = false;
@@ -57,7 +57,7 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
           isLoading = false;
           orderText.text ="";
           issueText.text ="";
-          dropdownvalue ="Select your Issue";
+          dropdownvalue ="Select your Issue".tr;
         });
         ToastUtils.showSuccessToast(
             context, "Success", "Report Sent Successfully!");
@@ -90,7 +90,7 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('Help And Support', style: TextStyle(
+        title: Text('Help And Support'.tr, style: TextStyle(
             color: white,
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -107,7 +107,7 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Please How we can help you?', style: TextStyle(
+                 Text('Please How we can help you?'.tr, style: TextStyle(
                     color: orange,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -115,13 +115,13 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
                 const  SizedBox(
                   height: 10,
                 ),
-                const  Text('Order ID', style: TextStyle(
+                  Text('Order ID'.tr, style: TextStyle(
                     color: orange,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     fontFamily: 'Poppins')),
                 CustomTextField(
-                  hint: "Enter your Order Id here",
+                  hint: "Enter your Order Id here".tr,
                   controller: orderText,
                 ),
                 const  SizedBox(
@@ -155,7 +155,9 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
                         items: items.map((String items) {
                           return DropdownMenuItem(
                             value: items,
-                            child: Text(items),
+                            child: SizedBox(
+                                width: 200,
+                                child: Text(items.tr)),
                           );
                         }).toList(),
                         // After selecting the desired option,it will
@@ -176,8 +178,8 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:const [
-                        Text("Report an issue",
+                      children: [
+                        Text("Report an issue".tr,
                             style: TextStyle(
                                 color: orangeDark,
                                 fontWeight: FontWeight.bold,
@@ -214,7 +216,7 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
                           },
                           style: const TextStyle(fontSize: 14, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
-                            hintText: "Describe your Issue here",
+                            hintText: "Describe your Issue here".tr,
                             contentPadding: EdgeInsets.only(
                               top: MediaQuery.of(context).size.height *
                                   0.05,
@@ -237,11 +239,10 @@ class _HelpAndSupportState extends State<HelpAndSupport> {
                     ),
                   ],
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, left: 80.0, right: 80.0),
                   child:isLoading == true? Center(child: CircularProgressIndicator(color: orange,)):CustomBtn(
-                      text: "SUBMIT",
+                      text: "SUBMIT".tr,
                       bgColor: orange,
                       onTap: () {
 

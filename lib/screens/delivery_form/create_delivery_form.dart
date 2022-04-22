@@ -1224,12 +1224,12 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
       selectedRadioParcel = val;
 
       if (val == 1) {
-        deliveryProvider.parcel = "10000";
+        deliveryProvider.parcel = "UP TO 10000 MNT";
       } else if (val == 2) {
-        deliveryProvider.parcel = "100K & 500K";
+          deliveryProvider.parcel = "BETWEEN 100K & 500K MNT";
       }
       if (val == 3) {
-        deliveryProvider.parcel = "500K & 1M";
+        deliveryProvider.parcel = "BETWEEN 500K & 1M MNT";
       }
     });
   }
