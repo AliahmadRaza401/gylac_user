@@ -4,9 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gyalcuser_project/utils/innerShahdow.dart';
-
+import 'package:get/get.dart';
 import '../../constants/colors.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/image.dart';
 import '../../widgets/App_Menu.dart';
 class orderHistory extends StatefulWidget {
@@ -35,7 +34,7 @@ class _orderHistoryState extends State<orderHistory> {
         backgroundColor:orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('Orders History', style: TextStyle(
+        title: Text('Order History'.tr, style: TextStyle(
             color: white,
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -85,14 +84,14 @@ class _orderHistoryState extends State<orderHistory> {
             tabs: [
               Container(
                 margin: const EdgeInsets.only (left: 10, right: 10),
-                child: const Text(
-                  "COMPLETE",
+                child:  Text(
+                  "COMPLETE".tr,
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(left: 10, right: 10),
-                child: const Text(
-                  "CANCEL",
+                child:  Text(
+                  "CANCEL".tr,
                 ),
               )
             ],

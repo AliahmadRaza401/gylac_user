@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 import '../constants/colors.dart';
 import '../providers/userProvider.dart';
 import '../utils/image.dart';
@@ -22,14 +22,6 @@ class _NotificationsState extends State<Notifications> {
   var scaffoldState = GlobalKey<ScaffoldState>();
 
   @override
-  void initState() {
-    super.initState();
-
-  }
-
-
-
-  @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of<UserProvider>(context);
     return SafeArea(
@@ -46,7 +38,7 @@ class _NotificationsState extends State<Notifications> {
             backgroundColor:orange,
             elevation: 5,
             shadowColor: blackLight,
-            title:const Text('Notifications', style: TextStyle(
+            title: Text('Notifications'.tr, style: TextStyle(
                 color: white,
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
@@ -98,10 +90,10 @@ class _NotificationsState extends State<Notifications> {
                             size: 40,
                           ),
                         ),
-                        const Align(
+                         Align(
                           child: Padding(
                             padding:  EdgeInsets.all(15),
-                            child: Text( "No Notifications",
+                            child: Text( "No Notifications Found".tr,
                               textAlign: TextAlign.center,
                               style:
                                   TextStyle(fontSize: 16,fontFamily: 'Poppins', color: Colors.black,fontWeight: FontWeight.bold),
@@ -129,10 +121,10 @@ class _NotificationsState extends State<Notifications> {
                             size: 40,
                           ),
                         ),
-                        const Align(
+                         Align(
                           child: Padding(
                             padding:  EdgeInsets.all(15),
-                            child: Text(  "No Notifications",
+                            child: Text( "No Notifications Found".tr,
                               textAlign: TextAlign.center,
                               style:
                                   TextStyle(fontSize: 15, color: Colors.black,fontWeight: FontWeight.bold),

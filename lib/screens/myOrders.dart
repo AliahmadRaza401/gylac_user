@@ -2,12 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/colors.dart';
 import '../utils/image.dart';
 import '../utils/innerShahdow.dart';
 import '../widgets/App_Menu.dart';
-import '../widgets/orderTile.dart';
+import 'package:get/get.dart';
 class MyOrders extends StatefulWidget {
   MyOrders({Key? key, this.title}) : super(key: key);
   final String? title;
@@ -40,7 +39,7 @@ bool del_pressed = false;
             backgroundColor:orange,
             elevation: 5,
             shadowColor: blackLight,
-            title:const Text('My Orders', style: TextStyle(
+            title: Text('My Orders'.tr, style: TextStyle(
                 color: white,
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
@@ -243,10 +242,10 @@ bool del_pressed = false;
                    size: 40,
                  ),
                ),
-               const Align(
+                Align(
                  child: Padding(
                    padding:  EdgeInsets.all(15),
-                   child: Text("No Orders",
+                   child: Text("No Orders Found".tr,
                      textAlign: TextAlign.center,
                      style:
                      TextStyle(fontSize: 16,fontFamily: 'Poppins', color: Colors.black,fontWeight: FontWeight.bold),

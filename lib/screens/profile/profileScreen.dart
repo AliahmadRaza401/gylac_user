@@ -13,6 +13,7 @@ import '../../providers/userProvider.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/custom_btn.dart';
 import '../../widgets/custom_textfield.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -48,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     fullName.text = userProvider.fullName;
     email.text = userProvider.email;
     phoneNo.text = userProvider.phoneNumber;
-    address.text =  userProvider.address.toString() =="null"?"Add Address":userProvider.address;
+    address.text =  userProvider.address.toString() =="null"?"":userProvider.address;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -61,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         elevation: 5,
         shadowColor: blackLight,
-        title:const Text('Profile', style: TextStyle(
+        title: Text('Profile'.tr, style: TextStyle(
             color: white,
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -145,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       "assets/images/Pencil Drawing.png",
                     width: 25,height: 25,
                     ),
-                    const Text("EDIT PROFILE",style: TextStyle(decoration: TextDecoration.underline,
+                     Text("EDIT PROFILE".tr,style: TextStyle(decoration: TextDecoration.underline,
                         fontFamily: "Roboto",fontWeight: FontWeight.bold,color: orange,fontSize: 15),)
                   ],
                 )
@@ -175,8 +177,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(height: 20,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:const [
-                        Text("Full Name",
+                      children: [
+                        Text("Full Name".tr,
                             style: TextStyle(
                                 color: orangeDark,
                                 fontWeight: FontWeight.bold,
@@ -185,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                     CustomTextField(
-                      hint: "Full Name",
+                      hint: "Full Name".tr,
                       prefixIcon:const Icon(
                         FontAwesomeIcons.user,
                         color: lightGrey,
@@ -197,8 +199,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:const [
-                        Text("Email",
+                      children: [
+                        Text("Email".tr,
                             style: TextStyle(
                                 color: orangeDark,
                                 fontWeight: FontWeight.bold,
@@ -207,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                     CustomTextField(
-                      hint: "Email",
+                      hint: "Email".tr,
                       prefixIcon:const Icon(
                         FontAwesomeIcons.envelope,
                         color: lightGrey,
@@ -219,8 +221,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children:const [
-                        Text("Phone Number",
+                      children: [
+                        Text("Phone Number".tr,
                             style: TextStyle(
                                 color: orangeDark,
                                 fontWeight: FontWeight.bold,
@@ -229,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                     CustomTextField(
-                      hint: "Phone Number",
+                      hint: "Phone Number".tr,
                       prefixIcon:const Icon(
                         FontAwesomeIcons.phone,
                         color: lightGrey,
@@ -243,8 +245,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children:const [
-                            Text("Address",
+                          children: [
+                            Text("Address".tr,
                                 style: TextStyle(
                                     color: orangeDark,
                                     fontWeight: FontWeight.bold,
@@ -313,7 +315,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Padding(
             padding: EdgeInsets.only(top: 40.0, left: 80.0, right: 80.0),
             child: CustomBtn(
-                text: "LOGOUT",
+                text: "LOGOUT".tr,
                 bgColor: orange,
                 onTap: () {
                   handleSignOut();
