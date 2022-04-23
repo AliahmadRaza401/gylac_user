@@ -805,14 +805,44 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                     runAlignment: WrapAlignment.center,
                                     children: list.map((e) {
                                       int index = list.indexOf(e);
-                                      return vehicle(
-                                          index, e['title'], e['image'], () {
-                                        setState(() {
-                                          selectedIndex = index;
-                                          deliveryProvider.vehicle =
-                                              e['title'].toString();
-                                        });
-                                      });
+                                      // return vehicle(
+                                      //     index, e['title'], e['image'], () {
+                                      //   setState(() {
+                                      //     selectedIndex = index;
+                                      //     deliveryProvider.vehicle =
+                                      //         e['title'].toString();
+                                      //   });
+                                      // });
+                                      return  GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedIndex = index;
+                                            deliveryProvider.vehicle =
+                                                e['title'].toString();
+                                          });
+                                        },
+                                        child: Container(
+                                          margin: EdgeInsets.only(bottom: 10),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(e['image'].toString(), width: MediaQuery.of(context).size.width * .25),
+                                              SizedBox(
+                                                width:100,
+                                                child: Text(
+                                                  "${e['title'].toString()}".tr,
+                                                  style: TextStyle(
+                                                    fontSize: selectedIndex == index ? 16 : 14,
+                                                    fontWeight:
+                                                    selectedIndex == index ? FontWeight.bold : FontWeight.normal,
+                                                    color: selectedIndex == index ? orange : black,
+                                                  ),textAlign: TextAlign.center,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+
                                     }).toList(),
                                   ),
                                 ),
@@ -910,11 +940,14 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 selectedCheck = val!;
                                               });
                                             }),
-                                        Text(
-                                          "Prohibited & illegal item does not \ninclude in this parcel".tr
-                                              .toUpperCase(),
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                        SizedBox(
+                                          width:280,
+                                          child: Text(
+                                            "Prohibited & illegal item does not \ninclude in this parcel".tr
+                                                .toUpperCase(),
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         )
                                       ],
@@ -963,26 +996,26 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Address is required");
+                                                        "Required".tr,
+                                                        "Pickup Address is required".tr);
                                                   } else if (deliveryProvider
                                                       .pickName.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Name is required");
+                                                        "Required".tr,
+                                                        "Pickup Name is required".tr);
                                                   } else if (deliveryProvider
                                                       .pickPhone.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Phone is required");
+                                                        "Required".tr,
+                                                        "Pickup Phone is required".tr);
                                                   } else if (deliveryProvider
                                                       .pickEmail.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Email is required");
+                                                        "Required".tr,
+                                                        "Pickup Email is required".tr);
                                                   } else if (RegExp(
                                                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                                           .hasMatch(
@@ -992,70 +1025,70 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                       false) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Error",
-                                                        "Enter a valid email!");
+                                                        "Error".tr,
+                                                        "Enter a valid email!".tr);
                                                   } else if (deliveryProvider
                                                       .pickParcelName
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Parcel Name is required");
+                                                        "Required".tr,
+                                                        "Pickup Parcel Name is required".tr);
                                                   } else if (deliveryProvider
                                                       .pickParcelWeight
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Parcel Weight is required");
+                                                        "Required".tr,
+                                                        "Pickup Parcel Weight is required".tr);
                                                   } else if (deliveryProvider
                                                       .pickDescription
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Parcel Description is required");
+                                                        "Required".tr,
+                                                        "Pickup Parcel Description is required".tr);
                                                   } else if (deliveryProvider
                                                       .pickPrice.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Delivery Price Offer is required");
+                                                        "Required".tr,
+                                                        "Pickup Delivery Price Offer is required".tr);
                                                   } else if (deliveryProvider
                                                       .deliveryAddress
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Delivery Address is required");
+                                                        "Required".tr,
+                                                        "Delivery Address is required".tr);
                                                   } else if (deliveryProvider
                                                       .deliveryName
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Delivery Name is required");
+                                                        "Required".tr,
+                                                        "Delivery Name is required".tr);
                                                   } else if (deliveryProvider
                                                       .deliveryPhone
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Delivery Phone is required");
+                                                        "Required".tr,
+                                                        "Delivery Phone is required".tr);
                                                   } else if (deliveryProvider
                                                       .deliveryEmail
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Delivery Email is required");
+                                                        "Required".tr,
+                                                        "Delivery Email is required".tr);
                                                   } else if (RegExp(
                                                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                                           .hasMatch(
@@ -1065,16 +1098,16 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                       false) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Error",
-                                                        "Enter a valid email!");
+                                                        "Error".tr,
+                                                        "Enter a valid email!".tr);
                                                   } else if (deliveryProvider
                                                       .deliveryDescription
                                                       .text
                                                       .isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
-                                                        "Required",
-                                                        "Pickup Delivery Description is required");
+                                                        "Required".tr,
+                                                        "Delivery Description is required".tr);
                                                   } else if (deliveryProvider
                                                               .distance ==
                                                           "" &&
@@ -1083,7 +1116,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                           "") {
                                                     Fluttertoast.showToast(
                                                         msg:
-                                                            "Please save delivery details");
+                                                            "Please save delivery details".tr);
                                                   } else {
                                                     log(deliveryProvider
                                                         .distance
@@ -1105,7 +1138,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     style: MyTextStyle
                                                             .poppinsBold()
                                                         .copyWith(
-                                                            fontSize: 18.0,
+                                                            fontSize: 16.0,
                                                             color:
                                                                 Colors.white),
                                                   )),
@@ -1240,13 +1273,16 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         child: Column(
           children: [
             Image.asset(image, width: MediaQuery.of(context).size.width * .25),
-            Text(
-              "${title}".tr,
-              style: TextStyle(
-                fontSize: selectedIndex == i ? 16 : 14,
-                fontWeight:
-                    selectedIndex == i ? FontWeight.bold : FontWeight.normal,
-                color: selectedIndex == i ? orange : black,
+            SizedBox(
+              width:100,
+              child: Text(
+                "${title}".tr,
+                style: TextStyle(
+                  fontSize: selectedIndex == i ? 16 : 14,
+                  fontWeight:
+                      selectedIndex == i ? FontWeight.bold : FontWeight.normal,
+                  color: selectedIndex == i ? orange : black,
+                ),textAlign: TextAlign.center,
               ),
             )
           ],
