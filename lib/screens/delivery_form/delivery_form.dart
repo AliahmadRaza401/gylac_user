@@ -14,7 +14,6 @@ import '../../providers/create_delivery_provider.dart';
 import '../../widgets/custom_btn.dart';
 import 'package:http/http.dart' as http;
 
-
 class DeliveryForm extends StatefulWidget {
   DeliveryForm({Key? key}) : super(key: key);
   @override
@@ -284,63 +283,40 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       ),
                       CustomBtn(
                         onTap: () {
-                          if (deliveryProvider
-                              .deliveryAddress
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                          if (deliveryProvider.deliveryAddress.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Delivery Address is required".tr);
                           } else if (deliveryProvider
-                              .deliveryName
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .deliveryName.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Delivery Name is required".tr);
                           } else if (deliveryProvider
-                              .deliveryPhone
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .deliveryPhone.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Delivery Phone is required".tr);
                           } else if (deliveryProvider
-                              .deliveryEmail
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .deliveryEmail.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Delivery Email is required".tr);
                           } else if (RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(
-                              deliveryProvider
-                                  .deliveryEmail
-                                  .text) ==
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(
+                                      deliveryProvider.deliveryEmail.text) ==
                               false) {
                             ToastUtils.showWarningToast(
-                                context,
-                                "Error".tr,
-                                "Enter a valid email!".tr);
+                                context, "Error".tr, "Enter a valid email!".tr);
                           } else if (deliveryProvider
-                              .deliveryDescription
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .deliveryDescription.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Delivery Description is required".tr);
                           } else {
-                            getdistanceApi();
+                            // getdistanceApi();
+                            deliveryProvider.distance = "100";
+
+                            deliveryProvider.duration = "100";
                             deliveryProvider.deliveryVisibleFalse();
                             deliveryProvider.deliveryVisible = false;
                             Fluttertoast.showToast(msg: "Details Added");
-                           
                           }
                         },
                         bgColor: orange,

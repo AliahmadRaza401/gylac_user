@@ -8,21 +8,31 @@ class DriverModel {
   String phoneNumber;
   String image;
   String trackStatus;
-
+  int wallet;
+  int level;
   DriverModel({
     required this.trackStatus,
-    required this.userName,required this.phoneNumber,required this.userId,required this.lat,required this.long,required this.image
+    required this.userName,
+    required this.phoneNumber,
+    required this.userId,
+    required this.lat,
+    required this.long,
+    required this.image,
+    required this.wallet,
+    required this.level,
   });
 
   Map<String, dynamic> toJson() => {
-    'id': userId,
-    'trackStatus': trackStatus,
-    'latitude': lat,
-    'longitude': long,
-    'fullName': userName,
-    'mobileNumber': phoneNumber,
-    "dp":image
-  };
+        'id': userId,
+        'trackStatus': trackStatus,
+        'latitude': lat,
+        'longitude': long,
+        'fullName': userName,
+        'mobileNumber': phoneNumber,
+        "dp": image,
+        "level": level,
+        "wallet": wallet,
+      };
   factory DriverModel.fromMap(Map<String, dynamic> map) {
     return DriverModel(
       userId: map['id'] as String,
@@ -32,18 +42,21 @@ class DriverModel {
       long: map['longitude'] as double,
       phoneNumber: map['mobileNumber'] as String,
       image: map['dp'] as String,
-
+      level: map['level'] as int,
+      wallet: map['wallet'] as int,
     );
   }
 
   factory DriverModel.fromDocument(DocumentSnapshot doc) {
-    String userId="";
-    String phoneNumber="";
-    double lat =0.0;
-    double long =0.0;
-    String userName ="";
-    String image ="";
+    String userId = "";
+    String phoneNumber = "";
+    double lat = 0.0;
+    double long = 0.0;
+    String userName = "";
+    String image = "";
     String trackStatus = "";
+    int level = 0;
+    int wallet = 0;
 
     try {
       userId = doc.get("userId");
@@ -53,8 +66,7 @@ class DriverModel {
 
     try {
       lat = doc.get("latitude");
-    }
-    catch (e) {
+    } catch (e) {
       print(e);
     }
     try {
@@ -62,7 +74,6 @@ class DriverModel {
     } catch (e) {
       print(e);
     }
-
 
     try {
       phoneNumber = doc.get("mobileNumber");
@@ -88,6 +99,17 @@ class DriverModel {
       print(e);
     }
 
+    try {
+      level = doc.get("level");
+    } catch (e) {
+      print(e);
+    }
+
+    try {
+      wallet = doc.get("wallet");
+    } catch (e) {
+      print(e);
+    }
 
     return DriverModel(
       userId: userId,
@@ -95,8 +117,10 @@ class DriverModel {
       userName: userName,
       long: long,
       phoneNumber: phoneNumber,
-      image:image,
-      trackStatus:trackStatus
+      image: image,
+      trackStatus: trackStatus,
+      level: level,
+      wallet: wallet,
     );
   }
 }

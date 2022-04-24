@@ -99,6 +99,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
     }
     try {
       DeliveryModel addInfo = DeliveryModel(
+          createdAt: DateTime.now(),
           trackStatus: "Pending",
           pickupAddress: deliveryProvider.pickAddress.text.toString(),
           pickupName: deliveryProvider.pickName.text.toString(),
@@ -416,6 +417,10 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool pickShow = Provider.of<CreateDeliveryProvider>(context).pickUpVisible;
+    bool deliveryShow =
+        Provider.of<CreateDeliveryProvider>(context).deliveryVisible;
+
     return Scaffold(
       key: scaffoldState,
       backgroundColor: Colors.grey[200],
@@ -433,7 +438,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         backgroundColor: orange,
         elevation: 5,
         shadowColor: blackLight,
-        title:  Text('CREATE A DELIVERY TASK'.tr,
+        title: Text('CREATE A DELIVERY TASK'.tr,
             style: TextStyle(
                 color: white,
                 fontWeight: FontWeight.bold,
@@ -502,7 +507,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                       Text(
+                                      Text(
                                         'PICK-UP DETAILS'.tr,
                                         style: TextStyle(
                                             fontFamily: 'Roboto',
@@ -570,7 +575,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                       Text(
+                                      Text(
                                         'DELIVERY DETAILS'.tr,
                                         style: TextStyle(
                                             fontFamily: 'Roboto',
@@ -607,7 +612,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                   Text(
+                                  Text(
                                     "SCHEDULE ORDER".tr,
                                     style: TextStyle(
                                         fontFamily: 'Roboto',
@@ -639,7 +644,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                   1);
                                             },
                                           ),
-                                           Text(
+                                          Text(
                                             'RIGHT AWAY'.tr,
                                             style: TextStyle(
                                                 fontFamily: 'Roboto',
@@ -663,7 +668,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                   2);
                                             },
                                           ),
-                                           Text(
+                                          Text(
                                             'SCHEDULE FOR LATER'.tr,
                                             style: TextStyle(
                                                 fontFamily: 'Roboto',
@@ -708,7 +713,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                         Text('SELECT TIME & DATE'.tr,
+                                        Text('SELECT TIME & DATE'.tr,
                                             style:
                                                 TextStyle(color: Colors.white)),
                                         Image.asset(
@@ -738,7 +743,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                     children: [
                                       Column(
                                         children: [
-                                           Text("Current Date/Time".tr,
+                                          Text("Current Date/Time".tr,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: 'Poppins',
@@ -777,7 +782,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Column(
-                                  children:  [
+                                  children: [
                                     Text(
                                       'SELECT VEHICLE'.tr,
                                       style: TextStyle(
@@ -813,7 +818,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                       //         e['title'].toString();
                                       //   });
                                       // });
-                                      return  GestureDetector(
+                                      return GestureDetector(
                                         onTap: () {
                                           setState(() {
                                             selectedIndex = index;
@@ -825,24 +830,36 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                           margin: EdgeInsets.only(bottom: 10),
                                           child: Column(
                                             children: [
-                                              Image.asset(e['image'].toString(), width: MediaQuery.of(context).size.width * .25),
+                                              Image.asset(e['image'].toString(),
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      .25),
                                               SizedBox(
-                                                width:100,
+                                                width: 100,
                                                 child: Text(
                                                   "${e['title'].toString()}".tr,
                                                   style: TextStyle(
-                                                    fontSize: selectedIndex == index ? 16 : 14,
+                                                    fontSize:
+                                                        selectedIndex == index
+                                                            ? 16
+                                                            : 14,
                                                     fontWeight:
-                                                    selectedIndex == index ? FontWeight.bold : FontWeight.normal,
-                                                    color: selectedIndex == index ? orange : black,
-                                                  ),textAlign: TextAlign.center,
+                                                        selectedIndex == index
+                                                            ? FontWeight.bold
+                                                            : FontWeight.normal,
+                                                    color:
+                                                        selectedIndex == index
+                                                            ? orange
+                                                            : black,
+                                                  ),
+                                                  textAlign: TextAlign.center,
                                                 ),
                                               )
                                             ],
                                           ),
                                         ),
                                       );
-
                                     }).toList(),
                                   ),
                                 ),
@@ -857,7 +874,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                   Padding(
+                                  Padding(
                                     padding: EdgeInsets.only(left: 12.0),
                                     child: Text(
                                       'CHOOSE PARCEL VALUE'.tr,
@@ -879,7 +896,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 setSelectedRadioParcel(1);
                                               },
                                             ),
-                                             Text(
+                                            Text(
                                               'UP TO 100000 MNT'.tr,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
@@ -895,7 +912,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 setSelectedRadioParcel(2);
                                               },
                                             ),
-                                             Text(
+                                            Text(
                                               'BETWEEN 100k & 500k MNT'.tr,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -912,7 +929,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                 setSelectedRadioParcel(3);
                                               },
                                             ),
-                                             Text(
+                                            Text(
                                               'BETWEEN 500k & 1 MILLION MNT'.tr,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -941,9 +958,10 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                               });
                                             }),
                                         SizedBox(
-                                          width:280,
+                                          width: 280,
                                           child: Text(
-                                            "Prohibited & illegal item does not \ninclude in this parcel".tr
+                                            "Prohibited & illegal item does not \ninclude in this parcel"
+                                                .tr
                                                 .toUpperCase(),
                                             style: const TextStyle(
                                               fontWeight: FontWeight.bold,
@@ -997,25 +1015,29 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Address is required".tr);
+                                                        "Pickup Address is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickName.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Name is required".tr);
+                                                        "Pickup Name is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickPhone.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Phone is required".tr);
+                                                        "Pickup Phone is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickEmail.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Email is required".tr);
+                                                        "Pickup Email is required"
+                                                            .tr);
                                                   } else if (RegExp(
                                                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                                           .hasMatch(
@@ -1026,7 +1048,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Error".tr,
-                                                        "Enter a valid email!".tr);
+                                                        "Enter a valid email!"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickParcelName
                                                       .text
@@ -1034,7 +1057,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Parcel Name is required".tr);
+                                                        "Pickup Parcel Name is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickParcelWeight
                                                       .text
@@ -1042,7 +1066,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Parcel Weight is required".tr);
+                                                        "Pickup Parcel Weight is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickDescription
                                                       .text
@@ -1050,13 +1075,15 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Parcel Description is required".tr);
+                                                        "Pickup Parcel Description is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .pickPrice.text.isEmpty) {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Pickup Delivery Price Offer is required".tr);
+                                                        "Pickup Delivery Price Offer is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .deliveryAddress
                                                       .text
@@ -1064,7 +1091,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Delivery Address is required".tr);
+                                                        "Delivery Address is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .deliveryName
                                                       .text
@@ -1072,7 +1100,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Delivery Name is required".tr);
+                                                        "Delivery Name is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .deliveryPhone
                                                       .text
@@ -1080,7 +1109,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Delivery Phone is required".tr);
+                                                        "Delivery Phone is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .deliveryEmail
                                                       .text
@@ -1088,7 +1118,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Delivery Email is required".tr);
+                                                        "Delivery Email is required"
+                                                            .tr);
                                                   } else if (RegExp(
                                                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                                           .hasMatch(
@@ -1099,7 +1130,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Error".tr,
-                                                        "Enter a valid email!".tr);
+                                                        "Enter a valid email!"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                       .deliveryDescription
                                                       .text
@@ -1107,7 +1139,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     ToastUtils.showWarningToast(
                                                         context,
                                                         "Required".tr,
-                                                        "Delivery Description is required".tr);
+                                                        "Delivery Description is required"
+                                                            .tr);
                                                   } else if (deliveryProvider
                                                               .distance ==
                                                           "" &&
@@ -1116,7 +1149,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                           "") {
                                                     Fluttertoast.showToast(
                                                         msg:
-                                                            "Please save delivery details".tr);
+                                                            "Please save delivery details"
+                                                                .tr);
                                                   } else {
                                                     log(deliveryProvider
                                                         .distance
@@ -1183,7 +1217,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                     const SizedBox(
                                       height: 20,
                                     ),
-                                     Text(
+                                    Text(
                                       "LOOKING FOR DRIVER".tr,
                                       style: TextStyle(
                                           fontFamily: 'Poppins',
@@ -1203,13 +1237,12 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                       ],
                     ),
                   ),
-                  deliveryProvider.pickUpVisible == true ||
-                          deliveryProvider.deliveryVisible == true
+                  pickShow == true || deliveryShow == true
                       ? GestureDetector(
                           onTap: () {
                             setState(() {
-                              deliveryProvider.pickUpVisible = false;
-                              deliveryProvider.deliveryVisible = false;
+                              deliveryProvider.pickVisibleFalse();
+                              deliveryProvider.deliveryVisibleFalse();
                             });
                           },
                           child: SizedBox(
@@ -1219,12 +1252,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                           ),
                         )
                       : const SizedBox(),
-                  Visibility(
-                      visible: deliveryProvider.pickUpVisible,
-                      child: PickUpForm()),
-                  Visibility(
-                      visible: deliveryProvider.deliveryVisible,
-                      child: DeliveryForm()),
+                  Visibility(visible: pickShow, child: PickUpForm()),
+                  Visibility(visible: deliveryShow, child: DeliveryForm()),
                 ],
               ),
             ],
@@ -1257,7 +1286,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
       if (val == 1) {
         deliveryProvider.parcel = "UP TO 10000 MNT".tr;
       } else if (val == 2) {
-          deliveryProvider.parcel = "BETWEEN 100K & 500K MNT".tr;
+        deliveryProvider.parcel = "BETWEEN 100K & 500K MNT".tr;
       }
       if (val == 3) {
         deliveryProvider.parcel = "BETWEEN 500K & 1M MNT".tr;
@@ -1274,7 +1303,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
           children: [
             Image.asset(image, width: MediaQuery.of(context).size.width * .25),
             SizedBox(
-              width:100,
+              width: 100,
               child: Text(
                 "${title}".tr,
                 style: TextStyle(
@@ -1282,7 +1311,8 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                   fontWeight:
                       selectedIndex == i ? FontWeight.bold : FontWeight.normal,
                   color: selectedIndex == i ? orange : black,
-                ),textAlign: TextAlign.center,
+                ),
+                textAlign: TextAlign.center,
               ),
             )
           ],

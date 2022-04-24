@@ -40,6 +40,7 @@ class DeliveryModel {
   int rejectCount;
   List rejections;
   String trackStatus;
+  DateTime createdAt;
 
   DeliveryModel({
     required this.trackStatus,
@@ -76,6 +77,7 @@ class DeliveryModel {
     required this.tracking,
     required this.rejectCount,
     required this.rejections,
+    required this.createdAt,
   });
 
   Map<String, dynamic> toJson() {
@@ -112,8 +114,9 @@ class DeliveryModel {
       "deliveryLong": deliveryLong,
       "rejectCount": rejectCount,
       "rejections": rejections,
-      "duration":time,
-      "trackStatus":trackStatus
+      "duration": time,
+      "trackStatus": trackStatus,
+      'createdAt': createdAt,
     };
   }
 
@@ -150,8 +153,9 @@ class DeliveryModel {
     String orderId = "";
     int rejectCount = 0;
     List rejections = [];
-    String time="";
+    String time = "";
     String trackStatus = "";
+    DateTime createdAt = DateTime.now();
 
     try {
       pickupAddress = doc.get("pickupAddress");
@@ -313,6 +317,12 @@ class DeliveryModel {
       print(e);
     }
 
+    try {
+      createdAt = doc.get("createdAt");
+    } catch (e) {
+      print(e);
+    }
+
     return DeliveryModel(
       pickupAddress: pickupAddress,
       pickupName: pickupName,
@@ -346,8 +356,9 @@ class DeliveryModel {
       orderID: orderId,
       rejectCount: rejectCount,
       rejections: rejections,
-      time:time,
-      trackStatus: trackStatus
+      time: time,
+      trackStatus: trackStatus,
+      createdAt: createdAt,
     );
   }
 }
