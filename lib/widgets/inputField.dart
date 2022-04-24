@@ -38,7 +38,12 @@ Widget inputField(BuildContext context, title, hint, controller,textInputType,su
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.left,
             maxLines: 1,
-            validator: RequiredValidator(errorText: 'Required'),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Required';
+              }
+              return null;
+            },
             style: const TextStyle(
               fontSize: 13,
             ),
@@ -48,6 +53,7 @@ Widget inputField(BuildContext context, title, hint, controller,textInputType,su
                     0.01, // HERE THE IMPORTANT PART
                 left: 10,
               ),
+
               suffixIcon: suffix,
               labelStyle: const TextStyle(),
               border: OutlineInputBorder(

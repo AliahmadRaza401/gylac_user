@@ -417,6 +417,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   @override
   Widget build(BuildContext context) {
+
     bool pickShow = Provider.of<CreateDeliveryProvider>(context).pickUpVisible;
     bool deliveryShow =
         Provider.of<CreateDeliveryProvider>(context).deliveryVisible;

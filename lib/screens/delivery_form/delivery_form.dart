@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -46,13 +48,20 @@ class _DeliveryFormState extends State<DeliveryForm> {
         if (jsonResponse["rows"][0]["elements"][0]["status"].toString() ==
             "ZERO_RESULTS") {
         } else {
+          if(mounted)
           setState(() {
             deliveryProvider.distance = jsonResponse["rows"][0]["elements"][0]
                     ["distance"]["text"]
                 .toString();
+
             deliveryProvider.duration = jsonResponse["rows"][0]["elements"][0]
                     ["duration"]["text"]
                 .toString();
+
+            isLoading = false;
+            deliveryProvider.deliveryVisibleFalse();
+            deliveryProvider.deliveryVisible = false;
+            Fluttertoast.showToast(msg: "Details Added");
           });
         }
       } else {
@@ -62,7 +71,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
       ToastUtils.showWarningToast(context, "Failed", "No Data Found");
     }
   }
-
+bool  isLoading = false;
   @override
   Widget build(BuildContext context) {
     final deliveryProvider = Provider.of<CreateDeliveryProvider>(context);
@@ -281,7 +290,7 @@ class _DeliveryFormState extends State<DeliveryForm> {
                       const SizedBox(
                         height: 10,
                       ),
-                      CustomBtn(
+                     isLoading == false? CustomBtn(
                         onTap: () {
                           if (deliveryProvider.deliveryAddress.text.isEmpty) {
                             ToastUtils.showWarningToast(context, "Required".tr,
@@ -310,19 +319,22 @@ class _DeliveryFormState extends State<DeliveryForm> {
                             ToastUtils.showWarningToast(context, "Required".tr,
                                 "Delivery Description is required".tr);
                           } else {
-                            // getdistanceApi();
-                            deliveryProvider.distance = "100";
+                            if(mounted){
+                              setState(() {
+                                isLoading = true;
+                              });
+                            }
+                             getdistanceApi();
+//                            deliveryProvider.distance = "100";
+  //                          deliveryProvider.duration = "100";
 
-                            deliveryProvider.duration = "100";
-                            deliveryProvider.deliveryVisibleFalse();
-                            deliveryProvider.deliveryVisible = false;
-                            Fluttertoast.showToast(msg: "Details Added");
                           }
                         },
                         bgColor: orange,
                         shadowColor: black,
                         text: 'Save'.tr,
-                      ),
+                      ):
+                      Center(child: CircularProgressIndicator(color: orange,),),
                     ],
                   ),
                 ),

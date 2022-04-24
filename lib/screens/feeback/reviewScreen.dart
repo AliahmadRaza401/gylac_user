@@ -68,7 +68,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
 
       })
           .then((data) async {
-       if(rate == "4.0" || rate == "5.0"){
+      /* if(rate == "4.0" || rate == "5.0"){
          firebaseFirestore
              .collection("topRated")
              .doc(uniqueId)
@@ -120,8 +120,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
          }),
          });
 
-       }
-       else{
+       }*/
+     //  else{
+        if(mounted)
          setState(() {
            isLoading = false;
            feedText.text ="";
@@ -136,7 +137,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                  (Route<dynamic> route) => false,
            );
          });
-       }
+     //  }
 
       }).catchError((err) {
         setState(() {

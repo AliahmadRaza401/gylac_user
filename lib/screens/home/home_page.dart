@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                           height: 20,
                         ),
                         StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance.collection("topRated").limit(15).snapshots(),
+                          stream: FirebaseFirestore.instance.collection("topRateds").limit(15).snapshots(),
                           builder: (BuildContext context, snapshot) {
                             if (snapshot.data == null) {
                               return const Center(child: CircularProgressIndicator(color: orange));
@@ -262,9 +262,10 @@ class _HomePageState extends State<HomePage> {
                                             children: [
 
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                 children: [
-                                                  Text("${orders[index]["pickupParcelName"]} PACKAGE",style:  const TextStyle(fontFamily: 'Roboto',fontSize: 8,fontWeight: FontWeight.bold)),
+                                                  Text("${orders[index]["orderName"]} PACKAGE",style:  const TextStyle(fontFamily: 'Roboto',fontSize: 8,fontWeight: FontWeight.bold)),
+
                                                   Row(
                                                     children: [
                                                       orders[index]["driverImage"].isNotEmpty
@@ -305,6 +306,7 @@ class _HomePageState extends State<HomePage> {
                                                         size: 90,
                                                         color: white,
                                                       ),
+                                                      SizedBox(width: 5,),
                                                       Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
@@ -343,7 +345,9 @@ class _HomePageState extends State<HomePage> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(orders[index]["parcel"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 7,fontWeight: FontWeight.bold)),
+                                                  SizedBox(
+                                                      width:70,
+                                                      child: Text(orders[index]["parcel"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 7,fontWeight: FontWeight.bold))),
                                                   SizedBox(
                                                     width: 80,
                                                     height: 20,
@@ -379,12 +383,46 @@ class _HomePageState extends State<HomePage> {
                                                       borderRadius: BorderRadius.circular(10),
                                                       color: white,
                                                     ),
-                                                    child: Image.asset("assets/images/bike.png"),
+                                                    padding: EdgeInsets.all(4),
+                                                    child:   orders[index]["imageUrl"].isNotEmpty
+                                                        ? Image.network(
+                                                          orders[index]["imageUrl"],
+                                                          fit: BoxFit.fitWidth,
+                                                          errorBuilder: (context, object, stackTrace) {
+                                                            return const Icon(
+                                                              Icons.account_circle,
+                                                              size: 90,
+                                                              color: white,
+                                                            );
+                                                          },
+                                                          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                                            if (loadingProgress == null) return child;
+                                                            return SizedBox(
+                                                              width: 90,
+                                                              height: 90,
+                                                              child: Center(
+                                                                child: CircularProgressIndicator(
+                                                                  color: white,
+                                                                  value: loadingProgress.expectedTotalBytes != null &&
+                                                                      loadingProgress.expectedTotalBytes != null
+                                                                      ? loadingProgress.cumulativeBytesLoaded /
+                                                                      loadingProgress.expectedTotalBytes!
+                                                                      : null,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        )
+                                                        :const Icon(
+                                                      Icons.account_circle,
+                                                      size: 40,
+                                                      color: orange,
+                                                    ),
                                                   ),
                                                   Column(
                                                     children: [
                                                       GradientText(
-                                                       "\$ " +orders[index]["pickupDeliveryPrice"],
+                                                       "\$ " +orders[index]["price"],
                                                         style: TextStyle(
                                                             decoration: TextDecoration.underline,
                                                             fontSize: 10,
@@ -401,15 +439,15 @@ class _HomePageState extends State<HomePage> {
                                                       ),
                                                       Column(
                                                         children: [
-                                                          orders[index]["vehicle"] == "VAN"?Image.asset(vanimage,width: 50,height: 50,):
-                                                          orders[index]["vehicle"] == "CAR"?Image.asset(carimage,width: 50,height: 50,):
-                                                          orders[index]["vehicle"] == "SCOOTER"?Image.asset(scooterimage,width: 50,height: 50,):
-                                                          orders[index]["vehicle"] == "TRUCK"?Image.asset(truckimage,width: 50,height: 50,):
-                                                          orders[index]["vehicle"] == "BIKE"?Image.asset(cycleimage,width: 50,height: 50,):
-                                                          orders[index]["vehicle"] == "MINI TRUCK"?Image.asset(miniTruckimage,width: 50,height: 50,):
+                                                          orders[index]["vehicleType"] == "VAN"?Image.asset(vanimage,width: 50,height: 50,):
+                                                          orders[index]["vehicleType"] == "CAR"?Image.asset(carimage,width: 50,height: 50,):
+                                                          orders[index]["vehicleType"] == "SCOOTER"?Image.asset(scooterimage,width: 50,height: 50,):
+                                                          orders[index]["vehicleType"] == "TRUCK"?Image.asset(truckimage,width: 50,height: 50,):
+                                                          orders[index]["vehicleType"] == "BIKE"?Image.asset(cycleimage,width: 50,height: 50,):
+                                                          orders[index]["vehicleType"] == "MINI TRUCK"?Image.asset(miniTruckimage,width: 50,height: 50,):
                                                           Image.asset("assets/images/Group 8504.png",width: 50,height: 50,),
                                                           GradientText(
-                                                            orders[index]["vehicle"],
+                                                            orders[index]["vehicleType"],
                                                             style: TextStyle(
                                                                 fontSize: 10,
                                                                 fontFamily: 'Poppins',

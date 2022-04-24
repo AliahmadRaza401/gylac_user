@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -26,9 +27,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController phoneNo = TextEditingController();
   TextEditingController address = TextEditingController();
-
+  bool  isLoading = false;
   File? avatarImageFile;
-
+ bool  isClicked= false;
   Future<void> handleSignOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("userId", "null");
@@ -40,16 +41,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Fluttertoast.showToast(msg: "Logged Out Successfully".tr);
   }
 
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late  UserProvider userProvider;
+
+  Future updateInfo(no,name,addres) async {
+
+    firebaseFirestore.collection("users").doc(_auth.currentUser!.uid).update({
+      'mobileNumber':no,
+      'fullName':name,
+      'address':addres
+    }).then((data) async {
+        if(mounted)
+        setState(() {
+          isLoading = false;
+          address.text =  addres.toString();
+        });
+        Fluttertoast.showToast(msg: "UPDATED",backgroundColor: Colors.green,textColor: Colors.white);
+    }).catchError((err) {
+      if(mounted)
+      setState(() {
+        isLoading = false;
+      });
+      Fluttertoast.showToast(msg: err.toString());
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userProvider = Provider.of<UserProvider>(context, listen: false);
+    fullName.text = userProvider.fullName;
+    email.text = userProvider.email;
+    phoneNo.text = userProvider.phoneNumber;
+    address.text =  userProvider.address.toString() =="null"?"":userProvider.address;
+  }
 
 
   @override
   Widget build(BuildContext context) {
   //  AppStateProvider appState = Provider.of<AppStateProvider>(context);
-    UserProvider userProvider = Provider.of<UserProvider>(context);
-    fullName.text = userProvider.fullName;
-    email.text = userProvider.email;
-    phoneNo.text = userProvider.phoneNumber;
-    address.text =  userProvider.address.toString() =="null"?"":userProvider.address;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -147,8 +180,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       "assets/images/Pencil Drawing.png",
                     width: 25,height: 25,
                     ),
-                     Text("EDIT PROFILE".tr,style: TextStyle(decoration: TextDecoration.underline,
-                        fontFamily: "Roboto",fontWeight: FontWeight.bold,color: orange,fontSize: 15),)
+                     GestureDetector(
+                       onTap: (){
+                         if(mounted){
+                           setState(() {
+                             isClicked= !isClicked;
+                           });
+                         }
+                       },
+                       child: Text("EDIT PROFILE".tr,style: TextStyle(decoration: TextDecoration.underline,
+                          fontFamily: "Roboto",fontWeight: FontWeight.bold,color: orange,fontSize: 15),),
+                     )
                   ],
                 )
               ],
@@ -208,13 +250,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 fontFamily: 'Poppins')),
                       ],
                     ),
-                    CustomTextField(
-                      hint: "Email".tr,
-                      prefixIcon:const Icon(
-                        FontAwesomeIcons.envelope,
-                        color: lightGrey,
+                    AbsorbPointer(
+                      child: CustomTextField(
+                        hint: "Email".tr,
+                        prefixIcon:const Icon(
+                          FontAwesomeIcons.envelope,
+                          color: lightGrey,
+                        ),
+                        controller: email,
                       ),
-                      controller: email,
                     ),
                     const  SizedBox(
                       height: 20,
@@ -302,6 +346,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 // labelText:"Your Name"
                               )),
                         ),
+                        const  SizedBox(
+                          height: 10,
+                        ),
+                        isClicked== false? SizedBox(): isLoading ==false?CustomBtn(
+                          w: 80,
+                            size: 14,
+                            text: "UPDATE".tr,
+                            bgColor: orange,
+                            onTap: () {
+                              if(mounted){
+                                setState(() {
+                                  isLoading = true;
+                                });
+
+                                updateInfo(phoneNo.text.toString(), fullName.text.toString(), address.text.toString());
+                              }
+                            }):Center(child: CircularProgressIndicator(color: orange,),),
                       ],
                     ),
                     const  SizedBox(

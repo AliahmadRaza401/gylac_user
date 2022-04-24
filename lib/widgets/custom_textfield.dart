@@ -7,7 +7,6 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final controller;
   final TextInputType? text;
-
   const CustomTextField(
       {Key? key,
         this.text,
@@ -16,10 +15,12 @@ class CustomTextField extends StatelessWidget {
       required this.controller})
       : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.05,
+      height: MediaQuery.of(context).size.height*0.05,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: white,
@@ -33,6 +34,7 @@ class CustomTextField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+
         keyboardType: text??null,
           controller: controller,
           textAlignVertical: TextAlignVertical.center,
@@ -40,7 +42,7 @@ class CustomTextField extends StatelessWidget {
           maxLines: 1,
           validator: (value) {
             if (value!.isEmpty) {
-              return 'Please enter your Email';
+              return 'Required';
             }
             return null;
           },
@@ -60,6 +62,9 @@ class CustomTextField extends StatelessWidget {
                 borderSide: BorderSide(color: white),
               ),
               enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: white),
+              ),
+              errorBorder:const OutlineInputBorder(
                 borderSide: BorderSide(color: white),
               ),
               hintText: hint,

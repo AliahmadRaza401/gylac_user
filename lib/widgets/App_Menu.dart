@@ -49,10 +49,12 @@ class _AppMenuState extends State<AppMenu> {
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap:()=>  Navigator.push(
+                          onTap:(){
+                            Navigator.of(context).pop();
+                            Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>ProfileScreen()),),
+                                builder: (context) =>ProfileScreen()),);},
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child:Container(

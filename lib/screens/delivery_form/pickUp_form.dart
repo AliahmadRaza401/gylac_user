@@ -22,6 +22,7 @@ class _PickUpFormState extends State<PickUpForm> {
   PickResult? selectedPlace2;
   bool showGoogleMapInContainer = false;
   static const kInitialPosition2 = LatLng(-33.8567844, 151.213108);
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class _PickUpFormState extends State<PickUpForm> {
             child: Column(
               children: [
                 Form(
-                  key: deliveryProvider.pickFormkey,
+                  key: _formKey,
                   child: Column(
                     children: [
                       GestureDetector(
@@ -377,13 +378,17 @@ class _PickUpFormState extends State<PickUpForm> {
                           } else if (deliveryProvider.pickPrice.text.isEmpty) {
                             ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Delivery Price Offer is required".tr);
-                          } else {
+                          }
+                          else if ( _formKey.currentState!.validate()) {
                             print(
                                 "PickUp Price ${deliveryProvider.pickPrice.text.toString()}");
                             setState(() {
                               deliveryProvider.pickVisibleFalse();
                               //  widget.pick=!widget.pick;
                             });
+                          }
+                          else {
+
                           }
                         },
                         bgColor: orange,
