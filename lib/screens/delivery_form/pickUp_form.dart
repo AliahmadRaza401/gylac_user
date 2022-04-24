@@ -344,74 +344,42 @@ class _PickUpFormState extends State<PickUpForm> {
                       ),
                       CustomBtn(
                         onTap: () {
-                          if (deliveryProvider
-                              .pickAddress
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                          if (deliveryProvider.pickAddress.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Address is required".tr);
-                          } else if (deliveryProvider
-                              .pickName.text.isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                          } else if (deliveryProvider.pickName.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Name is required".tr);
-                          } else if (deliveryProvider
-                              .pickPhone.text.isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                          } else if (deliveryProvider.pickPhone.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Phone is required".tr);
-                          } else if (deliveryProvider
-                              .pickEmail.text.isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                          } else if (deliveryProvider.pickEmail.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Email is required".tr);
                           } else if (RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(
-                              deliveryProvider
-                                  .pickEmail
-                                  .text) ==
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(deliveryProvider.pickEmail.text) ==
                               false) {
                             ToastUtils.showWarningToast(
-                                context,
-                                "Error".tr,
-                                "Enter a valid email!".tr);
+                                context, "Error".tr, "Enter a valid email!".tr);
                           } else if (deliveryProvider
-                              .pickParcelName
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .pickParcelName.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Parcel Name is required".tr);
                           } else if (deliveryProvider
-                              .pickParcelWeight
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .pickParcelWeight.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Parcel Weight is required".tr);
                           } else if (deliveryProvider
-                              .pickDescription
-                              .text
-                              .isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                              .pickDescription.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Parcel Description is required".tr);
-                          } else if (deliveryProvider
-                              .pickPrice.text.isEmpty) {
-                            ToastUtils.showWarningToast(
-                                context,
-                                "Required".tr,
+                          } else if (deliveryProvider.pickPrice.text.isEmpty) {
+                            ToastUtils.showWarningToast(context, "Required".tr,
                                 "Pickup Delivery Price Offer is required".tr);
-                          }else {
+                          } else {
+                            print(
+                                "PickUp Price ${deliveryProvider.pickPrice.text.toString()}");
                             setState(() {
                               deliveryProvider.pickVisibleFalse();
                               //  widget.pick=!widget.pick;

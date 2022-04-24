@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +11,9 @@ import 'package:flutter_credit_card/custom_card_type_icon.dart';
 import 'package:flutter_credit_card/glassmorphism_config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gyalcuser_project/models/driverModel.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
+import 'package:gyalcuser_project/utils/app_route.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 import '../../constants/colors.dart';
@@ -51,6 +54,8 @@ class _PayCardState extends State<PayCard> {
         width: 2.0,
       ),
     );
+
+    log('deliveryProvider.pickPrice.text: ${deliveryProvider.pickPrice.text}');
     getDriverDataByID();
   }
 
@@ -58,7 +63,10 @@ class _PayCardState extends State<PayCard> {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  int updatedPrice = 0;
+
   Future getDriverDataByID() async {
+    log("geting Driver....");
     try {
       await FirebaseFirestore.instance
           .collection('drivers')
@@ -66,7 +74,18 @@ class _PayCardState extends State<PayCard> {
           .get()
           .then((QuerySnapshot querySnapshot) => {
                 querySnapshot.docs.forEach((doc) {
-                  print(doc.data());
+                  print("User Col ${doc.data()}");
+                  DriverModel driverModel =
+                      DriverModel.fromMap(doc.data() as Map<String, dynamic>);
+                  print(driverModel.wallet.toString());
+                  print(
+                      'deliveryProvider.pickPrice.text: ${deliveryProvider.pickPrice.text}');
+                  setState(() {
+                    updatedPrice = driverModel.wallet +
+                        int.parse(deliveryProvider.pickPrice.text);
+
+                    print('updatedPrice: $updatedPrice');
+                  });
                 }),
               });
     } catch (e) {
@@ -98,6 +117,13 @@ class _PayCardState extends State<PayCard> {
         "title": "Order Payment Done",
       }).then((data) async {
         firebaseFirestore
+            .collection("drivers")
+            .doc(deliveryProvider.driverId)
+            .update({
+          "wallet": updatedPrice,
+        });
+
+        firebaseFirestore
             .collection("orders")
             .doc(widget.orderId)
             .update({"trackStatus": "WaitForPickup"}).then((value) =>
@@ -111,6 +137,15 @@ class _PayCardState extends State<PayCard> {
                   "driverImage": deliveryProvider.driverImage,
                   "driverPhone": deliveryProvider.driverMobile,
                 }));
+
+        firebaseFirestore
+            .collection("drivers")
+            .doc(
+              deliveryProvider.driverId,
+            )
+            .update({
+          "wallet": deliveryProvider.pickPrice,
+        });
         FCMServices.sendFCM("driver", deliveryProvider.driverId.toString(),
             "Payment Success!", "Delivery Payment Successfully");
 
@@ -203,9 +238,14 @@ class _PayCardState extends State<PayCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          FontAwesomeIcons.grip,
-          color: white,
+        leading: GestureDetector(
+          onTap: () {
+            AppRoutes.pop(context);
+          },
+          child: Icon(
+            FontAwesomeIcons.grip,
+            color: white,
+          ),
         ),
         backgroundColor: orange,
         elevation: 5,

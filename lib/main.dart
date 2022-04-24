@@ -10,12 +10,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
 import 'package:gyalcuser_project/providers/multi_provider.dart';
+import 'package:gyalcuser_project/screens/pay/payCard.dart';
 import 'package:gyalcuser_project/screens/splashscreen.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
 import 'package:gyalcuser_project/services/local_notification.dart';
 import 'package:gyalcuser_project/services/trans.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -137,15 +139,16 @@ class MyApp extends StatelessWidget {
               providers: multiProvider,
               child: GetMaterialApp(
                 translations: Messages(), // your translations
-                locale: const Locale('en', 'US'), // translations will be displayed in that locale
-                fallbackLocale: const Locale('en', 'US'), // specify the fallback local
-                  debugShowCheckedModeBanner: false,
-                  title: 'gyalcproject',
-                  theme: ThemeData(
-                    primarySwatch: Colors.yellow,
-                  ),
-                  home: const Splash(),
-
+                locale: const Locale('en',
+                    'US'), // translations will be displayed in that locale
+                fallbackLocale:
+                    const Locale('en', 'US'), // specify the fallback local
+                debugShowCheckedModeBanner: false,
+                title: 'gyalcproject',
+                theme: ThemeData(
+                  primarySwatch: Colors.yellow,
+                ),
+                home: const Splash(),
               ));
         });
   }
