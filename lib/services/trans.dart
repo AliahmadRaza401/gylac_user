@@ -44,6 +44,7 @@ class Messages extends Translations {
       'SCHEDULE A NEW \n DELIVERY': 'SCHEDULE A NEW \n DELIVERY',
       'Do you want to Logout?': 'Do you want to Logout?',
       'SUBMIT': 'SUBMIT',
+
       'Describe your Issue here': 'Describe your Issue here',
       'Report an issue': 'Report an issue',
       'Enter your Order Id here': 'Enter your Order Id here',
@@ -56,6 +57,7 @@ class Messages extends Translations {
       'Product Misplace': 'Product Misplace',
       'Late Delivery': 'Late Delivery',
       'Bad user experience': 'Bad user experience',
+
       'LOGOUT': 'LOGOUT',
       'Address': 'Address',
       'EDIT PROFILE': 'EDIT PROFILE',
@@ -207,6 +209,7 @@ class Messages extends Translations {
       'Do you want to Logout?': 'Та гарахыг хүсэж байна уу?',
       'POPULAR DELIVERIES': 'АЛДАРТАЙ хүргэлт',
       'SCHEDULE A NEW \n DELIVERY': 'ШИНЭ \n ХҮРГЭЛТИЙН ТӨЛӨВЛӨГӨӨ',
+
       'SUBMIT': 'ИЛГЭЭХ',
       'Describe your Issue here': 'Асуудлаа энд тайлбарлана уу',
       'Report an issue': 'Асуудлыг мэдээлэх',
@@ -219,6 +222,7 @@ class Messages extends Translations {
       'Product Misplace': 'Бүтээгдэхүүний буруу газар',
       'Late Delivery': 'Хожуу хүргэлт',
       'Bad user experience': 'Хэрэглэгчийн муу туршлага',
+
       'LOGOUT': 'ГАРАХ',
       'Address': 'Хаяг',
       'EDIT PROFILE': 'засварлах Хувийн мэдээллийг',
