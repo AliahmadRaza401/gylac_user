@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gyalcuser_project/screens/authentication/Login/login.dart';
@@ -117,10 +118,13 @@ class _AppMenuState extends State<AppMenu> {
                   ],
                 ),
               )),
+          SizedBox(
+            height: 30.h,
+          ),
           ListTile(
             leading: Icon(
               Icons.home,
-              color: Color.fromRGBO(251, 176, 59, 1),
+              color: Color(0xffBEC2CE),
             ),
             title: CustomText(text: "Home".tr),
             onTap: () {
@@ -132,7 +136,7 @@ class _AppMenuState extends State<AppMenu> {
           ListTile(
             leading: Icon(
               FontAwesomeIcons.clipboardList,
-              color: Color.fromRGBO(251, 176, 59, 1),
+              color: Color(0xffBEC2CE),
             ),
             title: CustomText(text: "My Orders".tr),
             onTap: () {
@@ -144,7 +148,7 @@ class _AppMenuState extends State<AppMenu> {
           ListTile(
             leading: Icon(
               Icons.history,
-              color: Color.fromRGBO(251, 176, 59, 1),
+              color: Color(0xffBEC2CE),
             ),
             title: CustomText(text: "Order History".tr),
             onTap: () {
@@ -156,7 +160,7 @@ class _AppMenuState extends State<AppMenu> {
           ListTile(
             leading: Icon(
               Icons.notifications,
-              color: Color.fromRGBO(251, 176, 59, 1),
+              color: Color(0xffBEC2CE),
             ),
             title: CustomText(text: "Notifications".tr),
             onTap: () {
@@ -168,7 +172,7 @@ class _AppMenuState extends State<AppMenu> {
           ListTile(
             leading: Icon(
               FontAwesomeIcons.gear,
-              color: Color.fromRGBO(251, 176, 59, 1),
+              color: Color(0xffBEC2CE),
             ),
             title: CustomText(text: "Help & Support".tr),
             onTap: () {
@@ -186,7 +190,7 @@ class _AppMenuState extends State<AppMenu> {
                 children: [
                   Icon(
                     FontAwesomeIcons.globe,
-                    color: Color.fromRGBO(251, 176, 59, 1),
+                    color: Color(0xffBEC2CE),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.08,
@@ -223,7 +227,7 @@ class _AppMenuState extends State<AppMenu> {
           ListTile(
             leading: Icon(
               Icons.logout,
-              color: Color.fromRGBO(251, 176, 59, 1),
+              color: Color(0xffBEC2CE),
             ),
             title: CustomText(text: "Logout".tr),
             onTap: () {
