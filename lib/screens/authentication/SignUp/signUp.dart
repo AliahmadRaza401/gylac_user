@@ -247,25 +247,25 @@ class _SignUpState extends State<SignUp> {
                                 text: "SIGN UP".tr,
                                 onTap: () {
                                   if (_image == null) {
-                                    ToastUtils.showWarningToast(context, "Required".tr, "Profile Picture is required".tr);
+                                    ToastUtils.showWarningToast(context, "Required", "Profile Picture is required");
                                   }
                                   else if (nameCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(context, "Required".tr, "Full Name is required".tr);
+                                    ToastUtils.showWarningToast(context, "Required", "Full Name is required");
                                   }
                                   else if (emailCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(context, "Required".tr, "Email is required".tr);
+                                    ToastUtils.showWarningToast(context, "Required", "Email is required");
                                   }
                                   else if(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailCtl.text) == false){
-                                    ToastUtils.showWarningToast(context, "Error".tr, "Enter a valid email!".tr);
+                                    ToastUtils.showWarningToast(context, "Error", "Enter a valid email!");
                                   }
                                   else if (passwordCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(context, "Required".tr, "Password is required".tr);
+                                    ToastUtils.showWarningToast(context, "Required", "Password is required");
                                   }
                                   else if (passwordCtl.text.length < 6) {
-                                    ToastUtils.showWarningToast(context, "Error".tr, "Password should be at least six digits.".tr);
+                                    ToastUtils.showWarningToast(context, "Error", "Password should be at least six digits.");
                                   }
                                   else if (phoneCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(context, "Error".tr, "Phone number is required".tr);
+                                    ToastUtils.showWarningToast(context, "Error", "Phone number is required");
                                   }
                                   else{
                                     AuthServices.signUp(

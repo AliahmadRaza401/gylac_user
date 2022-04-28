@@ -198,6 +198,9 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
         "duration": time,
         "vehicleType": vehicle,
         "driverId": driverId,
+        "driverImage": '',
+        'driverName': '',
+        'driverPhone': '',
       }).then((data) async {
         setState(() {
           isLoading = false;
@@ -417,7 +420,6 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   @override
   Widget build(BuildContext context) {
-
     bool pickShow = Provider.of<CreateDeliveryProvider>(context).pickUpVisible;
     bool deliveryShow =
         Provider.of<CreateDeliveryProvider>(context).deliveryVisible;
