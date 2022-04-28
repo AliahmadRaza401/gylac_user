@@ -239,12 +239,12 @@ class _HomePageState extends State<HomePage> {
                                   gridDelegate:
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                       maxCrossAxisExtent: 200,
-                                      childAspectRatio: 2 / 2,
-                                      crossAxisSpacing: 5,
-                                      mainAxisSpacing: 10),
+                                      mainAxisExtent: 150,
+                                      childAspectRatio: 2 / 2,),
                                   itemCount: orders.length,
                                   itemBuilder: (BuildContext ctx, index) {
                                     return Container(
+
                                         decoration: BoxDecoration(
                                           border: Border.all(color: stroke, width: 1),
                                           boxShadow: [
@@ -257,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                                           color: white,
                                         ),
                                         child:Padding(
-                                          padding: const EdgeInsets.all(3.0),
+                                          padding: const EdgeInsets.all(2.0),
                                           child: Column(
                                             children: [
 
@@ -311,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           Text(orders[index]["driverName"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 10,fontWeight: FontWeight.bold)),
-                                                          Container(
+                                                      /*    Container(
                                                             decoration: BoxDecoration(
                                                                 color: white,
                                                                 boxShadow:const [
@@ -331,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                                                                 const Text("Top High Rated",style:  TextStyle(color: redColor,fontFamily: 'Poppins',fontSize: 6,fontWeight: FontWeight.bold))
                                                               ],
                                                             ),
-                                                          )
+                                                          )*/
                                                         ],
                                                       ),
                                                     ],
@@ -342,12 +342,12 @@ class _HomePageState extends State<HomePage> {
                                                 height: 5,
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   SizedBox(
-                                                      width:70,
-                                                      child: Text(orders[index]["parcel"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 7,fontWeight: FontWeight.bold))),
+                                                      width:80,
+                                                      child: Text(orders[index]["parcel"],style:  const TextStyle(fontFamily: 'Roboto',fontSize: 7,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
                                                   SizedBox(
                                                     width: 80,
                                                     height: 20,
@@ -376,14 +376,14 @@ class _HomePageState extends State<HomePage> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width:100,
-                                                    height: 70,
+                                                    width:110,
+                                                    height: 85,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: black, width: 1),
                                                       borderRadius: BorderRadius.circular(10),
                                                       color: white,
                                                     ),
-                                                    padding: EdgeInsets.all(4),
+                                                    padding: EdgeInsets.all(2),
                                                     child:   orders[index]["imageUrl"].isNotEmpty
                                                         ? Image.network(
                                                           orders[index]["imageUrl"],
@@ -414,8 +414,8 @@ class _HomePageState extends State<HomePage> {
                                                           },
                                                         )
                                                         :const Icon(
-                                                      Icons.account_circle,
-                                                      size: 40,
+                                                      Icons.add_a_photo,
+                                                      size: 65,
                                                       color: orange,
                                                     ),
                                                   ),
@@ -504,7 +504,7 @@ class _HomePageState extends State<HomePage> {
                         ),
 
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                       ],
                     ),

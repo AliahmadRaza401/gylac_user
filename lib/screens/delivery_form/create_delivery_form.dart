@@ -57,27 +57,27 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
 
   var list = [
     {
-      'title': 'CAR'.tr,
+      'title': 'CAR',
       'image': carimage,
     },
     {
-      'title': 'MINI TRUCK'.tr,
+      'title': 'MINI TRUCK',
       'image': miniTruckimage,
     },
     {
-      'title': 'BIKE'.tr,
+      'title': 'BIKE',
       'image': cycleimage,
     },
     {
-      'title': 'SCOOTER'.tr,
+      'title': 'SCOOTER',
       'image': scooterimage,
     },
     {
-      'title': 'TRUCK'.tr,
+      'title': 'TRUCK',
       'image': truckimage,
     },
     {
-      'title': 'VAN'.tr,
+      'title': 'VAN',
       'image': vanimage,
     },
   ];
@@ -839,7 +839,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                               SizedBox(
                                                 width: 100,
                                                 child: Text(
-                                                  "${e['title'].toString()}".tr,
+                                                  "${e['title'].toString()}",
                                                   style: TextStyle(
                                                     fontSize:
                                                         selectedIndex == index
@@ -1173,7 +1173,7 @@ class _CreateDeliveryFormState extends State<CreateDeliveryForm> {
                                                     style: MyTextStyle
                                                             .poppinsBold()
                                                         .copyWith(
-                                                            fontSize: 16.0,
+                                                            fontSize: 14.0,
                                                             color:
                                                                 Colors.white),
                                                   )),

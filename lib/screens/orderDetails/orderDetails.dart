@@ -1175,38 +1175,20 @@ class _OrderDetailsState extends State<OrderDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text("Parcel Name".tr,
-                    style: TextStyle(
-                        color: black,
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400)),
-                Text(deliveryProvider.pickParcelName.text.toString(),
-                    style: const TextStyle(
-                        color: black,
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300)),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text("Weight".tr,
-                    style: TextStyle(
-                        color: black,
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400)),
-                Text(deliveryProvider.pickParcelWeight.text.toString() + " KG",
-                    style: const TextStyle(
-                        color: black,
-                        fontFamily: 'Poppins',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Parcel Name".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400),textAlign: TextAlign.start,),
+                    Text("Weight".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400),textAlign: TextAlign.start,)
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(deliveryProvider.pickParcelName.text.toString()+" (Order)",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                    Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                  ],
+                ),
               ],
             ),
             const SizedBox(
@@ -1215,71 +1197,43 @@ class _OrderDetailsState extends State<OrderDetails> {
             Container(
               width: media.width,
               color: orange,
-              padding:
-                  const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-              child: Row(
+              padding: EdgeInsets.only(left:10,right: 10,top: 5,bottom: 5),
+              child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
-                    children: [
-                      Text("Price Order".tr,
-                          style: const TextStyle(
-                              color: white,
-                              fontFamily: 'Poppins',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold)),
-                      Text(deliveryProvider.pickPrice.text.toString() + " MNT",
-                          style: const TextStyle(
-                              color: white,
-                              fontFamily: 'Poppins',
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  Container(width: 3, height: 50, color: black),
-                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      Text("Price Order".tr,style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
+                      Text(deliveryProvider.pickPrice.text.toString()+" MNT",style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold)),
+
+                    ],
+                  ),
+                  Container(
+                      width: 3,
+                      height: 50,
+                      color: black),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Distance".tr,
-                              style: TextStyle(
-                                  color: black,
-                                  fontFamily: 'Poppins',
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300)),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(deliveryProvider.distance,
-                              style: const TextStyle(
-                                  color: black,
-                                  fontFamily: 'Poppins',
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300)),
+                          Text("Distance".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          Text("Time".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
-                      Row(
+                      SizedBox(width: 10,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Time".tr,
-                              style: TextStyle(
-                                  color: black,
-                                  fontFamily: 'Poppins',
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300)),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(deliveryProvider.duration,
-                              style: const TextStyle(
-                                  color: black,
-                                  fontFamily: 'Poppins',
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w300)),
+                          Text(deliveryProvider.distance,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          Text(deliveryProvider.duration,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
                     ],
                   ),
+
                 ],
               ),
             ),
@@ -1287,20 +1241,24 @@ class _OrderDetailsState extends State<OrderDetails> {
               height: 30,
             ),
             trackStatus == "Delivered"
-                ? TextButton(
-                    onPressed: () {
-                      completeOrder();
-                    },
-                    child: Text("COMPLETE".tr),
-                    style: TextButton.styleFrom(
-                        primary: white,
-                        backgroundColor: greenColor,
-                        textStyle: const TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        )),
-                  )
+                ? SizedBox(
+                width: 150,
+                  height: 50,
+                  child: TextButton(
+                      onPressed: () {
+                        completeOrder();
+                      },
+                      child: Text("COMPLETE".tr),
+                      style: TextButton.styleFrom(
+                          primary: white,
+                          backgroundColor: greenColor,
+                          textStyle: const TextStyle(
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          )),
+                    ),
+                )
                 : CustomBtn(
                     bgColor: orange,
                     shadowColor: black,

@@ -724,16 +724,20 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                 Text("Parcel Name".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
-                Text(deliveryProvider.pickParcelName.text.toString()+" (Order)",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
-              ],
-            ),
-            SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                 Text("Weight".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400)),
-                Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Parcel Name".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400),textAlign: TextAlign.start,),
+                    Text("Weight".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w400),textAlign: TextAlign.start,)
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(deliveryProvider.pickParcelName.text.toString()+" (Order)",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                    Text(deliveryProvider.pickParcelWeight.text.toString()+" KG",style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                  ],
+                ),
               ],
             ),
             SizedBox(height: 10,),
@@ -745,6 +749,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Price Order".tr,style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 20,fontWeight: FontWeight.bold)),
                       Text(deliveryProvider.pickPrice.text.toString()+" MNT",style:  TextStyle(color: white,fontFamily: 'Poppins',fontSize: 18,fontWeight: FontWeight.bold)),
@@ -755,27 +760,27 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       width: 3,
                       height: 50,
                       color: black),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Distance".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
-                          SizedBox(width: 10,),
-                          Text(deliveryProvider.distance,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
+                          Text("Time".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
-                      Row(
+                      SizedBox(width: 10,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Time".tr,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
-                          SizedBox(width: 10,),
+                          Text(deliveryProvider.distance,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                           Text(deliveryProvider.duration,style:  TextStyle(color: black,fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.w300)),
                         ],
                       ),
-
-
                     ],
                   ),
+
                 ],
               ),
             ),
@@ -817,9 +822,10 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left:20.0,right: 20),
+              padding: const EdgeInsets.only(left:10.0,right: 10),
               child: Container(
-                padding:  const EdgeInsets.only(left:10),
+                width: 300,
+                padding:  const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     color: Colors.white,
 
@@ -835,26 +841,28 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         Radius.circular(20.0)),
                     border: Border.all(
                         color: const Color(0xfff1d5a9))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+
                   children: [
                     SizedBox(
-                        width: 200,
-                        child: Text("ADD PROMO / GIFT CODE".tr,style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),)),
+                        width: 250,
+                        child: Text("ADD PROMO / GIFT CODE".tr,style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)),
+                  SizedBox(height: 10,),
                     Container(
                       decoration: BoxDecoration(
                         color: orange.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10),
 
                       ),
 
-                      width: 100,
+                      width: 250,
                       child: TextFormField(
                           maxLines: 1,
                           textAlignVertical: TextAlignVertical.top,
                           textAlign: TextAlign.left,
                           style: const TextStyle(
-                            fontSize: 13,
+                            fontFamily: 'Poppins',
+                            fontSize: 15,
                           ),
                           decoration:const InputDecoration(
                             contentPadding: EdgeInsets.only(
@@ -880,7 +888,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             /*isLoading == true? Center(child: CircularProgressIndicator(color: orange,)): */
             CustomBtn( bgColor: orange,
                 shadowColor: black,
-                size: 15,
+                size: 12,
                 text: 'PROCEED TO PAY'.tr,
                 onTap: (){
                   Navigator.push(

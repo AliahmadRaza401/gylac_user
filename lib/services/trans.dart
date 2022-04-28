@@ -44,7 +44,8 @@ class Messages extends Translations {
       'SCHEDULE A NEW \n DELIVERY': 'SCHEDULE A NEW \n DELIVERY',
       'Do you want to Logout?': 'Do you want to Logout?',
       'SUBMIT': 'SUBMIT',
-
+      'Payment Complete': 'Payment Complete',
+      'Your Tracking ID': 'Your Tracking ID',
       'Describe your Issue here': 'Describe your Issue here',
       'Report an issue': 'Report an issue',
       'Enter your Order Id here': 'Enter your Order Id here',
@@ -103,6 +104,14 @@ class Messages extends Translations {
       'How’s Your Order?  Feedback Please': 'How’s Your Order?  Feedback Please',
       'SEND FEEDBACK': 'SEND FEEDBACK',
 
+      'Profile Picture is required':'Profile Picture is required',
+      'Full Name is required':'Full Name is required',
+      'Email is required':'Email is required',
+      'Enter a valid email!':'Enter a valid email!',
+      'Password is required':'Password is required',
+      'Password should be at least six digits.':'Password should be at least six digits.',
+      'Phone number is required': 'Phone number is required',
+
       'PROCEED TO PAY': 'PROCEED TO PAY',
       'ADD PROMO / GIFT CODE': 'ADD PROMO / GIFT CODE',
       'Q PAY': 'Q PAY',
@@ -151,7 +160,6 @@ class Messages extends Translations {
       'Required': 'Required',
       'Please save delivery details': 'Please save delivery details',
       'Pickup Delivery Description is required': 'Pickup Delivery Description is required',
-      'Enter a valid email!': 'Enter a valid email!',
       'Delivery Email is required': 'Delivery Email is required',
       'Delivery Phone is required': 'Delivery Phone is required',
       'Delivery Name is required': 'Delivery Name is required',
@@ -168,6 +176,16 @@ class Messages extends Translations {
 
     },
     'mn_MN': {
+      'Profile Picture is required':'Профайл зураг шаардлагатай',
+      'Full Name is required':'Бүтэн нэр оруулах шаардлагатай',
+      'Email is required':'Имэйл шаардлагатай',
+      'Enter a valid email!':'EХүчинтэй имэйл оруулна уу!',
+      'Password is required':'нууц үг шаардлагатай',
+      'Password should be at least six digits.':'Нууц үг дор хаяж зургаан оронтой байх ёстой.',
+      'Phone number is required': 'Утасны дугаар шаардлагатай',
+      'Payment Complete': 'Төлбөр дууссан',
+      'Your Tracking ID': 'Таны мөрдөх ID',
+
       'Change App Language': 'Програмын хэлийг өөрчлөх',
       'SIGN IN': 'НЭВТРҮҮЛЭХ',
        'OR':'ЭСВЭЛ',
@@ -315,7 +333,6 @@ class Messages extends Translations {
       'Required': 'Шаардлагатай',
       'Please save delivery details': 'Хүргэлтийн мэдээллийг хадгална уу',
       'Pickup Delivery Description is required': 'Хүргэлтийн тодорхойлолт шаардлагатай',
-      'Enter a valid email!': 'Хүчинтэй имэйл оруулна уу!',
       'Delivery Email is required': 'Хүргэлтийн имэйл шаардлагатай',
       'Delivery Phone is required': 'Хүргэлтийн имэйл шаардлагатай',
       'Delivery Name is required': 'Хүргэлтийн нэр шаардлагатай',

@@ -179,7 +179,7 @@ class _PayCardState extends State<PayCard> {
                         height: 20,
                       ),
                       Text(
-                        "Payment Complete",
+                        "Payment Complete".tr,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -190,7 +190,7 @@ class _PayCardState extends State<PayCard> {
                         height: 50,
                       ),
                       Text(
-                        "Your Tracking ID",
+                        "Your Tracking ID".tr,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -279,7 +279,7 @@ class _PayCardState extends State<PayCard> {
                 CustomCardTypeIcon(
                   cardType: CardType.mastercard,
                   cardImage: Image.asset(
-                    'assets/mastercard.png',
+                    'assets/images/master.png',
                     height: 48,
                     width: 48,
                   ),

@@ -162,16 +162,16 @@ class _LoginState extends State<Login> {
                                   text: "LOGIN".tr,
                                   onTap: () {
                                     if (emailCtl.text.isEmpty) {
-                                      ToastUtils.showWarningToast(context, "Required", "Email is required");
+                                      ToastUtils.showWarningToast(context, "Required".tr, "Email is required".tr);
                                     }
                                     else if(RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailCtl.text) == false){
-                                      ToastUtils.showWarningToast(context, "Error", "Enter a valid email!");
+                                      ToastUtils.showWarningToast(context, "Error".tr, "Enter a valid email!".tr);
                                     }
                                     else if (passwordCtl.text.isEmpty) {
-                                      ToastUtils.showWarningToast(context, "Required", "Password is required");
+                                      ToastUtils.showWarningToast(context, "Required".tr, "Password is required".tr);
                                     }
                                     else if (passwordCtl.text.length < 6) {
-                                      ToastUtils.showWarningToast(context, "Error", "Password should be at least six digits.");
+                                      ToastUtils.showWarningToast(context, "Error".tr, "Password should be at least six digits.".tr);
                                     }
 
                                     else{
