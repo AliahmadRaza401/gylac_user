@@ -117,7 +117,7 @@ class _LoginState extends State<Login> {
                             ),
                             controller: passwordCtl,
                           ),
-                          Row(
+                         /* Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               TextButton(
@@ -148,7 +148,7 @@ class _LoginState extends State<Login> {
                                 },
                               )
                             ],
-                          ),
+                          ),*/
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Column(
