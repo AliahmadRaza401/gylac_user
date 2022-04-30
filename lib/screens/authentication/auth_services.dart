@@ -55,12 +55,13 @@ class AuthServices {
 
           break;
         case "user-disabled":
-          ToastUtils.showErrorToast(
-              context, "Error".tr, "User with this email has been disabled.".tr);
+          ToastUtils.showErrorToast(context, "Error".tr,
+              "User with this email has been disabled.".tr);
 
           break;
         case "too-many-requests":
-          ToastUtils.showErrorToast(context, "Error".tr, "Too many requests".tr);
+          ToastUtils.showErrorToast(
+              context, "Error".tr, "Too many requests".tr);
 
           break;
         case "operation-not-allowed":
@@ -73,7 +74,6 @@ class AuthServices {
               context, "Error".tr, "An undefined Error happened".tr);
       }
       _loadingProvider.setLoading(false);
-
 
       return "false";
     }
@@ -94,11 +94,14 @@ class AuthServices {
                 pref.setString("userId", _auth.currentUser!.uid),
                 postDetailsToFirestore(context, fullName, email, mobilenumber,
                     password, imageFile),
-              })
-          .catchError((e) {
-        _loadingProvider.setLoading(false);
-      });
+              });
+      //     .catchError((e) {
+      //   print('e: $e');
+      //   _loadingProvider.setLoading(false);
+      // });
     } on FirebaseAuthException catch (error) {
+      print('error: $error');
+      print('error.code): ${error.code})');
       switch (error.code) {
         case "invalid-email":
           ToastUtils.showErrorToast(
@@ -115,8 +118,8 @@ class AuthServices {
 
           break;
         case "user-disabled":
-          ToastUtils.showErrorToast(
-              context, "Error".tr, "User with this email has been disabled.".tr);
+          ToastUtils.showErrorToast(context, "Error".tr,
+              "User with this email has been disabled.".tr);
 
           break;
         case "too-many-requests":
