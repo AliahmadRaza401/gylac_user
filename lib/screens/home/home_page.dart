@@ -240,6 +240,7 @@ class _HomePageState extends State<HomePage> {
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                       maxCrossAxisExtent: 200,
                                       mainAxisExtent: 150,
+                                      crossAxisSpacing: 5,
                                       childAspectRatio: 2 / 2,),
                                   itemCount: orders.length,
                                   itemBuilder: (BuildContext ctx, index) {
@@ -247,12 +248,7 @@ class _HomePageState extends State<HomePage> {
 
                                         decoration: BoxDecoration(
                                           border: Border.all(color: stroke, width: 1),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                offset: const Offset(2, 3),
-                                                blurRadius: 5,
-                                                color: black.withOpacity(0.25))
-                                          ],
+
                                           borderRadius: BorderRadius.circular(10),
                                           color: white,
                                         ),
