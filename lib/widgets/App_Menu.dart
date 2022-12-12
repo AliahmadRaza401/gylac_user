@@ -240,14 +240,14 @@ class _AppMenuState extends State<AppMenu> {
   }
 
   showAlertDialog(BuildContext context) {
-    Widget okButton = FlatButton(
+    Widget okButton = ElevatedButton(
       child: Text("Ok".tr),
       onPressed: () {
         handleSignOut();
       },
     );
 
-    Widget noButton = FlatButton(
+    Widget noButton = ElevatedButton(
       child: Text("Cancel".tr),
       onPressed: () {
         Navigator.of(context).pop();

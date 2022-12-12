@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:io';
+import 'dart:io'; 
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,7 +51,7 @@ Future<void> main() async {
   //     AwesomeNotifications().requestPermissionToSendNotifications();
   //   }
   // });
-  // FirebaseMessaging.onBackgroundMessage((backgroundHandler));
+  // FirebaseMessaging.onBackgroundMessage((backgroundHandler));     
 
   runApp(const MyApp());
 }
@@ -134,7 +134,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(1080, 2280),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: () {
+        builder: (_ , context)  {
           return MultiProvider(
               providers: multiProvider,
               child: GetMaterialApp(

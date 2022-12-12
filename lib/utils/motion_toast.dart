@@ -8,7 +8,7 @@ class MyMotionToast {
       title: title,
       description: desc,
       width: 300,
-      animationType: ANIMATION.fromLeft,
+      // animationType: ANIMATION.fromLeft,
     ).show(context);
   }
 
@@ -17,7 +17,7 @@ class MyMotionToast {
       title: title,
       description: desc,
       width: 300,
-      animationType:  ANIMATION.fromLeft,
+      // animationType:  ANIMATION.fromLeft,
     ).show(context);
   }
 
@@ -26,7 +26,7 @@ class MyMotionToast {
       title: title,
       description: desc,
       width: 300,
-      animationType:  ANIMATION.fromLeft,
+      // animationType:  ANIMATION.fromLeft,
     ).show(context);
   }
 
@@ -35,7 +35,7 @@ class MyMotionToast {
       title: title,
       description: desc,
       width: 300,
-      animationType:  ANIMATION.fromLeft,
+      // animationType:  ANIMATION.fromLeft,
     ).show(context);
   }
 
@@ -44,7 +44,7 @@ class MyMotionToast {
       title: title,
       description: desc,
       width: 300,
-      animationType:  ANIMATION.fromLeft,
+      // animationType:  ANIMATION.fromLeft,
     ).show(context);
   }
 }

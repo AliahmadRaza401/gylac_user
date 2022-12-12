@@ -9,9 +9,9 @@ import '../utils/app_colors.dart';
 Widget customButton(BuildContext context, title, Function onPress) {
   return SizedBox(
     width: MediaQuery.of(context).size.width * 0.5,
-    child: RaisedButton(
-      color: Colors.black,
-      textColor: Colors.white,
+    child: ElevatedButton(
+     style: ButtonStyle(
+     ),
       child: SizedBox(
         height: 60.0,
         child: Center(
@@ -23,9 +23,9 @@ Widget customButton(BuildContext context, title, Function onPress) {
           ),
         )),
       ),
-      shape:  RoundedRectangleBorder(
-        borderRadius:  BorderRadius.circular(10.0),
-      ),
+      // shape:  RoundedRectangleBorder(
+      //   borderRadius:  BorderRadius.circular(10.0),
+      // ),
       onPressed: onPress(),
     ),
   );

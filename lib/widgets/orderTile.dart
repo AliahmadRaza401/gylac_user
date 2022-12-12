@@ -35,7 +35,7 @@ class OrderTile extends StatelessWidget
           Divider(),
               SingleChildScrollView(
               child:ListTile(
-                leading:  FlatButton.icon(
+                leading:  ElevatedButton.icon(
                     onPressed: () async {
                    
                     },
@@ -68,7 +68,7 @@ class OrderTile extends StatelessWidget
               Divider(),
               SingleChildScrollView(
               child:ListTile(
-                leading:FlatButton.icon(
+                leading:ElevatedButton.icon(
                     onPressed: () async {
                    
                     },
@@ -94,11 +94,11 @@ class OrderTile extends StatelessWidget
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  FlatButton.icon(
+                  ElevatedButton.icon(
                       onPressed: null,
                       icon: Icon(Icons.flag),
                       label: Text('Accepted Price Offer :',style: TextStyle(fontWeight:FontWeight.bold,color: Colors.black54),)),
-                  FlatButton.icon(
+                  ElevatedButton.icon(
                       onPressed: null,
                       icon: Image.asset("assets/images/money.png",height: 20,width: 20,),
                       label: Text(
@@ -116,14 +116,14 @@ class OrderTile extends StatelessWidget
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  RaisedButton(
+                  ElevatedButton(
                     child:Center(child: Text("View Details",
                     style: TextStyle(fontSize: 16.0,fontFamily: "Brand-Bold",color: Colors.black),
                     )),
-                    shape:  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(28.0),
-                    ),
-                    color: Color.fromRGBO(251, 176, 59,1),
+                    // shape:  RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(28.0),
+                    // ),
+                    // color: Color.fromRGBO(251, 176, 59,1),
                     onPressed: () async {
 
                     },
