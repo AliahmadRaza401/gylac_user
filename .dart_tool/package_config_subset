@@ -1,5 +1,5 @@
 gyalcuser_project
-2.16
+2.15
 file:///C:/Users/PC-01/Documents/Flutter%20projects/Local/gylac_user/
 file:///C:/Users/PC-01/Documents/Flutter%20projects/Local/gylac_user/lib/
 _flutterfire_internals
@@ -466,6 +466,10 @@ petitparser
 2.16
 file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/petitparser-5.0.0/
 file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/petitparser-5.0.0/lib/
+pinput
+2.12
+file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/pinput-2.2.19/
+file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/pinput-2.2.19/lib/
 platform
 2.12
 file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0/
@@ -526,6 +530,10 @@ shared_preferences_windows
 2.12
 file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.1.1/
 file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.1.1/lib/
+smart_auth
+2.16
+file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/smart_auth-1.0.6/
+file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/smart_auth-1.0.6/lib/
 source_span
 2.14
 file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/source_span-1.9.0/

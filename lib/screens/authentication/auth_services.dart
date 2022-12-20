@@ -94,11 +94,11 @@ class AuthServices {
                 pref.setString("userId", _auth.currentUser!.uid),
                 postDetailsToFirestore(context, fullName, email, mobilenumber,
                     password, imageFile),
-              });
-      //     .catchError((e) {
-      //   print('e: $e');
-      //   _loadingProvider.setLoading(false);
-      // });
+              })
+          .catchError((e) {
+        print('e: $e');
+        _loadingProvider.setLoading(false);
+      });
     } on FirebaseAuthException catch (error) {
       print('error: $error');
       print('error.code): ${error.code})');

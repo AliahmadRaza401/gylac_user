@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:io'; 
+import 'dart:io';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
 import 'package:gyalcuser_project/providers/multi_provider.dart';
+import 'package:gyalcuser_project/screens/authentication/otp.dart';
+import 'package:gyalcuser_project/screens/authentication/otp_verify.dart';
 import 'package:gyalcuser_project/screens/pay/payCard.dart';
 import 'package:gyalcuser_project/screens/splashscreen.dart';
 import 'package:gyalcuser_project/services/fcm_services.dart';
@@ -51,7 +53,7 @@ Future<void> main() async {
   //     AwesomeNotifications().requestPermissionToSendNotifications();
   //   }
   // });
-  // FirebaseMessaging.onBackgroundMessage((backgroundHandler));     
+  // FirebaseMessaging.onBackgroundMessage((backgroundHandler));
 
   runApp(const MyApp());
 }
@@ -134,7 +136,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(1080, 2280),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (_ , context)  {
+        builder: (_, context) {
           return MultiProvider(
               providers: multiProvider,
               child: GetMaterialApp(
@@ -148,7 +150,8 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                   primarySwatch: Colors.yellow,
                 ),
-                home: const Splash(),
+                home:
+                const Splash(),
               ));
         });
   }

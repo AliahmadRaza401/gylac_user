@@ -2,11 +2,14 @@
 
 import 'dart:io';
 
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
 import 'package:gyalcuser_project/providers/loading_provider.dart';
 import 'package:gyalcuser_project/screens/authentication/Login/login.dart';
 import 'package:gyalcuser_project/screens/authentication/auth_services.dart';
+import 'package:gyalcuser_project/screens/authentication/otp_verify.dart';
 import 'package:gyalcuser_project/services/image_piker.dart';
 import 'package:gyalcuser_project/widgets/custom_btn.dart';
 import 'package:gyalcuser_project/widgets/custom_textfield.dart';
@@ -36,6 +39,7 @@ class _SignUpState extends State<SignUp> {
 
   File? _image;
   String? imageUrl;
+  CountryCode countryCode = CountryCode.fromDialCode('+92');
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                             Padding(
                               padding: EdgeInsets.only(
                                   bottom:
-                                  MediaQuery.of(context).size.width * 0.04),
+                                      MediaQuery.of(context).size.width * 0.04),
                               child: Text("Please signup to continue".tr,
                                   style: TextStyle(
                                       color: orange,
@@ -95,13 +99,13 @@ class _SignUpState extends State<SignUp> {
                                     width: MediaQuery.of(context).size.width *
                                         0.27,
                                     decoration: BoxDecoration(
-                                      // borderRadius: BorderRadius.circular(25),
+                                        // borderRadius: BorderRadius.circular(25),
                                         color: orange,
                                         shape: BoxShape.circle,
                                         boxShadow: [
                                           BoxShadow(
                                             color:
-                                            Colors.black.withOpacity(0.9),
+                                                Colors.black.withOpacity(0.9),
                                             blurRadius: 7,
                                             offset: const Offset(0, 6),
                                           ),
@@ -109,55 +113,55 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   _image != null
                                       ? Container(
-                                    height: MediaQuery.of(context)
-                                        .size
-                                        .height *
-                                        0.12,
-                                    width: MediaQuery.of(context)
-                                        .size
-                                        .width *
-                                        0.27,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(25),
-                                      image: DecorationImage(
-                                        image: FileImage(_image!),
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                    child:
-                                    null /* add child content here */,
-                                  )
-                                  // ClipOval(
-                                  //     child: Image.file(
-                                  //       _image!,
-                                  //       fit: BoxFit.fill,
-                                  //       height: MediaQuery.of(context)
-                                  //               .size
-                                  //               .height *
-                                  //           0.12,
-                                  //       width: MediaQuery.of(context)
-                                  //               .size
-                                  //               .width *
-                                  //           0.25,
-                                  //     ),
-                                  //   )
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.12,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.27,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            image: DecorationImage(
+                                              image: FileImage(_image!),
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                          child:
+                                              null /* add child content here */,
+                                        )
+                                      // ClipOval(
+                                      //     child: Image.file(
+                                      //       _image!,
+                                      //       fit: BoxFit.fill,
+                                      //       height: MediaQuery.of(context)
+                                      //               .size
+                                      //               .height *
+                                      //           0.12,
+                                      //       width: MediaQuery.of(context)
+                                      //               .size
+                                      //               .width *
+                                      //           0.25,
+                                      //     ),
+                                      //   )
                                       : Image.asset(
-                                    "assets/images/Camera.png",
-                                    height: MediaQuery.of(context)
-                                        .size
-                                        .height *
-                                        0.12,
-                                    width: MediaQuery.of(context)
-                                        .size
-                                        .width *
-                                        0.17,
-                                  )
+                                          "assets/images/Camera.png",
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.12,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.17,
+                                        )
                                 ],
                               ),
                               SizedBox(
                                 width:
-                                MediaQuery.of(context).size.width * 0.035,
+                                    MediaQuery.of(context).size.width * 0.035,
                               ),
                               Text("Add Profile Picture".tr,
                                   style: TextStyle(
@@ -249,18 +253,71 @@ class _SignUpState extends State<SignUp> {
                                     fontSize: 18)),
                           ],
                         ),
-                        CustomTextField(
-                          hint: "XXX-XXX-XXXX",
-                          text: TextInputType.number,
-                          prefixIcon: Icon(
-                            Icons.phone,
-                            color: lightGrey,
-                          ),
-                          controller: phoneCtl,
-                        ),
+                        // CustomTextField(
+                        //   hint: "XXX-XXX-XXXX",
+                        //   text: TextInputType.number,
+                        //   prefixIcon: Icon(
+                        //     Icons.phone,
+                        //     color: lightGrey,
+                        //   ),
+                        //   controller: phoneCtl,
+                        // ),
+                        TextFormField(
+                            controller: phoneCtl,
+                            textAlignVertical: TextAlignVertical.center,
+                            textAlign: TextAlign.left,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              fontFamily: 'Poppins',
+                            ),
+                            keyboardType: TextInputType.number,
+                            validator: MultiValidator([]),
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(
+                                top: MediaQuery.of(context).size.height *
+                                    0.01, // HERE THE IMPORTANT PART
+                              ),
+
+                              prefixIcon: SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.03,
+                                child: CountryCodePicker(
+                                  textOverflow: TextOverflow.visible,
+                                  padding: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height *
+                                        0.003,
+                                    bottom: MediaQuery.of(context).size.height *
+                                        0.006,
+                                  ),
+                                  onChanged: (code) {
+                                    countryCode = code;
+                                  },
+                                  initialSelection: countryCode.dialCode,
+                                  // optional. Shows only country name and flag
+                                  showCountryOnly: true,
+                                  // optional. Shows only country name and flag when popup is closed.
+                                  showOnlyCountryWhenClosed: false,
+                                  // optional. aligns the flag and the Text left
+                                  alignLeft: false,
+                                ),
+                              ),
+                              labelStyle: const TextStyle(),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: orange),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: orange),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: orange),
+                              ),
+                              hintText: "XXX-XXX-XXX",
+                              // labelText:"Your Name"
+                            )),
                         Padding(
                           padding:
-                          const EdgeInsets.only(left: 10.0, right: 10.0),
+                              const EdgeInsets.only(left: 10.0, right: 10.0),
                           child: Column(
                             children: [
                               const SizedBox(
@@ -269,56 +326,69 @@ class _SignUpState extends State<SignUp> {
                               loading
                                   ? CircularProgressIndicator()
                                   : CustomBtn(
-                                text: "SIGN UP".tr,
-                                onTap: () {
-                                  if (_image == null) {
-                                    ToastUtils.showWarningToast(
-                                        context,
-                                        "Required".tr,
-                                        "Profile Picture is required".tr);
-                                  } else if (nameCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(
-                                        context,
-                                        "Required".tr,
-                                        "Full Name is required".tr);
-                                  } else if (emailCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(context,
-                                        "Required".tr, "Email is required".tr);
-                                  } else if (RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                      .hasMatch(emailCtl.text) ==
-                                      false) {
-                                    ToastUtils.showWarningToast(context,
-                                        "Error".tr, "Enter a valid email!".tr);
-                                  } else if (passwordCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(
-                                        context,
-                                        "Required".tr,
-                                        "Password is required".tr);
-                                  } else if (passwordCtl.text.length <
-                                      6) {
-                                    ToastUtils.showWarningToast(
-                                        context,
-                                        "Error".tr,
-                                        "Password should be at least six digits.".tr);
-                                  } else if (phoneCtl.text.isEmpty) {
-                                    ToastUtils.showWarningToast(
-                                        context,
-                                        "Error".tr,
-                                        "Phone number is required".tr);
-                                  } else {
-                                    AuthServices.signUp(
-                                        context,
-                                        emailCtl.text,
-                                        passwordCtl.text,
-                                        nameCtl.text,
-                                        phoneCtl.text,
-                                        _image);
-                                  }
-                                },
-                                bgColor: orange,
-                                shadowColor: black,
-                              ),
+                                      text: "SIGN UP".tr,
+                                      onTap: () {
+                                        if (_image == null) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Required".tr,
+                                              "Profile Picture is required".tr);
+                                        } else if (nameCtl.text.isEmpty) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Required".tr,
+                                              "Full Name is required".tr);
+                                        } else if (emailCtl.text.isEmpty) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Required".tr,
+                                              "Email is required".tr);
+                                        } else if (RegExp(
+                                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                .hasMatch(emailCtl.text) ==
+                                            false) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Error".tr,
+                                              "Enter a valid email!".tr);
+                                        } else if (passwordCtl.text.isEmpty) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Required".tr,
+                                              "Password is required".tr);
+                                        } else if (passwordCtl.text.length <
+                                            6) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Error".tr,
+                                              "Password should be at least six digits."
+                                                  .tr);
+                                        } else if (phoneCtl.text.isEmpty) {
+                                          ToastUtils.showWarningToast(
+                                              context,
+                                              "Error".tr,
+                                              "Phone number is required".tr);
+                                        } else {
+                                          print(
+                                              "${countryCode.dialCode}${phoneCtl.text.toString()}");
+                                          AppRoutes.push(
+                                            context,
+                                            OtpVerify(
+                                              mobileNumber:
+                                                  "${countryCode.dialCode}${phoneCtl.text.trim().toString()}",
+                                              passwordCtl:
+                                                  passwordCtl.text.toString(),
+                                              emailCtl:
+                                                  emailCtl.text.toString(),
+                                              image: _image,
+                                              nameCtl: nameCtl.text.toString(),
+                                            ),
+                                          );
+                                        }
+                                      },
+                                      bgColor: orange,
+                                      shadowColor: black,
+                                    ),
                               const SizedBox(
                                 height: 10.0,
                               ),

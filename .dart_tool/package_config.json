@@ -716,6 +716,12 @@
       "languageVersion": "2.16"
     },
     {
+      "name": "pinput",
+      "rootUri": "file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/pinput-2.2.19",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0",
       "packageUri": "lib/",
@@ -810,6 +816,12 @@
       "rootUri": "file:///C:/flutter3.3.5/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "smart_auth",
+      "rootUri": "file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/smart_auth-1.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
     },
     {
       "name": "source_span",
@@ -1007,10 +1019,10 @@
       "name": "gyalcuser_project",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-12-12T16:05:28.678580Z",
+  "generated": "2022-12-20T12:09:22.231332Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }
