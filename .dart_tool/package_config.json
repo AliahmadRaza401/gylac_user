@@ -758,6 +758,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "qr",
+      "rootUri": "file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/qr-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "qr_flutter",
+      "rootUri": "file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/qr_flutter-4.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "rxdart",
       "rootUri": "file:///C:/flutter3.3.5/.pub-cache/hosted/pub.dartlang.org/rxdart-0.26.0",
       "packageUri": "lib/",
@@ -1022,7 +1034,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-12-20T12:09:22.231332Z",
+  "generated": "2022-12-21T06:36:12.441904Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }

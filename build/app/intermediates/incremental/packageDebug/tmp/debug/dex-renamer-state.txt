@@ -1,4 +1,4 @@
-#Tue Dec 20 16:43:16 PKT 2022
+#Wed Dec 21 11:42:10 PKT 2022
 path.4=classes_1.dex
 path.3=classes_0.dex
 path.2=classes2.dex
@@ -19,12 +19,14 @@ base.8=C\:\\Users\\PC-01\\Documents\\Flutter projects\\Local\\gylac_user\\build\
 base.7=C\:\\Users\\PC-01\\Documents\\Flutter projects\\Local\\gylac_user\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_12.dex
 base.6=C\:\\Users\\PC-01\\Documents\\Flutter projects\\Local\\gylac_user\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_11.dex
 base.5=C\:\\Users\\PC-01\\Documents\\Flutter projects\\Local\\gylac_user\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_10.dex
+renamed.26=classes27.dex
 renamed.25=classes26.dex
 renamed.24=classes25.dex
 renamed.23=classes24.dex
 renamed.22=classes23.dex
 renamed.21=classes22.dex
 renamed.20=classes21.dex
+base.26=C\:\\Users\\PC-01\\Documents\\Flutter projects\\Local\\gylac_user\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_23.dex
 base.25=C\:\\Users\\PC-01\\Documents\\Flutter projects\\Local\\gylac_user\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_9.dex
 renamed.18=classes19.dex
 renamed.17=classes18.dex
@@ -77,3 +79,4 @@ path.24=classes_8.dex
 path.21=classes_5.dex
 path.22=classes_6.dex
 path.25=classes_9.dex
+path.26=classes_23.dex

@@ -1,24 +1,24 @@
 -- Merging decision tree log ---
 application
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml:12:4-48:19
+MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-46:19
+MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-46:19
 MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-46:19
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-46:19
 MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
 MERGED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-21:19
+MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-21:19
 MERGED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
 MERGED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
 MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-34:19
 MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-34:19
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-21:19
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-21:19
 MERGED from [:url_launcher_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:url_launcher_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
 MERGED from [:location] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-16:19
@@ -41,16 +41,18 @@ MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.grad
 MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:15:5-23:19
 MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:28:5-36:19
 MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:13:5-21:19
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:13:5-21:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\838ff7ac3147fa199ccf993940eb39ff\jetified-firebase-appcheck-interop-16.1.0\AndroidManifest.xml:23:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\838ff7ac3147fa199ccf993940eb39ff\jetified-firebase-appcheck-interop-16.1.0\AndroidManifest.xml:23:5-20
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:13:5-21:19
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:13:5-21:19
 MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:24:5-37:19
 MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:24:5-37:19
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e06843dc6fdda85992c3abc82d2ecf97\jetified-play-services-location-20.0.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e06843dc6fdda85992c3abc82d2ecf97\jetified-play-services-location-20.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3a4faba203a928b5d76f555363c83720\jetified-play-services-maps-18.1.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3a4faba203a928b5d76f555363c83720\jetified-play-services-maps-18.1.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b9f3ea16de2ef1ca92c5362ec604ec66\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
@@ -85,29 +87,30 @@ INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml:1:1-49:12
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml:1:1-49:12
 MERGED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml:1:1-49:12
+MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-48:12
 MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-48:12
 MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-17:12
-MERGED from [:google_maps_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_maps_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-23:12
+MERGED from [:path_provider_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:smart_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\smart_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:geocoding] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:fluttertoast] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:google_maps_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_maps_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-36:12
 MERGED from [:sqflite] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-23:12
 MERGED from [:url_launcher_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
-MERGED from [:path_provider_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:image_cropper] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_cropper\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:webview_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\webview_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:shared_preferences_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:geocoding] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:permission_handler_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\permission_handler_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:google_api_headers] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_api_headers\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:package_info_plus] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\package_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:fluttertoast] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:location] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-18:12
-MERGED from [:permission_handler] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\permission_handler\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a3b86b42fafb2019c6d99a912992ce19\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cea45e25bbe77c9713c39e234ccfd7bd\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:17:1-61:12
@@ -119,18 +122,20 @@ MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\PC-01\.gradle\ca
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d0f01ff34f6d818a3748639226f680c3\jetified-firebase-iid-21.1.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:2:1-25:12
 MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:2:1-23:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\838ff7ac3147fa199ccf993940eb39ff\jetified-firebase-appcheck-interop-16.1.0\AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:2:1-23:12
 MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:15:1-39:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\6534af80ea69458d53cb0dd678c6b311\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.media:media:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\261f9a12cf31eae325b98d4bd1c59132\media-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ba93c7c48cad8471100eb51ea3cded63\webkit-1.5.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3c410aa6c5f4e392932073a5fb9ebace\jetified-core-ktx-1.3.2\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e06843dc6fdda85992c3abc82d2ecf97\jetified-play-services-location-20.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\99918af318d4ffe919410f410117c4c7\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3a4faba203a928b5d76f555363c83720\jetified-play-services-maps-18.1.0\AndroidManifest.xml:17:1-44:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2791dd4c86ddc79eabd51101f24ba2c0\jetified-play-services-auth-base-18.0.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b0bd26d975251e4d3f9a8e50f0fd17fe\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\1579bd1641f52804fc09caeaeac50d9c\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b9f3ea16de2ef1ca92c5362ec604ec66\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\1c0769389455a4c14b7a50bc2530cb4a\jetified-play-services-base-18.0.1\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5cfb5df7c49ac7463a57617d7b6b50c7\jetified-play-services-cloud-messaging-17.0.1\AndroidManifest.xml:2:1-13:12
@@ -144,11 +149,11 @@ MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\PC-01\.gradl
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\55efa78fe7dd5340c3b16a9e76ef0926\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.yalantis:ucrop:2.2.8] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e4db5c5884b9289a1a110019ddc92595\jetified-ucrop-2.2.8\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.3.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3123524c34cf687bedd71be9da61301e\appcompat-1.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3e9722aa3fdaa7d8684554fbffe1633e\fragment-1.3.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e76984245f77d39c38f4d76388592dc0\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.transition:transition:1.4.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\8dc193f67504789a029ccea9a8775bae\transition-1.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e220a32ca2be066bb9a75eda3346b92d\browser-1.4.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3e9722aa3fdaa7d8684554fbffe1633e\fragment-1.3.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b4f7568fea2f511d767829dd5b644d2f\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e76984245f77d39c38f4d76388592dc0\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5cf36af8c665794dec2262fc6fa16b40\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ce3fae280668b0503a293c526ec9328a\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\aee3a20ed22eaa6ce58c2a70407c377c\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -160,29 +165,29 @@ MERGED from [androidx.appcompat:appcompat-resources:1.3.0] C:\Users\PC-01\.gradl
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\8326c47e01397eb9a2d35c3fa1830738\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2e35710d9bc3dfbe7276716a42af0cbd\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.8.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\340f73096e343129323054dd621e22bf\core-1.8.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5207bda71f4b770de384fb6272cae428\exifinterface-1.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\30e395a9819e4f870e561ef921a4cc7f\localbroadcastmanager-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-reactivestreams:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\29d97dd1ad78f598b2e628eb11c5268f\lifecycle-reactivestreams-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5207bda71f4b770de384fb6272cae428\exifinterface-1.3.3\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3b4820e24d46e21c89efa32f5c2d6e2e\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\91069c37d0e5a9ec6113f6ce54987fa2\jetified-firebase-components-17.0.1\AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\7b47effd44ff0d2b694f0c9e1773a4ba\jetified-lifecycle-service-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c8266272493d97b2aa6580f532a7f85b\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:17:1-32:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\bfe836fbdf895e44b7f6ff7103bf792d\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0bd53d61454f05a360ed50c12e1c0f57\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ec6296229eae19dc5c3c5881dab00540\jetified-transport-api-3.0.0\AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d6a4d71848ebda4fbc33bac1c9a9cb92\lifecycle-livedata-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\03faaaf442c9d720483fba49eda29474\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\8a1943dff77cb4b9be347b2342a8106d\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0bde3428b781ba2a04c058142e16310e\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b7a7d62cdfec9b5c5710973fabb741e8\jetified-savedstate-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ec6296229eae19dc5c3c5881dab00540\jetified-transport-api-3.0.0\AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\597222039f0715c7401267f68f1f9e7c\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c5fc0789798e34bd45f9039f964c33eb\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e8863814c459b83896fb72460c5f5555\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c08dcac29cefcadf912758ee4601aef8\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\13ba3a2d390e92c714ad608cae0b18ad\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [io.grpc:grpc-android:1.48.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3f81e231c39d3dd0027308eede4b4699\jetified-grpc-android-1.48.1\AndroidManifest.xml:2:1-11:12
-MERGED from [me.leolin:ShortcutBadger:1.1.22] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\df0c433d4cfb40f94cae026bc8211e0c\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:2:1-52:12
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\f0be151bd9c905293ae08084c4dfc4b8\jetified-threetenabp-1.2.3\AndroidManifest.xml:2:1-9:12
+MERGED from [me.leolin:ShortcutBadger:1.1.22] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\df0c433d4cfb40f94cae026bc8211e0c\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:2:1-52:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\7e5cb6c6f9437da119823e44c35d9b10\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2341977d1a91ba1cfe2b6d080a2fe8a6\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -226,52 +231,54 @@ uses-sdk
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\main\AndroidManifest.xml
+MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_maps_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_maps_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:smart_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\smart_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:smart_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\smart_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:geocoding] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:geocoding] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:fluttertoast] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_maps_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_maps_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:url_launcher_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_cropper] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_cropper\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_cropper] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_cropper\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:webview_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\webview_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:webview_flutter_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\webview_flutter_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:geocoding] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:geocoding] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geocoding\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\permission_handler_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\permission_handler_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:google_api_headers] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_api_headers\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:google_api_headers] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\google_api_headers\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:package_info_plus] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\package_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:package_info_plus] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\package_info_plus\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:fluttertoast] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:fluttertoast] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:location] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:location] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\location\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:permission_handler] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\permission_handler\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:permission_handler] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\permission_handler\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a3b86b42fafb2019c6d99a912992ce19\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a3b86b42fafb2019c6d99a912992ce19\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cea45e25bbe77c9713c39e234ccfd7bd\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
@@ -294,12 +301,12 @@ MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.grad
 MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\838ff7ac3147fa199ccf993940eb39ff\jetified-firebase-appcheck-interop-16.1.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\838ff7ac3147fa199ccf993940eb39ff\jetified-firebase-appcheck-interop-16.1.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c0fc708caaa4589bc487805750ad8901\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\6534af80ea69458d53cb0dd678c6b311\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
@@ -312,12 +319,16 @@ MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\PC-01\.gradle\caches\transfo
 MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3c410aa6c5f4e392932073a5fb9ebace\jetified-core-ktx-1.3.2\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e06843dc6fdda85992c3abc82d2ecf97\jetified-play-services-location-20.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:20.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e06843dc6fdda85992c3abc82d2ecf97\jetified-play-services-location-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\99918af318d4ffe919410f410117c4c7\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\99918af318d4ffe919410f410117c4c7\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3a4faba203a928b5d76f555363c83720\jetified-play-services-maps-18.1.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3a4faba203a928b5d76f555363c83720\jetified-play-services-maps-18.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2791dd4c86ddc79eabd51101f24ba2c0\jetified-play-services-auth-base-18.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2791dd4c86ddc79eabd51101f24ba2c0\jetified-play-services-auth-base-18.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b0bd26d975251e4d3f9a8e50f0fd17fe\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b0bd26d975251e4d3f9a8e50f0fd17fe\jetified-firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\1579bd1641f52804fc09caeaeac50d9c\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\1579bd1641f52804fc09caeaeac50d9c\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b9f3ea16de2ef1ca92c5362ec604ec66\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b9f3ea16de2ef1ca92c5362ec604ec66\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\1c0769389455a4c14b7a50bc2530cb4a\jetified-play-services-base-18.0.1\AndroidManifest.xml:18:5-43
@@ -344,16 +355,16 @@ MERGED from [com.github.yalantis:ucrop:2.2.8] C:\Users\PC-01\.gradle\caches\tran
 MERGED from [com.github.yalantis:ucrop:2.2.8] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e4db5c5884b9289a1a110019ddc92595\jetified-ucrop-2.2.8\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat:1.3.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3123524c34cf687bedd71be9da61301e\appcompat-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.3.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3123524c34cf687bedd71be9da61301e\appcompat-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3e9722aa3fdaa7d8684554fbffe1633e\fragment-1.3.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3e9722aa3fdaa7d8684554fbffe1633e\fragment-1.3.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e76984245f77d39c38f4d76388592dc0\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e76984245f77d39c38f4d76388592dc0\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.transition:transition:1.4.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\8dc193f67504789a029ccea9a8775bae\transition-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.transition:transition:1.4.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\8dc193f67504789a029ccea9a8775bae\transition-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e220a32ca2be066bb9a75eda3346b92d\browser-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e220a32ca2be066bb9a75eda3346b92d\browser-1.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3e9722aa3fdaa7d8684554fbffe1633e\fragment-1.3.4\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3e9722aa3fdaa7d8684554fbffe1633e\fragment-1.3.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b4f7568fea2f511d767829dd5b644d2f\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b4f7568fea2f511d767829dd5b644d2f\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e76984245f77d39c38f4d76388592dc0\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\e76984245f77d39c38f4d76388592dc0\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5cf36af8c665794dec2262fc6fa16b40\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5cf36af8c665794dec2262fc6fa16b40\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ce3fae280668b0503a293c526ec9328a\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
@@ -376,12 +387,12 @@ MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\PC-01\.gradl
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2e35710d9bc3dfbe7276716a42af0cbd\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.8.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\340f73096e343129323054dd621e22bf\core-1.8.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.8.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\340f73096e343129323054dd621e22bf\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5207bda71f4b770de384fb6272cae428\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5207bda71f4b770de384fb6272cae428\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\30e395a9819e4f870e561ef921a4cc7f\localbroadcastmanager-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\30e395a9819e4f870e561ef921a4cc7f\localbroadcastmanager-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-reactivestreams:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\29d97dd1ad78f598b2e628eb11c5268f\lifecycle-reactivestreams-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-reactivestreams:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\29d97dd1ad78f598b2e628eb11c5268f\lifecycle-reactivestreams-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5207bda71f4b770de384fb6272cae428\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.exifinterface:exifinterface:1.3.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5207bda71f4b770de384fb6272cae428\exifinterface-1.3.3\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3b4820e24d46e21c89efa32f5c2d6e2e\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3b4820e24d46e21c89efa32f5c2d6e2e\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-components:17.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\91069c37d0e5a9ec6113f6ce54987fa2\jetified-firebase-components-17.0.1\AndroidManifest.xml:19:5-21:41
@@ -394,6 +405,8 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\PC-01\.gradle\
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\bfe836fbdf895e44b7f6ff7103bf792d\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0bd53d61454f05a360ed50c12e1c0f57\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0bd53d61454f05a360ed50c12e1c0f57\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ec6296229eae19dc5c3c5881dab00540\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ec6296229eae19dc5c3c5881dab00540\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d6a4d71848ebda4fbc33bac1c9a9cb92\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d6a4d71848ebda4fbc33bac1c9a9cb92\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\03faaaf442c9d720483fba49eda29474\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
@@ -404,8 +417,6 @@ MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\PC-01\.gradle\cache
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0bde3428b781ba2a04c058142e16310e\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b7a7d62cdfec9b5c5710973fabb741e8\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\b7a7d62cdfec9b5c5710973fabb741e8\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ec6296229eae19dc5c3c5881dab00540\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ec6296229eae19dc5c3c5881dab00540\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\597222039f0715c7401267f68f1f9e7c\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\597222039f0715c7401267f68f1f9e7c\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\c5fc0789798e34bd45f9039f964c33eb\print-1.0.0\AndroidManifest.xml:20:5-44
@@ -418,10 +429,10 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\PC-01\.gradl
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\13ba3a2d390e92c714ad608cae0b18ad\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [io.grpc:grpc-android:1.48.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3f81e231c39d3dd0027308eede4b4699\jetified-grpc-android-1.48.1\AndroidManifest.xml:5:5-7:41
 MERGED from [io.grpc:grpc-android:1.48.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3f81e231c39d3dd0027308eede4b4699\jetified-grpc-android-1.48.1\AndroidManifest.xml:5:5-7:41
-MERGED from [me.leolin:ShortcutBadger:1.1.22] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\df0c433d4cfb40f94cae026bc8211e0c\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:7:5-9:41
-MERGED from [me.leolin:ShortcutBadger:1.1.22] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\df0c433d4cfb40f94cae026bc8211e0c\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:7:5-9:41
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\f0be151bd9c905293ae08084c4dfc4b8\jetified-threetenabp-1.2.3\AndroidManifest.xml:5:5-44
 MERGED from [com.jakewharton.threetenabp:threetenabp:1.2.3] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\f0be151bd9c905293ae08084c4dfc4b8\jetified-threetenabp-1.2.3\AndroidManifest.xml:5:5-44
+MERGED from [me.leolin:ShortcutBadger:1.1.22] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\df0c433d4cfb40f94cae026bc8211e0c\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:7:5-9:41
+MERGED from [me.leolin:ShortcutBadger:1.1.22] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\df0c433d4cfb40f94cae026bc8211e0c\jetified-ShortcutBadger-1.1.22\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\7e5cb6c6f9437da119823e44c35d9b10\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\7e5cb6c6f9437da119823e44c35d9b10\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\2341977d1a91ba1cfe2b6d080a2fe8a6\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
@@ -456,58 +467,6 @@ MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Use
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.0.1] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5cfb5df7c49ac7463a57617d7b6b50c7\jetified-play-services-cloud-messaging-17.0.1\AndroidManifest.xml:8:5-67
 	android:name
 		ADDED from C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\android\app\src\debug\AndroidManifest.xml:6:22-64
-service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:35:9-39:19
-MERGED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:35:9-39:19
-MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
-MERGED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:52:9-58:19
-MERGED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:52:9-58:19
-MERGED from [com.google.firebase:firebase-datatransport:18.1.7] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\9d43dcded3fee9cfc6fb9fa89277dcce\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:24:9-30:19
-MERGED from [com.google.firebase:firebase-datatransport:18.1.7] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\9d43dcded3fee9cfc6fb9fa89277dcce\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:24:9-30:19
-MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a2eec741e057c0774a57d2c7134e8465\jetified-firebase-auth-21.1.0\AndroidManifest.xml:64:9-70:19
-MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a2eec741e057c0774a57d2c7134e8465\jetified-firebase-auth-21.1.0\AndroidManifest.xml:64:9-70:19
-MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d0f01ff34f6d818a3748639226f680c3\jetified-firebase-iid-21.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d0f01ff34f6d818a3748639226f680c3\jetified-firebase-iid-21.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:16:9-22:19
-MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:16:9-22:19
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:14:9-20:19
-MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:32:9-36:35
-MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:32:9-36:35
-	android:exported
-		ADDED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:54:13-37
-	tools:targetApi
-		ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:36:13-32
-	android:directBootAware
-		ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:34:13-43
-	android:name
-		ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
-meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
-ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
-	android:value
-		ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
-	android:name
-		ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-134
-meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
-ADDED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
-	android:value
-		ADDED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
-	android:name
-		ADDED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
-meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
-ADDED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
-	android:value
-		ADDED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
-	android:name
-		ADDED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
 uses-permission#android.permission.WAKE_LOCK
 ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-68
 MERGED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:26:5-68
@@ -584,6 +543,40 @@ action#com.google.android.c2dm.intent.RECEIVE
 ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:31:17-81
 	android:name
 		ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:31:25-78
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:35:9-39:19
+MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:52:9-58:19
+MERGED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:52:9-58:19
+MERGED from [com.google.firebase:firebase-datatransport:18.1.7] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\9d43dcded3fee9cfc6fb9fa89277dcce\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:24:9-30:19
+MERGED from [com.google.firebase:firebase-datatransport:18.1.7] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\9d43dcded3fee9cfc6fb9fa89277dcce\jetified-firebase-datatransport-18.1.7\AndroidManifest.xml:24:9-30:19
+MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a2eec741e057c0774a57d2c7134e8465\jetified-firebase-auth-21.1.0\AndroidManifest.xml:64:9-70:19
+MERGED from [com.google.firebase:firebase-auth:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\a2eec741e057c0774a57d2c7134e8465\jetified-firebase-auth-21.1.0\AndroidManifest.xml:64:9-70:19
+MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d0f01ff34f6d818a3748639226f680c3\jetified-firebase-iid-21.1.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d0f01ff34f6d818a3748639226f680c3\jetified-firebase-iid-21.1.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:16:9-22:19
+MERGED from [com.google.firebase:firebase-firestore:24.4.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\d2e870b02ffb2eaf56ec99d0c9690b6d\jetified-firebase-firestore-24.4.0\AndroidManifest.xml:16:9-22:19
+MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-storage:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\cf8bafb88593f0746e2c4074485d5783\jetified-firebase-storage-20.1.0\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-installations:17.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\48eeb7a2f8854137940160f9d01184a8\jetified-firebase-installations-17.1.0\AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:32:9-36:35
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:23.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\5995d24684c307372d85f098009cb7e9\jetified-firebase-messaging-23.1.0\AndroidManifest.xml:54:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:36:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:34:13-43
+	android:name
+		ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:35:18-89
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar
 ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-38:85
 	android:value
@@ -600,6 +593,24 @@ ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local
 		ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-35
 	android:name
 		ADDED from [:firebase_messaging] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-102
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
+ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:cloud_firestore] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-134
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
+ADDED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_auth] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_storage] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
 ADDED from [:firebase_core] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 	android:value
@@ -620,6 +631,48 @@ ADDED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local
 		ADDED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-53
 	android:name
 		ADDED from [:geolocator_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\geolocator_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-77
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
+MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
+MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
+uses-permission#android.permission.VIBRATE
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
+MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
+MERGED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-63
+uses-permission#android.permission.USE_FULL_SCREEN_INTENT
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:9:22-78
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-106
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:19-103
+receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:9-20:20
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:19-107
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+action:name:com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-19:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-79
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:15:25-76
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:16:17-84
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:16:25-81
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:17:25-79
+action#com.htc.intent.action.QUICKBOOT_POWERON
+ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-82
+	android:name
+		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:18:25-79
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
 ADDED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
 	android:grantUriPermissions
@@ -636,18 +689,6 @@ ADDED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Loc
 		ADDED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
 	android:name
 		ADDED from [:image_picker_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\image_picker_android\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
-uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-81
-	android:name
-		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-78
-uses-permission#android.permission.VIBRATE
-ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
-MERGED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-66
-	android:name
-		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-63
 receiver#me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver
 ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-13:40
 	android:exported
@@ -678,44 +719,14 @@ category#android.intent.category.DEFAULT
 ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:17-76
 	android:name
 		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:24:27-73
-action#android.intent.action.BOOT_COMPLETED
-ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:17-79
-	android:name
-		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:26:25-76
 action#android.intent.action.LOCKED_BOOT_COMPLETED
 ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:17-86
 	android:name
 		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:27:25-83
-action#android.intent.action.MY_PACKAGE_REPLACED
-ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:17-84
-	android:name
-		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:28:25-81
-action#android.intent.action.QUICKBOOT_POWERON
-ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:17-82
-	android:name
-		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:29:25-79
-action#com.htc.intent.action.QUICKBOOT_POWERON
-ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:17-82
-	android:name
-		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:30:25-79
 action#android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED
 ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:17-107
 	android:name
 		ADDED from [:awesome_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\awesome_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:31:25-104
-uses-permission#android.permission.USE_FULL_SCREEN_INTENT
-ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-81
-	android:name
-		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:9:22-78
-receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver
-ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-106
-	android:name
-		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:12:19-103
-receiver#com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver
-ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:9-20:20
-	android:name
-		ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:13:19-107
-intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MY_PACKAGE_REPLACED+action:name:android.intent.action.QUICKBOOT_POWERON+action:name:com.htc.intent.action.QUICKBOOT_POWERON
-ADDED from [:flutter_local_notifications] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\flutter_local_notifications\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-19:29
 activity#io.flutter.plugins.urllauncher.WebViewActivity
 ADDED from [:url_launcher_android] C:\Users\PC-01\Documents\Flutter projects\Local\gylac_user\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
 	android:exported
@@ -892,6 +903,26 @@ ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\c
 		ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:30:13-36
 	android:name
 		ADDED from [com.google.firebase:firebase-common:20.2.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\0c08bc86d310840bf91c178fa8844b52\jetified-firebase-common-20.2.0\AndroidManifest.xml:26:13-77
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:20.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\ebb93529c6187a959788b4e7289bc4ef\jetified-play-services-auth-20.1.0\AndroidManifest.xml:34:13-89
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.1.0] C:\Users\PC-01\.gradle\caches\transforms-2\files-2.1\3a4faba203a928b5d76f555363c83720\jetified-play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
