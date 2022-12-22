@@ -97,6 +97,8 @@ class AuthServices {
               })
           .catchError((e) {
         print('e: $e');
+        ToastUtils.showErrorToast(
+            context, "Error".tr, "An undefined Error happened".tr);
         _loadingProvider.setLoading(false);
       });
     } on FirebaseAuthException catch (error) {

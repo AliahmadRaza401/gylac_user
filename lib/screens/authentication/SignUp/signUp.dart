@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gyalcuser_project/constants/colors.dart';
@@ -323,7 +324,7 @@ class _SignUpState extends State<SignUp> {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              loading
+                              otpLoading
                                   ? CircularProgressIndicator()
                                   : CustomBtn(
                                       text: "SIGN UP".tr,
@@ -371,19 +372,8 @@ class _SignUpState extends State<SignUp> {
                                         } else {
                                           print(
                                               "${countryCode.dialCode}${phoneCtl.text.toString()}");
-                                          AppRoutes.push(
-                                            context,
-                                            OtpVerify(
-                                              mobileNumber:
-                                                  "${countryCode.dialCode}${phoneCtl.text.trim().toString()}",
-                                              passwordCtl:
-                                                  passwordCtl.text.toString(),
-                                              emailCtl:
-                                                  emailCtl.text.toString(),
-                                              image: _image,
-                                              nameCtl: nameCtl.text.toString(),
-                                            ),
-                                          );
+
+                                          _signInWithMobileNumber();
                                         }
                                       },
                                       bgColor: orange,
@@ -431,6 +421,68 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  String verificationID = '';
+  String pinCode = '';
+  bool otpLoading = false;
+  _signInWithMobileNumber() async {
+    UserCredential _credential;
+    //var valid = _formKey.currentState.validate();
+    User user;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    try {
+      setState(() {
+        otpLoading = true;
+      });
+      await _auth.verifyPhoneNumber(
+        phoneNumber:
+            "${countryCode.dialCode}${phoneCtl.text.trim().toString()}",
+        verificationCompleted: (PhoneAuthCredential authCredential) async {},
+        verificationFailed: ((error) {
+          print(error);
+          setState(() {
+            otpLoading = false;
+          });
+          ToastUtils.showErrorToast(context, "Error".tr, error.toString());
+        }),
+        codeSent: (String verificationId, [int? forceResendingToken]) {
+          setState(() {
+            verificationID = verificationId;
+            otpLoading = false;
+          });
+          AppRoutes.push(
+            context,
+            OtpVerify(
+              mobileNumber:
+                  "${countryCode.dialCode}${phoneCtl.text.trim().toString()}",
+              passwordCtl: passwordCtl.text.toString(),
+              emailCtl: emailCtl.text.toString(),
+              image: _image,
+              nameCtl: nameCtl.text.toString(),
+              verificationID: verificationId,
+            ),
+          );
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          verificationId = verificationId;
+          print('AUTORETRIVAL SECTION');
+          print(verificationId);
+          print("Timout");
+          setState(() {
+            otpLoading = false;
+          });
+          ToastUtils.showErrorToast(
+              context, "Error".tr, "An undefined Error happened".tr);
+        },
+      );
+    } catch (e) {
+      setState(() {
+        otpLoading = false;
+      });
+      ToastUtils.showErrorToast(
+          context, "Error".tr, "An undefined Error happened".tr);
+    }
   }
 
   Future<void> openFilePicker() async {

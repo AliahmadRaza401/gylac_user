@@ -5,6 +5,7 @@ import 'package:gyalcuser_project/constants/colors.dart';
 import 'package:gyalcuser_project/constants/toast_utils.dart';
 import 'package:gyalcuser_project/providers/loading_provider.dart';
 import 'package:gyalcuser_project/screens/authentication/auth_services.dart';
+import 'package:gyalcuser_project/utils/motion_toast.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
@@ -15,16 +16,19 @@ class OtpVerify extends StatefulWidget {
   String emailCtl;
   String passwordCtl;
   String nameCtl;
+  String verificationID;
 
   String mobileNumber;
   var image;
 
-  OtpVerify(
-      {required this.mobileNumber,
-      required this.passwordCtl,
-      required this.image,
-      required this.emailCtl,
-      required this.nameCtl});
+  OtpVerify({
+    required this.mobileNumber,
+    required this.passwordCtl,
+    required this.image,
+    required this.emailCtl,
+    required this.nameCtl,
+    required this.verificationID,
+  });
 
   @override
   State<OtpVerify> createState() => _OtpVerifyState();
@@ -42,6 +46,7 @@ class _OtpVerifyState extends State<OtpVerify> {
     super.dispose();
   }
 
+  var pinCode;
   @override
   Widget build(BuildContext context) {
     bool loading = Provider.of<LoadingProvider>(context).loading;
@@ -177,7 +182,7 @@ class _OtpVerifyState extends State<OtpVerify> {
 
                                   PhoneAuthCredential _credential =
                                       PhoneAuthProvider.credential(
-                                    verificationId: verificationID,
+                                    verificationId: widget.verificationID,
                                     smsCode: pinCode,
                                   );
                                   auth
@@ -192,6 +197,21 @@ class _OtpVerifyState extends State<OtpVerify> {
                                         widget.image);
                                   }).catchError((e) {
                                     print(e);
+                                    MyMotionToast.error(
+                                        context,
+                                        Text(
+                                          "Error",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                        Text(
+                                          "invalid verification code",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ));
                                   });
                                 },
                                 bgColor: orange,
@@ -213,74 +233,5 @@ class _OtpVerifyState extends State<OtpVerify> {
   @override
   void initState() {
     super.initState();
-    _signInWithMobileNumber();
-  }
-
-  String verificationID = '';
-  String pinCode = '';
-  _signInWithMobileNumber() async {
-    UserCredential _credential;
-    //var valid = _formKey.currentState.validate();
-    User user;
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    debugPrint('widget.mobileNumber_______________: ${widget.mobileNumber}');
-    try {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: widget.mobileNumber,
-        verificationCompleted: (PhoneAuthCredential authCredential) async {},
-        verificationFailed: ((error) {
-          print(error);
-          ToastUtils.showErrorToast(context, "Error".tr, error.toString());
-        }),
-        codeSent: (String verificationId, [int? forceResendingToken]) {
-          setState(() {
-            verificationID = verificationId;
-          });
-          //show dialog to take input from the user
-          // showDialog(
-          //   context: context,
-          //   barrierDismissible: false,
-          //   builder: (context) => AlertDialog(
-          //     title: Text("Enter OTP"),
-          //     content: Column(
-          //       mainAxisSize: MainAxisSize.min,
-          //       children: <Widget>[
-          //         TextField(
-          //           controller: _codeController,
-          //         ),
-          //       ],
-          //     ),
-          //     actions: <Widget>[
-          //       ElevatedButton(
-          //         child: Text("Done"),
-          //         onPressed: () {
-          // FirebaseAuth auth = FirebaseAuth.instance;
-          // smsCode = _codeController.text.trim();
-          // PhoneAuthCredential _credential =
-          //     PhoneAuthProvider.credential(
-          //   verificationId: verificationId,
-          //   smsCode: smsCode,
-          // );
-          // auth.signInWithCredential(_credential).then((result) {
-          //   Navigator.of(context).pop();
-          // }).catchError((e) {
-          //   print(e);
-          // });
-          //         },
-          //       ),
-          //     ],
-          //   ),
-          // );
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          verificationId = verificationId;
-          print('AUTORETRIVAL SECTION');
-          print(verificationId);
-          print("Timout");
-          ToastUtils.showErrorToast(
-              context, "Error".tr, "An undefined Error happened".tr);
-        },
-      );
-    } catch (e) {}
   }
 }
