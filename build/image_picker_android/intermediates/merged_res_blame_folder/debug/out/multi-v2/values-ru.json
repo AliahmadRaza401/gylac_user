@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\PC-01\\Documents\\Flutter Projects\\me\\gylac_user\\build\\image_picker_android\\intermediates\\res\\merged\\debug\\values-ru\\values-ru.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\PC-01\\.gradle\\caches\\transforms-2\\files-2.1\\340f73096e343129323054dd621e22bf\\core-1.8.0\\res\\values-ru\\values-ru.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\PC-01\\Documents\\Flutter Projects\\me\\gylac_user\\build\\image_picker_android\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ru\\values-ru.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\PC-01\\.gradle\\caches\\transforms-2\\files-2.1\\340f73096e343129323054dd621e22bf\\core-1.8.0\\res\\values-ru\\values-ru.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

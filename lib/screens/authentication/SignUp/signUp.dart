@@ -432,6 +432,8 @@ class _SignUpState extends State<SignUp> {
     User user;
     final FirebaseAuth _auth = FirebaseAuth.instance;
     try {
+      print(
+          "Number__________________________: ${countryCode.dialCode}${phoneCtl.text.trim().toString()}");
       setState(() {
         otpLoading = true;
       });
@@ -444,7 +446,8 @@ class _SignUpState extends State<SignUp> {
           setState(() {
             otpLoading = false;
           });
-          ToastUtils.showErrorToast(context, "Error".tr, error.toString());
+          ToastUtils.showErrorToast(
+              context, "Error".tr, "Please try again later");
         }),
         codeSent: (String verificationId, [int? forceResendingToken]) {
           setState(() {
