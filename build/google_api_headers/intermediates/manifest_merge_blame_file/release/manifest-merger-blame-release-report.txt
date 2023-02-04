@@ -3,6 +3,6 @@
 3    package="io.github.zeshuaro.google_api_headers" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\flutter3.8\.pub-cache\hosted\pub.dartlang.org\google_api_headers-1.5.0\android\src\main\AndroidManifest.xml
+5-->C:\flutter\.pub-cache\hosted\pub.dartlang.org\google_api_headers-1.5.0\android\src\main\AndroidManifest.xml
 6
 7</manifest>

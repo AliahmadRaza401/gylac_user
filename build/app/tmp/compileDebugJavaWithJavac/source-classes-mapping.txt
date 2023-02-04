@@ -1,6 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/example/gyalcuser_project/MainActivity.java
- com.example.gyalcuser_project.MainActivity
-com/example/gyalcuser_project/BuildConfig.java
- com.example.gyalcuser_project.BuildConfig

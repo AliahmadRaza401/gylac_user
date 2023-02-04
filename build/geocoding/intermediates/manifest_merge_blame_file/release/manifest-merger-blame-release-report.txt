@@ -3,6 +3,6 @@
 3    package="com.baseflow.geocoding" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\flutter3.8\.pub-cache\hosted\pub.dartlang.org\geocoding-2.0.5\android\src\main\AndroidManifest.xml
+5-->C:\flutter\.pub-cache\hosted\pub.dartlang.org\geocoding-2.0.5\android\src\main\AndroidManifest.xml
 6
 7</manifest>
